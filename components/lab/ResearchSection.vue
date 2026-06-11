@@ -21,7 +21,7 @@ useIntersectionObserver(sectionRef, ([entry]) => {
 </script>
 
 <template>
-  <section ref="sectionRef" class="relative px-6 py-24 mobile:py-16">
+  <section id="research" ref="sectionRef" class="relative px-6 py-24 mobile:py-16">
     <div class="mx-auto max-w-[1200px]">
 
       <!-- 섹션 헤더 -->

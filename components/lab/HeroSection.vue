@@ -72,13 +72,13 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
         class="animate-fade-in-up mt-2 flex flex-wrap justify-center gap-3"
         style="animation-delay: 300ms"
       >
-        <NuxtLink
-          :to="localePath('/research')"
+        <a
+          href="#research"
           class="group flex items-center gap-2 rounded-xl bg-[#C21807] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#C21807]/20 transition-all duration-200 hover:bg-[#A81005] hover:scale-[1.03] hover:shadow-[#C21807]/30"
         >
           <span class="material-icons text-[18px]">science</span>
           {{ $t('lab.nav.research') }}
-        </NuxtLink>
+        </a>
         <NuxtLink
           :to="localePath('/members')"
           class="group flex items-center gap-2 rounded-xl border px-6 py-3 text-sm font-semibold transition-all duration-200 hover:scale-[1.03]"
@@ -87,14 +87,14 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
           <span class="material-icons text-[18px]">group</span>
           {{ $t('lab.nav.members') }}
         </NuxtLink>
-        <NuxtLink
-          :to="localePath('/publications')"
+        <a
+          href="#publications"
           class="group flex items-center gap-2 rounded-xl border px-6 py-3 text-sm font-semibold transition-all duration-200 hover:scale-[1.03]"
           :class="isDark ? 'border-white/15 text-white/80 hover:bg-white/8' : 'border-gray-200 text-gray-700 hover:bg-gray-50'"
         >
           <span class="material-icons text-[18px]">menu_book</span>
           {{ $t('lab.nav.publications') }}
-        </NuxtLink>
+        </a>
       </div>
     </div>
 

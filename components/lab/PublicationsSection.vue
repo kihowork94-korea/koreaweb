@@ -39,6 +39,7 @@ useIntersectionObserver(sectionRef, ([entry]) => {
   <!-- 데이터 없으면 섹션 자체를 숨김 -->
   <section
     v-if="highlightedPublications.length > 0"
+    id="publications"
     ref="sectionRef"
     class="relative px-6 py-24 mobile:py-16"
   >

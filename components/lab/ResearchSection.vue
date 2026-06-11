@@ -12,6 +12,17 @@ const loc = (f: Record<string, string> | null | undefined) =>
 const { data: areasRaw } = useLabResearch()
 const researchAreas = computed<any[]>(() => (areasRaw.value as any[]) ?? [])
 
+const loadedImages = ref<Set<number>>(new Set())
+function onImgLoad(id: number, img: HTMLImageElement) {
+  img.style.opacity = '1'
+  loadedImages.value = new Set([...loadedImages.value, id])
+}
+function onImgError(id: number, e: Event) {
+  const img = e.target as HTMLImageElement
+  img.src = '/images/ku-logo.png'
+  img.onload = () => onImgLoad(id, img)
+}
+
 // 섹션 등장 애니메이션
 const sectionRef = ref<HTMLElement | null>(null)
 const isVisible = ref(false)
@@ -57,16 +68,20 @@ useIntersectionObserver(sectionRef, ([entry]) => {
           <!-- 이미지 (있을 때) -->
           <div
             v-if="area.imageUrl"
-            class="mb-5 overflow-hidden rounded-xl"
-            :class="isDark ? 'bg-white/5' : 'bg-gray-100'"
+            class="mb-5 h-40 overflow-hidden rounded-xl transition-all"
+            :class="[
+              loadedImages.has(area.id) ? '' : 'animate-pulse',
+              isDark ? 'bg-white/[0.08]' : 'bg-gray-200',
+            ]"
           >
             <img
               :src="area.imageUrl"
               :alt="loc(area.title)"
-              class="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              class="h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:scale-[1.03]"
               loading="lazy"
               decoding="async"
-              @error="($event.target as HTMLImageElement).src='/images/ku-logo.png'"
+              @load="onImgLoad(area.id, $event.target as HTMLImageElement)"
+              @error="onImgError(area.id, $event)"
             />
           </div>
 

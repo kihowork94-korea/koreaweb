@@ -22,6 +22,17 @@ const isVisible = ref(false)
 useIntersectionObserver(sectionRef, ([entry]) => {
   if (entry.isIntersecting) isVisible.value = true
 }, { threshold: 0.1 })
+
+const loadedImages = ref<Set<number>>(new Set())
+function onImgLoad(id: number, img: HTMLImageElement) {
+  img.style.opacity = '1'
+  loadedImages.value = new Set([...loadedImages.value, id])
+}
+function onImgError(id: number, e: Event) {
+  const img = e.target as HTMLImageElement
+  img.src = '/images/ku-logo.png'
+  img.onload = () => onImgLoad(id, img)
+}
 </script>
 
 <template>
@@ -72,16 +83,20 @@ useIntersectionObserver(sectionRef, ([entry]) => {
           <!-- 이미지 -->
           <div
             v-if="project.imageUrl"
-            class="mb-4 overflow-hidden rounded-xl"
-            :class="isDark ? 'bg-white/5' : 'bg-gray-100'"
+            class="mb-4 h-36 overflow-hidden rounded-xl transition-all"
+            :class="[
+              loadedImages.has(project.id) ? '' : 'animate-pulse',
+              isDark ? 'bg-white/[0.08]' : 'bg-gray-200',
+            ]"
           >
             <img
               :src="project.imageUrl"
               :alt="loc(project.title)"
-              class="h-36 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              class="h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:scale-[1.03]"
               loading="lazy"
               decoding="async"
-              @error="($event.target as HTMLImageElement).src='/images/ku-logo.png'"
+              @load="onImgLoad(project.id, $event.target as HTMLImageElement)"
+              @error="onImgError(project.id, $event)"
             />
           </div>
 

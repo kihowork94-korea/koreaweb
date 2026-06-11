@@ -56,6 +56,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
                 :src="area.imageUrl"
                 :alt="loc(area.title)"
                 class="h-full w-full object-cover"
+                @error="($event.target as HTMLImageElement).src='/ku-logo.png'"
               />
             </div>
             <template v-else>

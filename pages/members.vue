@@ -39,6 +39,16 @@ const filteredMembers = computed(() =>
 // 선택된 구성원 (상세 모달)
 const selectedMember = ref<any | null>(null)
 
+// 모달 열릴 때 body 스크롤 잠금
+watch(selectedMember, (val) => {
+  if (import.meta.client) {
+    document.body.style.overflow = val ? 'hidden' : ''
+  }
+})
+onUnmounted(() => {
+  if (import.meta.client) document.body.style.overflow = ''
+})
+
 // 섹션 등장
 const sectionRef = ref<HTMLElement | null>(null)
 const isVisible  = ref(false)
@@ -100,15 +110,11 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
             :class="isDark ? 'bg-white/10' : 'bg-gray-100'"
           >
             <img
-              v-if="member.imageUrl"
-              :src="member.imageUrl"
+              :src="member.imageUrl || '/ku-logo.png'"
               :alt="loc(member.name)"
               class="h-full w-full object-cover"
-              @error="($event.target as HTMLImageElement).style.display='none'"
+              @error="($event.target as HTMLImageElement).src='/ku-logo.png'"
             />
-            <div v-else class="flex h-full w-full items-center justify-center">
-              <span :class="['material-icons text-4xl', isDark ? 'text-white/20' : 'text-gray-300']">person</span>
-            </div>
           </div>
 
           <!-- 이름 + 소개 -->
@@ -158,12 +164,15 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
     <!-- ── 구성원 상세 모달 ──────────────────────── -->
     <Teleport to="body">
       <Transition name="modal">
-        <div
-          v-if="selectedMember"
-          class="fixed inset-0 z-[9999] overflow-y-auto bg-black/60 backdrop-blur-sm"
-          @click.self="selectedMember = null"
-        >
-          <div class="flex min-h-full items-center justify-center p-6">
+        <div v-if="selectedMember">
+          <!-- 1) backdrop (클릭 시 닫기) -->
+          <div
+            class="fixed inset-0 z-[9999] bg-black/60 backdrop-blur-sm"
+            @click="selectedMember = null"
+          />
+          <!-- 2) 스크롤 컨테이너 (backdrop과 별개) -->
+          <div class="fixed inset-0 z-[10000] overflow-y-auto">
+            <div class="flex min-h-full items-start justify-center p-6 py-10">
           <div
             class="relative w-full max-w-[700px] rounded-3xl p-8 shadow-2xl mobile:p-6"
             :class="isDark ? 'bg-[#111] border border-white/10' : 'bg-white border border-gray-100'"
@@ -184,15 +193,11 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
                 :class="isDark ? 'bg-white/10' : 'bg-gray-100'"
               >
                 <img
-                  v-if="selectedMember.imageUrl"
-                  :src="selectedMember.imageUrl"
+                  :src="selectedMember.imageUrl || '/ku-logo.png'"
                   :alt="loc(selectedMember.name)"
                   class="h-full w-full object-cover"
-                  @error="($event.target as HTMLImageElement).style.display='none'"
+                  @error="($event.target as HTMLImageElement).src='/ku-logo.png'"
                 />
-                <div v-else class="flex h-full w-full items-center justify-center">
-                  <span :class="['material-icons text-5xl', isDark ? 'text-white/20' : 'text-gray-300']">person</span>
-                </div>
               </div>
               <div>
                 <p class="mb-1 text-xs font-semibold uppercase tracking-wider text-[#C21807]">
@@ -306,6 +311,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
               </div>
             </div>
           </div>
+            </div>
           </div>
         </div>
       </Transition>

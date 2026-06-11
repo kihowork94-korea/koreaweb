@@ -92,14 +92,14 @@ function renderContent(text: string): string {
 
         <!-- 대표 이미지 -->
         <div
-          v-if="item.imageUrl"
           class="mb-8 overflow-hidden rounded-2xl"
           :class="isDark ? 'bg-white/10' : 'bg-gray-100'"
         >
           <img
-            :src="item.imageUrl"
+            :src="item.imageUrl || '/ku-logo.png'"
             :alt="loc(item.title)"
             class="h-full w-full object-cover"
+            @error="($event.target as HTMLImageElement).src='/ku-logo.png'"
           />
         </div>
 

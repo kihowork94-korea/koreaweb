@@ -15,7 +15,7 @@ const schema = {
     { key: 'description', label: '설명', type: 'localized-textarea' as const, span: 2 as const },
     { key: 'keywords', label: '키워드 (JSON 배열)', type: 'json' as const, span: 2 as const },
     { key: 'icon_name', label: '아이콘 (예: i-heroicons-beaker)', type: 'text' as const },
-    { key: 'image_url', label: '이미지 URL', type: 'text' as const },
+    { key: 'image_url', label: '이미지 URL (선택)', type: 'text' as const, placeholder: '비우면 아이콘만 표시' },
   ],
 }
 </script>

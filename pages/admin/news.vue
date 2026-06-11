@@ -28,6 +28,7 @@ const schema = {
     { key: 'is_pinned', label: '상단 고정', type: 'boolean' as const },
     { key: 'title', label: '제목', type: 'localized' as const, required: true, span: 2 as const },
     { key: 'content', label: '본문 (마크다운)', type: 'localized-textarea' as const, span: 2 as const },
+    { key: 'image_url', label: '썸네일 이미지 URL (선택)', type: 'text' as const, span: 2 as const, placeholder: '비우면 기본 이미지(고려대 마크) 사용' },
     { key: 'external_url', label: '외부 링크', type: 'text' as const, span: 2 as const },
   ],
 }

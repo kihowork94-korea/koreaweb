@@ -116,14 +116,14 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
         >
           <!-- 이미지 썸네일 -->
           <div
-            v-if="item.imageUrl"
             class="h-24 w-32 flex-shrink-0 overflow-hidden rounded-xl mobile:h-44 mobile:w-full"
             :class="isDark ? 'bg-white/10' : 'bg-gray-100'"
           >
             <img
-              :src="item.imageUrl"
+              :src="item.imageUrl || '/ku-logo.png'"
               :alt="loc(item.title)"
               class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              @error="($event.target as HTMLImageElement).src='/ku-logo.png'"
             />
           </div>
 

@@ -26,7 +26,7 @@ const schema = {
     { key: 'end_year', label: '종료연도', type: 'number' as const },
     { key: 'funding_agency', label: '지원 기관', type: 'localized' as const },
     { key: 'funding_amount', label: '연구비', type: 'text' as const },
-    { key: 'image_url', label: '이미지 URL', type: 'text' as const, span: 2 as const },
+    { key: 'image_url', label: '이미지 URL (선택)', type: 'text' as const, span: 2 as const, placeholder: '비우면 기본 이미지(고려대 마크) 사용' },
     { key: 'tags', label: '태그 (쉼표 구분)', type: 'tags' as const, span: 2 as const },
   ],
 }

@@ -22,5 +22,8 @@ useHead({
 
     <!-- 3. 대표 논문 섹션 (데이터 없으면 자동 숨김) -->
     <LabPublicationsSection />
+
+    <!-- 4. 진행 중 프로젝트 섹션 (데이터 없으면 자동 숨김) -->
+    <LabProjectsSection />
   </div>
 </template>

@@ -14,6 +14,12 @@ const name   = computed(() => loc(labInfo.value?.name))
 const slogan = computed(() => loc(labInfo.value?.slogan))
 const univ   = computed(() => loc(labInfo.value?.university))
 
+// CTA 클릭 강조
+const activeSection = ref<string | null>(null)
+function onCtaClick(section: string) {
+  activeSection.value = section
+}
+
 // 스크롤 인디케이터
 const scrollIndicatorVisible = ref(true)
 const handleScroll = () => { scrollIndicatorVisible.value = window.scrollY < 80 }
@@ -73,27 +79,23 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
         style="animation-delay: 300ms"
       >
         <a
-          href="#research"
-          class="group flex items-center gap-2 rounded-xl bg-[#C21807] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#C21807]/20 transition-all duration-200 hover:bg-[#A81005] hover:scale-[1.03] hover:shadow-[#C21807]/30"
-        >
-          <span class="material-icons text-[18px]">science</span>
-          {{ $t('lab.nav.research') }}
-        </a>
-        <NuxtLink
-          :to="localePath('/members')"
+          v-for="cta in [
+            { section: 'research',     icon: 'science',    label: $t('lab.nav.research') },
+            { section: 'publications', icon: 'menu_book',  label: $t('lab.nav.publications') },
+            { section: 'projects',     icon: 'folder',     label: $t('lab.nav.projects') },
+          ]"
+          :key="cta.section"
+          :href="`#${cta.section}`"
           class="group flex items-center gap-2 rounded-xl border px-6 py-3 text-sm font-semibold transition-all duration-200 hover:scale-[1.03]"
-          :class="isDark ? 'border-white/15 text-white/80 hover:bg-white/8' : 'border-gray-200 text-gray-700 hover:bg-gray-50'"
+          :class="activeSection === cta.section
+            ? 'border-[#C21807] bg-[#C21807] text-white shadow-lg shadow-[#C21807]/20'
+            : isDark
+              ? 'border-white/15 text-white/80 hover:bg-white/8'
+              : 'border-gray-200 text-gray-700 hover:bg-gray-50'"
+          @click="onCtaClick(cta.section)"
         >
-          <span class="material-icons text-[18px]">group</span>
-          {{ $t('lab.nav.members') }}
-        </NuxtLink>
-        <a
-          href="#publications"
-          class="group flex items-center gap-2 rounded-xl border px-6 py-3 text-sm font-semibold transition-all duration-200 hover:scale-[1.03]"
-          :class="isDark ? 'border-white/15 text-white/80 hover:bg-white/8' : 'border-gray-200 text-gray-700 hover:bg-gray-50'"
-        >
-          <span class="material-icons text-[18px]">menu_book</span>
-          {{ $t('lab.nav.publications') }}
+          <span class="material-icons text-[18px]">{{ cta.icon }}</span>
+          {{ cta.label }}
         </a>
       </div>
     </div>

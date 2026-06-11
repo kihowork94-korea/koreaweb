@@ -153,8 +153,8 @@ function renderContent(text: string): string {
             :to="localePath(`/news/${prevItem.id}`)"
             class="group flex flex-col gap-1 rounded-xl border p-4 transition-all"
             :class="isDark
-              ? 'border-white/[0.07] bg-white/[0.03] hover:bg-white/[0.06]'
-              : 'border-gray-100 bg-white/70 hover:shadow-sm'"
+              ? 'border-white/[0.10] bg-[#111] hover:bg-[#1c1c1c]'
+              : 'border-gray-200 bg-white hover:shadow-sm'"
           >
             <span class="flex items-center gap-1 text-xs" :class="isDark ? 'text-white/35' : 'text-gray-400'">
               <span class="material-icons text-[13px]">arrow_back</span>이전 글
@@ -172,8 +172,8 @@ function renderContent(text: string): string {
             :to="localePath(`/news/${nextItem.id}`)"
             class="group flex flex-col items-end gap-1 rounded-xl border p-4 text-right transition-all"
             :class="isDark
-              ? 'border-white/[0.07] bg-white/[0.03] hover:bg-white/[0.06]'
-              : 'border-gray-100 bg-white/70 hover:shadow-sm'"
+              ? 'border-white/[0.10] bg-[#111] hover:bg-[#1c1c1c]'
+              : 'border-gray-200 bg-white hover:shadow-sm'"
           >
             <span class="flex items-center gap-1 text-xs" :class="isDark ? 'text-white/35' : 'text-gray-400'">
               다음 글<span class="material-icons text-[13px]">arrow_forward</span>

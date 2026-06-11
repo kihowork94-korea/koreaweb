@@ -57,7 +57,7 @@ useIntersectionObserver(profileRef, ([e]) => { if (e.isIntersecting) profileVis.
           class="animate-item delay-1 rounded-3xl border p-10 mobile:p-6"
           :class="[
             { 'is-visible': introVis },
-            isDark ? 'border-white/[0.07] bg-white/[0.03]' : 'border-gray-100 bg-white/70',
+            isDark ? 'border-white/[0.10] bg-[#111]' : 'border-gray-200 bg-white',
           ]"
         >
           <!-- 상단: 대표 수치 -->
@@ -167,8 +167,8 @@ useIntersectionObserver(profileRef, ([e]) => { if (e.isIntersecting) profileVis.
             <div
               class="flex-1 rounded-xl border p-4 transition-colors"
               :class="isDark
-                ? 'border-white/[0.06] bg-white/[0.03]'
-                : 'border-gray-100 bg-white/60'"
+                ? 'border-white/[0.10] bg-[#111]'
+                : 'border-gray-200 bg-white'"
             >
               <p
                 class="text-sm leading-relaxed"
@@ -206,7 +206,7 @@ useIntersectionObserver(profileRef, ([e]) => { if (e.isIntersecting) profileVis.
           class="animate-item delay-1 flex gap-12 rounded-3xl border p-10 mobile:flex-col mobile:p-6"
           :class="[
             { 'is-visible': profileVis },
-            isDark ? 'border-white/[0.07] bg-white/[0.03]' : 'border-gray-100 bg-white/70',
+            isDark ? 'border-white/[0.10] bg-[#111]' : 'border-gray-200 bg-white',
           ]"
         >
           <!-- 사진 -->

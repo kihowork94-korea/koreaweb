@@ -99,8 +99,8 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
             { 'is-visible': isVisible },
             `delay-${i}`,
             isDark
-              ? 'border-white/[0.07] bg-white/[0.03] hover:bg-white/[0.07]'
-              : 'border-gray-100 bg-white/70 hover:shadow-lg hover:shadow-black/5 hover:bg-white',
+              ? 'border-white/[0.10] bg-[#111] hover:bg-[#1c1c1c]'
+              : 'border-gray-200 bg-white hover:shadow-lg hover:shadow-black/5',
           ]"
           @click="selectedMember = member"
         >

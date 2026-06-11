@@ -85,7 +85,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
           :class="[
             { 'is-visible': isVisible },
             `delay-${i}`,
-            isDark ? 'border-white/[0.07] bg-white/[0.03]' : 'border-gray-100 bg-white/70',
+            isDark ? 'border-white/[0.10] bg-[#111]' : 'border-gray-200 bg-white',
           ]"
         >
           <!-- 이미지 -->

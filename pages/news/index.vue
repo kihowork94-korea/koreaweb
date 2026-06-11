@@ -110,8 +110,8 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
             { 'is-visible': isVisible },
             `delay-${i}`,
             isDark
-              ? 'border-white/[0.07] bg-white/[0.03] hover:bg-white/[0.06]'
-              : 'border-gray-100 bg-white/70 hover:shadow-md hover:shadow-black/5',
+              ? 'border-white/[0.10] bg-[#111] hover:bg-[#1c1c1c]'
+              : 'border-gray-200 bg-white hover:shadow-md hover:shadow-black/5',
           ]"
         >
           <!-- 이미지 썸네일 -->

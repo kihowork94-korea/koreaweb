@@ -49,7 +49,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
           :class="[
             { 'is-visible': isVisible },
             'delay-0',
-            isDark ? 'border-white/[0.07] bg-white/[0.03]' : 'border-gray-100 bg-white/70',
+            isDark ? 'border-white/[0.10] bg-[#111]' : 'border-gray-200 bg-white',
           ]"
         >
           <h2
@@ -144,7 +144,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
           :class="[
             { 'is-visible': isVisible },
             'delay-1',
-            isDark ? 'border-white/[0.07] bg-white/[0.03]' : 'border-gray-100 bg-white/70',
+            isDark ? 'border-white/[0.10] bg-[#111]' : 'border-gray-200 bg-white',
           ]"
         >
           <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#C21807]/10">
@@ -174,7 +174,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
           :class="[
             { 'is-visible': isVisible },
             'delay-2',
-            isDark ? 'border-white/[0.07] bg-white/[0.03]' : 'border-gray-100 bg-white/70',
+            isDark ? 'border-white/[0.10] bg-[#111]' : 'border-gray-200 bg-white',
           ]"
         >
           <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#C21807]/10">

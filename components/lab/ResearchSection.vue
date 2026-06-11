@@ -50,8 +50,8 @@ useIntersectionObserver(sectionRef, ([entry]) => {
             { 'is-visible': isVisible },
             `delay-${i + 1}`,
             isDark
-              ? 'border-white/[0.07] bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/[0.12]'
-              : 'border-gray-100 bg-white/60 hover:bg-white/90 hover:border-gray-200 hover:shadow-lg hover:shadow-black/5',
+              ? 'border-white/[0.10] bg-[#111] hover:bg-[#1c1c1c] hover:border-white/[0.18]'
+              : 'border-gray-200 bg-white hover:border-gray-300 hover:shadow-lg hover:shadow-black/5',
           ]"
         >
           <!-- 이미지 (있을 때) -->

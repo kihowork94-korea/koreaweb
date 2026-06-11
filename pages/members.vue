@@ -12,7 +12,7 @@ useHead({ title: `${t('lab.nav.members')} | 지능형 바이오 모니터링 연
 const loc = (f: Record<string, string> | null | undefined) =>
   f ? (f[locale.value as keyof typeof f] || f.en || '') : ''
 
-const { data: membersRaw } = useLabMembers()
+const { data: membersRaw, pending } = useLabMembers()
 const members = computed<any[]>(() => (membersRaw.value as any[]) ?? [])
 
 // 탭 구성 (alumni 제외)
@@ -48,6 +48,13 @@ watch(selectedMember, (val) => {
 onUnmounted(() => {
   if (import.meta.client) document.body.style.overflow = ''
 })
+
+// Escape 키로 모달 닫기
+function onKeydown(e: KeyboardEvent) {
+  if (e.key === 'Escape') selectedMember.value = null
+}
+onMounted(() => window.addEventListener('keydown', onKeydown))
+onUnmounted(() => window.removeEventListener('keydown', onKeydown))
 
 // 섹션 등장
 const sectionRef = ref<HTMLElement | null>(null)
@@ -89,8 +96,26 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
         </button>
       </div>
 
+      <!-- 스켈레톤 로딩 -->
+      <div v-if="pending" class="grid grid-cols-3 gap-6 mobile:grid-cols-1 md:grid-cols-2">
+        <div
+          v-for="i in 6" :key="i"
+          class="animate-pulse rounded-2xl border p-6"
+          :class="isDark ? 'border-white/[0.10] bg-[#111]' : 'border-gray-200 bg-white'"
+        >
+          <div class="mb-4 h-24 w-24 rounded-xl" :class="isDark ? 'bg-white/10' : 'bg-gray-200'" />
+          <div class="mb-2 h-5 w-2/3 rounded-md" :class="isDark ? 'bg-white/10' : 'bg-gray-200'" />
+          <div class="mb-1 h-4 w-full rounded-md" :class="isDark ? 'bg-white/[0.06]' : 'bg-gray-100'" />
+          <div class="mb-3 h-4 w-4/5 rounded-md" :class="isDark ? 'bg-white/[0.06]' : 'bg-gray-100'" />
+          <div class="flex gap-1.5">
+            <div class="h-5 w-16 rounded-full" :class="isDark ? 'bg-white/[0.06]' : 'bg-gray-100'" />
+            <div class="h-5 w-20 rounded-full" :class="isDark ? 'bg-white/[0.06]' : 'bg-gray-100'" />
+          </div>
+        </div>
+      </div>
+
       <!-- 구성원 카드 그리드 -->
-      <div ref="sectionRef" class="grid grid-cols-3 gap-6 mobile:grid-cols-1 md:grid-cols-2">
+      <div v-else ref="sectionRef" class="grid grid-cols-3 gap-6 mobile:grid-cols-1 md:grid-cols-2">
         <div
           v-for="(member, i) in filteredMembers"
           :key="member.id"
@@ -139,11 +164,11 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
             >{{ loc(ri) }}</span>
           </div>
 
-          <!-- 이메일 링크 -->
+          <!-- 이메일 링크 (모바일: 항상 표시 / 데스크톱: hover 시 표시) -->
           <a
             v-if="member.email"
             :href="`mailto:${member.email}`"
-            class="mt-3 flex items-center gap-1 text-xs text-[#C21807] opacity-0 transition-opacity group-hover:opacity-100"
+            class="mt-3 flex items-center gap-1 text-xs text-[#C21807] transition-opacity mobile:opacity-100 opacity-0 group-hover:opacity-100"
             @click.stop
           >
             <span class="material-icons text-[14px]">mail</span>
@@ -173,7 +198,12 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
             @click="selectedMember = null"
           />
           <!-- 2) 스크롤 컨테이너 (backdrop과 별개) -->
-          <div class="fixed inset-0 z-[10000] overflow-y-auto">
+          <div
+            class="fixed inset-0 z-[10000] overflow-y-auto"
+            role="dialog"
+            aria-modal="true"
+            :aria-labelledby="`member-modal-title-${selectedMember?.id}`"
+          >
             <div class="flex min-h-full items-start justify-center p-6 py-10">
           <div
             class="relative w-full max-w-[700px] rounded-3xl p-8 shadow-2xl mobile:p-6"
@@ -181,9 +211,11 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
           >
             <!-- 닫기 -->
             <button
+              autofocus
               @click="selectedMember = null"
               class="absolute right-6 top-6 flex h-8 w-8 items-center justify-center rounded-full transition-colors"
               :class="isDark ? 'text-white/50 hover:bg-white/10 hover:text-white' : 'text-gray-400 hover:bg-gray-100 hover:text-gray-700'"
+              aria-label="닫기"
             >
               <span class="material-icons text-[20px]">close</span>
             </button>
@@ -207,6 +239,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
                   {{ t(`lab.member.${selectedMember.role}`) }}
                 </p>
                 <h2
+                  :id="`member-modal-title-${selectedMember.id}`"
                   class="mb-2 text-2xl font-bold"
                   :class="isDark ? 'text-white' : 'text-gray-900'"
                 >{{ loc(selectedMember.name) }}</h2>

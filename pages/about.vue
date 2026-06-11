@@ -202,7 +202,18 @@ useIntersectionObserver(profileRef, ([e]) => { if (e.isIntersecting) profileVis.
           >지도교수</h2>
         </div>
 
+        <!-- 교수 데이터 없을 때 빈 상태 -->
         <div
+          v-if="!professor"
+          class="animate-item delay-1 py-16 text-center"
+          :class="[{ 'is-visible': profileVis }, isDark ? 'text-white/30' : 'text-gray-300']"
+        >
+          <span class="material-icons mb-3 block text-5xl">person_off</span>
+          <p class="text-sm">{{ t('lab.common.noData') }}</p>
+        </div>
+
+        <div
+          v-else
           class="animate-item delay-1 flex gap-12 rounded-3xl border p-10 mobile:flex-col mobile:p-6"
           :class="[
             { 'is-visible': profileVis },

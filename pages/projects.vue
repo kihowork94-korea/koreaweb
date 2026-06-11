@@ -11,7 +11,7 @@ useHead({ title: `${t('lab.nav.projects')} | 지능형 바이오 모니터링 �
 const loc = (f: Record<string, string> | null | undefined) =>
   f ? (f[locale.value as keyof typeof f] || f.en || '') : ''
 
-const { data: projectsRaw } = useLabProjects()
+const { data: projectsRaw, pending } = useLabProjects()
 const projects = computed<any[]>(() => (projectsRaw.value as any[]) ?? [])
 
 const { data: membersRaw } = useLabMembers()
@@ -65,8 +65,26 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
         </button>
       </div>
 
+      <!-- 스켈레톤 로딩 -->
+      <div v-if="pending" class="flex flex-col gap-5">
+        <div
+          v-for="i in 3" :key="i"
+          class="animate-pulse rounded-3xl border p-8 mobile:p-6"
+          :class="isDark ? 'border-white/[0.10] bg-[#111]' : 'border-gray-200 bg-white'"
+        >
+          <div class="mb-6 h-52 rounded-2xl" :class="isDark ? 'bg-white/[0.08]' : 'bg-gray-200'" />
+          <div class="mb-3 flex gap-2">
+            <div class="h-6 w-20 rounded-full" :class="isDark ? 'bg-white/10' : 'bg-gray-200'" />
+            <div class="h-6 w-16 rounded-full" :class="isDark ? 'bg-white/[0.06]' : 'bg-gray-100'" />
+          </div>
+          <div class="mb-2 h-7 w-3/4 rounded-md" :class="isDark ? 'bg-white/10' : 'bg-gray-200'" />
+          <div class="mb-1 h-4 w-full rounded-md" :class="isDark ? 'bg-white/[0.06]' : 'bg-gray-100'" />
+          <div class="h-4 w-4/5 rounded-md" :class="isDark ? 'bg-white/[0.06]' : 'bg-gray-100'" />
+        </div>
+      </div>
+
       <!-- 프로젝트 리스트 -->
-      <div ref="sectionRef" class="flex flex-col gap-5">
+      <div v-else ref="sectionRef" class="flex flex-col gap-5">
 
         <!-- 빈 상태 -->
         <div

@@ -116,7 +116,7 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
         >
           <!-- 이미지 썸네일 -->
           <div
-            class="h-24 w-32 flex-shrink-0 overflow-hidden rounded-xl mobile:h-44 mobile:w-full"
+            class="h-24 w-32 flex-shrink-0 overflow-hidden rounded-xl mobile:aspect-video mobile:h-auto mobile:w-full"
             :class="isDark ? 'bg-white/10' : 'bg-gray-100'"
           >
             <img

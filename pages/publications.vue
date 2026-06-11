@@ -8,7 +8,7 @@ const isDark = computed(() => themeStore.isDark)
 
 useHead({ title: `${t('lab.nav.publications')} | 지능형 바이오 모니터링 연구실` })
 
-const { data: pubsRaw } = useLabPublications()
+const { data: pubsRaw, pending } = useLabPublications()
 const publications = computed<any[]>(() => (pubsRaw.value as any[]) ?? [])
 
 // ── 필터 상태 ──────────────────────────────────
@@ -17,6 +17,15 @@ type TypeFilter = PublicationType | 'all'
 const typeFilter = ref<TypeFilter>('all')
 const yearFilter = ref<number | 'all'>('all')
 const tagFilter  = ref<string>('all')
+
+const hasActiveFilter = computed(() =>
+  typeFilter.value !== 'all' || yearFilter.value !== 'all' || tagFilter.value !== 'all'
+)
+function resetFilters() {
+  typeFilter.value = 'all'
+  yearFilter.value = 'all'
+  tagFilter.value  = 'all'
+}
 
 // ── 필터 옵션 ──────────────────────────────────
 const typeOptions: { key: TypeFilter; label: string }[] = [
@@ -118,7 +127,7 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
         <select
           v-model="yearFilter"
           class="ml-auto rounded-xl border px-3 py-1.5 text-[13px] font-semibold outline-none transition-colors"
-          :class="isDark ? 'bg-white/[0.06] border-white/10 text-white/70' : 'bg-white border-gray-200 text-gray-600'"
+          :class="[isDark ? 'bg-white/[0.06] border-white/10 text-white/70' : 'bg-white border-gray-200 text-gray-600', yearFilter !== 'all' ? 'ring-2 ring-[#C21807]/40' : '']"
         >
           <option value="all">{{ t('lab.publication.filterByYear') }}: 전체</option>
           <option v-for="y in availableYears" :key="y" :value="y">{{ y }}</option>
@@ -129,15 +138,83 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
           v-if="allTags.length > 0"
           v-model="tagFilter"
           class="rounded-xl border px-3 py-1.5 text-[13px] font-semibold outline-none transition-colors"
-          :class="isDark ? 'bg-white/[0.06] border-white/10 text-white/70' : 'bg-white border-gray-200 text-gray-600'"
+          :class="[isDark ? 'bg-white/[0.06] border-white/10 text-white/70' : 'bg-white border-gray-200 text-gray-600', tagFilter !== 'all' ? 'ring-2 ring-[#C21807]/40' : '']"
         >
           <option value="all">{{ t('lab.publication.filterByTag') }}: 전체</option>
           <option v-for="tag in allTags" :key="tag" :value="tag">{{ tag }}</option>
         </select>
+
+        <!-- 필터 초기화 버튼 -->
+        <button
+          v-if="hasActiveFilter"
+          @click="resetFilters"
+          class="flex items-center gap-1 rounded-full px-3 py-1.5 text-[12px] font-semibold text-[#C21807] transition-colors hover:bg-[#C21807]/10"
+        >
+          <span class="material-icons text-[14px]">close</span>
+          필터 초기화
+        </button>
+      </div>
+
+      <!-- 활성 필터 요약 -->
+      <div v-if="hasActiveFilter" class="mb-6 flex flex-wrap items-center gap-2 text-[13px]">
+        <span :class="isDark ? 'text-white/40' : 'text-gray-400'">필터:</span>
+        <span
+          v-if="typeFilter !== 'all'"
+          class="flex items-center gap-1 rounded-full bg-[#C21807]/10 px-3 py-0.5 font-semibold text-[#C21807]"
+        >
+          {{ typeOptions.find(o => o.key === typeFilter)?.label }}
+          <button @click="typeFilter = 'all'" class="ml-0.5 hover:opacity-70">
+            <span class="material-icons text-[12px]">close</span>
+          </button>
+        </span>
+        <span
+          v-if="yearFilter !== 'all'"
+          class="flex items-center gap-1 rounded-full bg-[#C21807]/10 px-3 py-0.5 font-semibold text-[#C21807]"
+        >
+          {{ yearFilter }}년
+          <button @click="yearFilter = 'all'" class="ml-0.5 hover:opacity-70">
+            <span class="material-icons text-[12px]">close</span>
+          </button>
+        </span>
+        <span
+          v-if="tagFilter !== 'all'"
+          class="flex items-center gap-1 rounded-full bg-[#C21807]/10 px-3 py-0.5 font-semibold text-[#C21807]"
+        >
+          #{{ tagFilter }}
+          <button @click="tagFilter = 'all'" class="ml-0.5 hover:opacity-70">
+            <span class="material-icons text-[12px]">close</span>
+          </button>
+        </span>
+        <span :class="isDark ? 'text-white/30' : 'text-gray-400'">· {{ filtered.length }}건</span>
+      </div>
+
+      <!-- 스켈레톤 로딩 -->
+      <div v-if="pending" class="flex flex-col gap-4">
+        <div
+          v-for="i in 5" :key="i"
+          class="animate-pulse rounded-2xl border p-6"
+          :class="isDark ? 'border-white/[0.07] bg-[#111]' : 'border-gray-100 bg-white'"
+        >
+          <div class="flex items-start gap-4">
+            <div class="flex-1">
+              <div class="mb-3 flex gap-2">
+                <div class="h-5 w-20 rounded-full" :class="isDark ? 'bg-white/10' : 'bg-gray-200'" />
+                <div class="h-5 w-12 rounded-full" :class="isDark ? 'bg-white/[0.06]' : 'bg-gray-100'" />
+              </div>
+              <div class="mb-2 h-5 w-4/5 rounded-md" :class="isDark ? 'bg-white/10' : 'bg-gray-200'" />
+              <div class="mb-1 h-4 w-full rounded-md" :class="isDark ? 'bg-white/[0.06]' : 'bg-gray-100'" />
+              <div class="h-4 w-2/3 rounded-md" :class="isDark ? 'bg-white/[0.06]' : 'bg-gray-100'" />
+            </div>
+            <div class="flex flex-shrink-0 gap-2">
+              <div class="h-8 w-16 rounded-lg" :class="isDark ? 'bg-white/[0.06]' : 'bg-gray-100'" />
+              <div class="h-8 w-14 rounded-lg" :class="isDark ? 'bg-white/[0.06]' : 'bg-gray-100'" />
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- ── 논문 리스트 ──────────────────────── -->
-      <div ref="listRef">
+      <div v-else ref="listRef">
         <!-- 결과 없음 -->
         <div
           v-if="sortedYears.length === 0"
@@ -168,8 +245,8 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
                 { 'is-visible': isVisible },
                 `delay-${i}`,
                 isDark
-                  ? 'border-white/[0.07] bg-white/[0.03] hover:bg-white/[0.06]'
-                  : 'border-gray-100 bg-white/70 hover:shadow-md hover:shadow-black/5',
+                  ? 'border-white/[0.07] bg-[#111] hover:bg-[#1c1c1c]'
+                  : 'border-gray-100 bg-white hover:shadow-md hover:shadow-black/5',
               ]"
             >
               <div class="flex items-start gap-4 mobile:flex-col">

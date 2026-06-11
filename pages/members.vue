@@ -113,6 +113,8 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
               :src="member.imageUrl || '/images/ku-logo.png'"
               :alt="loc(member.name)"
               class="h-full w-full object-cover"
+              loading="lazy"
+              decoding="async"
               @error="($event.target as HTMLImageElement).src='/images/ku-logo.png'"
             />
           </div>
@@ -196,6 +198,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
                   :src="selectedMember.imageUrl || '/images/ku-logo.png'"
                   :alt="loc(selectedMember.name)"
                   class="h-full w-full object-cover"
+                  decoding="async"
                   @error="($event.target as HTMLImageElement).src='/images/ku-logo.png'"
                 />
               </div>

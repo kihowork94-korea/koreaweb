@@ -154,6 +154,7 @@ export default defineNuxtConfig({
       xxl: 1536,
     },
     densities: [1, 2],
+    domains: ['bgnxauhqwnatullbrbix.supabase.co'],
   },
 
   // 앱 설정

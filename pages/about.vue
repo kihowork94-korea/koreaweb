@@ -71,6 +71,9 @@ useIntersectionObserver(historyRef, ([e]) => { if (e.isIntersecting) historyVis.
                 :src="professor.imageUrl"
                 :alt="loc(professor.name)"
                 class="h-full w-full object-cover"
+                loading="eager"
+                decoding="async"
+                fetchpriority="high"
                 @error="($event.target as HTMLImageElement).style.display='none'"
               />
               <div

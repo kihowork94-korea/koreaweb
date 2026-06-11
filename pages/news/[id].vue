@@ -100,6 +100,8 @@ function renderContent(text: string): string {
             :src="item.imageUrl || '/images/ku-logo.png'"
             :alt="loc(item.title)"
             class="h-full w-full object-cover"
+            decoding="async"
+            fetchpriority="high"
             @error="($event.target as HTMLImageElement).src='/images/ku-logo.png'"
           />
         </div>

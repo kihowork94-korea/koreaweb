@@ -56,6 +56,8 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
                 :src="area.imageUrl"
                 :alt="loc(area.title)"
                 class="h-full w-full object-cover"
+                loading="lazy"
+                decoding="async"
                 @error="($event.target as HTMLImageElement).src='/images/ku-logo.png'"
               />
             </div>

@@ -123,6 +123,8 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
               :src="item.imageUrl || '/images/ku-logo.png'"
               :alt="loc(item.title)"
               class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+              decoding="async"
               @error="($event.target as HTMLImageElement).src='/images/ku-logo.png'"
             />
           </div>

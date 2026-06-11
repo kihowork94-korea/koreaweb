@@ -64,6 +64,8 @@ useIntersectionObserver(sectionRef, ([entry]) => {
               :src="area.imageUrl"
               :alt="loc(area.title)"
               class="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              loading="lazy"
+              decoding="async"
               @error="($event.target as HTMLImageElement).src='/images/ku-logo.png'"
             />
           </div>

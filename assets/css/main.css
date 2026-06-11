@@ -1,0 +1,419 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* ========================================
+   FOUC 방지 - 폰트 로딩 전 화면 숨김
+   ======================================== */
+html:not(.fonts-loaded) body {
+  opacity: 0;
+}
+
+html.fonts-loaded body {
+  opacity: 1;
+  transition: opacity 0.1s ease-in;
+}
+
+/* ========================================
+   커스텀 브레이크포인트 (Tailwind v4)
+   ======================================== */
+@custom-variant mobile (@media (max-width: 1140px));
+@custom-variant galaxy-fold (@media (max-width: 280px));
+@custom-variant small-mobile (@media (max-width: 376px));
+
+/* ========================================
+   커스텀 색상 테마
+   ======================================== */
+@theme {
+  /* Primary — 고려대학교 크림슨 레드 (#C21807) */
+  --color-primary-main: #C21807;
+  --color-primary-10: #3A0000;
+  --color-primary-20: #5E0500;
+  --color-primary-30: #880900;
+  --color-primary-40: #A81005;
+  --color-primary-50: #C21807;
+  --color-primary-60: #E02010;
+  --color-primary-70: #F04030;
+  --color-primary-80: #F87060;
+  --color-primary-90: #FCA898;
+  --color-primary-95: #FECFC8;
+  --color-primary-99: #FFF0EE;
+
+  /* Secondary — KIST 블루 (#003087) */
+  --color-secondary-main: #003087;
+  --color-secondary-10: #000F2E;
+  --color-secondary-20: #001A50;
+  --color-secondary-30: #002472;
+  --color-secondary-40: #002B82;
+  --color-secondary-50: #003087;
+  --color-secondary-60: #1A4FA0;
+  --color-secondary-70: #4A78C4;
+  --color-secondary-80: #7FA2D8;
+  --color-secondary-90: #B8CEEC;
+  --color-secondary-95: #D8E5F5;
+  --color-secondary-99: #F0F5FB;
+
+  /* Success (초록) */
+  --color-success-50: #00D83C;
+  --color-success-60: #13E54E;
+
+  /* Warning (노랑) */
+  --color-warning-50: #EFB110;
+  --color-warning-60: #FCC22C;
+
+  /* 연구실 브랜드 색상 */
+  --color-lab-crimson: #C21807;
+  --color-lab-kist-blue: #003087;
+  --color-lab-accent: #9262EC;
+
+  /* 그레이 스케일 (커스텀) */
+  --color-gray-00: #000000;
+  --color-gray-15: #151515;
+  --color-gray-22: #222222;
+  --color-gray-37: #373737;
+  --color-gray-57: #575757;
+  --color-gray-70: #707070;
+  --color-gray-8a: #8A8A8A;
+  --color-gray-bb: #BBBBBB;
+  --color-gray-d8: #D8D8D8;
+  --color-gray-ee: #EEEEEE;
+  --color-gray-f5: #F5F5F5;
+  --color-gray-f8: #F8F8F8;
+  --color-gray-fc: #FCFCFC;
+
+  /* Tailwind gray 팔레트 - Neutral (순수 무채색) 오버라이드 */
+  --color-gray-50: #fafafa;
+  --color-gray-100: #f5f5f5;
+  --color-gray-200: #e5e5e5;
+  --color-gray-300: #d4d4d4;
+  --color-gray-400: #a3a3a3;
+  --color-gray-500: #737373;
+  --color-gray-600: #525252;
+  --color-gray-700: #404040;
+  --color-gray-800: #262626;
+  --color-gray-900: #171717;
+  --color-gray-950: #0a0a0a;
+
+  /* 폰트 패밀리 */
+  --font-suit: 'SUIT', sans-serif;
+  --font-pretendard: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+
+  /* Box Shadow */
+  --shadow-card-dark: 0 2px 8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  --shadow-card-light: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-card-lift-dark: 0 8px 30px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.12);
+  --shadow-card-lift-light: 0 8px 30px rgba(0, 0, 0, 0.12);
+
+  /* 브레이크포인트 */
+  --breakpoint-mobile: 1140px;
+  --breakpoint-small-mobile: 376px;
+}
+
+/* ========================================
+   폰트 설정
+   ======================================== */
+:root {
+  --font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+}
+
+body {
+  font-family: var(--font-family);
+}
+
+/* ========================================
+   타이포그래피 유틸리티
+   ======================================== */
+.headline-1 {
+  font-family: 'SUIT', sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 44px;
+}
+
+.headline-2 {
+  font-family: 'SUIT', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 36px;
+}
+
+.headline-3 {
+  font-family: 'SUIT', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+}
+
+.headline-4 {
+  font-family: 'SUIT', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 26px;
+}
+
+.title-1-bold {
+  font-family: 'SUIT', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+.title-1-medium {
+  font-family: 'SUIT', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 28px;
+}
+
+.body-1-bold {
+  font-family: 'SUIT', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.body-1-medium {
+  font-family: 'SUIT', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.body-1-regular {
+  font-family: 'SUIT', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.body-2-bold {
+  font-family: 'SUIT', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.body-2-medium {
+  font-family: 'SUIT', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.detail-2-bold {
+  font-family: 'SUIT', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+}
+
+.detail-2-medium {
+  font-family: 'SUIT', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.big-title-bold {
+  font-family: 'SUIT', sans-serif;
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 130%;
+}
+
+.paragraph-1-regular {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+}
+
+/* ========================================
+   다크/라이트 모드
+   ======================================== */
+body.dark,
+.dark body {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+body.light,
+.light body {
+  background-color: #f5f5f5;
+  color: #1a1a1a;
+}
+
+/* ========================================
+   스냅 스크롤 (PC에서만)
+   ======================================== */
+@media (min-width: 769px) {
+  html.snap-scroll-enabled {
+    scroll-snap-type: y proximity;
+    scroll-behavior: smooth;
+  }
+
+  html.snap-scroll-enabled .snap-section {
+    scroll-snap-align: start;
+  }
+}
+
+/* ========================================
+   카드 효과
+   ======================================== */
+.card-hover-fast:hover {
+  transition-duration: 150ms !important;
+}
+
+.shadow-card-dark {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.shadow-card-light {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.shadow-card-lift-dark {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+.shadow-card-lift-light {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* ========================================
+   페이지 트랜지션
+   ======================================== */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* ========================================
+   스크롤바 스타일
+   ======================================== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(128, 128, 128, 0.7);
+}
+
+/* ========================================
+   그라데이션 배경
+   ======================================== */
+.bg-lab-crimson {
+  background: linear-gradient(111deg, #C21807 30%, #8A0F03 96%);
+}
+
+.bg-lab-kist-blue {
+  background: linear-gradient(100deg, #003087 1.91%, #001A50 86.28%);
+}
+
+.bg-lab-accent {
+  background: linear-gradient(86deg, #9262EC 4%, #496EE8 96%);
+}
+
+/* ========================================
+   추가 색상 유틸리티
+   ======================================== */
+.text-gray-57 {
+  color: #575757;
+}
+.text-gray-70 {
+  color: #707070;
+}
+.text-gray-8a {
+  color: #8A8A8A;
+}
+.text-gray-99 {
+  color: #999999;
+}
+.text-gray-bb {
+  color: #BBBBBB;
+}
+.border-gray-bb {
+  border-color: #BBBBBB;
+}
+.border-gray-99 {
+  border-color: #999999;
+}
+
+/* Note: mobile, galaxy-fold, small-mobile 유틸리티는 @custom-variant로 정의됨 */
+
+/* ========================================
+   순차 등장 애니메이션 시스템
+   ======================================== */
+
+/* 기본 트랜지션 설정 */
+.animate-item {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 순차 딜레이 클래스 */
+.delay-0 { transition-delay: 0ms; }
+.delay-1 { transition-delay: 80ms; }
+.delay-2 { transition-delay: 160ms; }
+.delay-3 { transition-delay: 240ms; }
+.delay-4 { transition-delay: 320ms; }
+.delay-5 { transition-delay: 400ms; }
+.delay-6 { transition-delay: 480ms; }
+.delay-7 { transition-delay: 560ms; }
+.delay-8 { transition-delay: 640ms; }
+.delay-9 { transition-delay: 720ms; }
+.delay-10 { transition-delay: 800ms; }
+.delay-11 { transition-delay: 880ms; }
+.delay-12 { transition-delay: 960ms; }
+
+/* 페이지 진입 애니메이션 (페이지 로드 시) */
+.animate-fade-in {
+  opacity: 0;
+  animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

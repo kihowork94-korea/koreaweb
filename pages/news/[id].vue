@@ -96,10 +96,10 @@ function renderContent(text: string): string {
           :class="isDark ? 'bg-white/10' : 'bg-gray-100'"
         >
           <img
-            :src="item.imageUrl || '/ku-logo.png'"
+            :src="item.imageUrl || '/images/ku-logo.png'"
             :alt="loc(item.title)"
             class="h-full w-full object-cover"
-            @error="($event.target as HTMLImageElement).src='/ku-logo.png'"
+            @error="($event.target as HTMLImageElement).src='/images/ku-logo.png'"
           />
         </div>
 

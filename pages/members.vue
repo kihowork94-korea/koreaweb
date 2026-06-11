@@ -110,10 +110,10 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
             :class="isDark ? 'bg-white/10' : 'bg-gray-100'"
           >
             <img
-              :src="member.imageUrl || '/ku-logo.png'"
+              :src="member.imageUrl || '/images/ku-logo.png'"
               :alt="loc(member.name)"
               class="h-full w-full object-cover"
-              @error="($event.target as HTMLImageElement).src='/ku-logo.png'"
+              @error="($event.target as HTMLImageElement).src='/images/ku-logo.png'"
             />
           </div>
 
@@ -193,10 +193,10 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
                 :class="isDark ? 'bg-white/10' : 'bg-gray-100'"
               >
                 <img
-                  :src="selectedMember.imageUrl || '/ku-logo.png'"
+                  :src="selectedMember.imageUrl || '/images/ku-logo.png'"
                   :alt="loc(selectedMember.name)"
                   class="h-full w-full object-cover"
-                  @error="($event.target as HTMLImageElement).src='/ku-logo.png'"
+                  @error="($event.target as HTMLImageElement).src='/images/ku-logo.png'"
                 />
               </div>
               <div>

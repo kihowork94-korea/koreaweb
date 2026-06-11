@@ -45,11 +45,24 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
               : 'border-gray-100 bg-white/70',
           ]"
         >
-          <!-- 아이콘 + 번호 -->
+          <!-- 이미지 or 아이콘 + 번호 -->
           <div class="flex flex-shrink-0 flex-col items-center gap-3">
-            <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#C21807]/10">
-              <UIcon :name="area.iconName" class="h-8 w-8 text-[#C21807]" />
+            <div
+              v-if="area.imageUrl"
+              class="overflow-hidden rounded-2xl"
+              style="width:180px; height:140px"
+            >
+              <img
+                :src="area.imageUrl"
+                :alt="loc(area.title)"
+                class="h-full w-full object-cover"
+              />
             </div>
+            <template v-else>
+              <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#C21807]/10">
+                <UIcon :name="area.iconName" class="h-8 w-8 text-[#C21807]" />
+              </div>
+            </template>
             <span
               class="text-xs font-bold tabular-nums"
               :class="isDark ? 'text-white/20' : 'text-gray-300'"

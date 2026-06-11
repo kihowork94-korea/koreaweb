@@ -3,6 +3,7 @@ import type { NewsCategory } from '~/types/lab'
 import { useIntersectionObserver } from '@vueuse/core'
 
 const { locale, t } = useI18n()
+const localePath = useLocalePath()
 const themeStore = useThemeStore()
 const isDark = computed(() => themeStore.isDark)
 
@@ -103,7 +104,7 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
           :key="item.id"
           v-bind="item.externalUrl
             ? { href: item.externalUrl, target: '_blank', rel: 'noopener noreferrer' }
-            : { to: `/news/${item.id}` }"
+            : { to: localePath(`/news/${item.id}`) }"
           class="animate-item group flex items-start gap-5 rounded-2xl border p-6 transition-all duration-200 mobile:flex-col mobile:p-5"
           :class="[
             { 'is-visible': isVisible },

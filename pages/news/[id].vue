@@ -108,6 +108,7 @@ function renderContent(text: string): string {
 
         <!-- 본문 -->
         <div
+          v-if="item.content && loc(item.content)"
           class="prose prose-sm max-w-none leading-relaxed"
           :class="isDark ? 'text-white/70' : 'text-gray-600'"
         >
@@ -115,6 +116,14 @@ function renderContent(text: string): string {
             class="mb-4"
             v-html="renderContent(loc(item.content))"
           />
+        </div>
+        <div
+          v-else
+          class="rounded-xl border px-6 py-10 text-center text-sm"
+          :class="isDark ? 'border-white/[0.07] text-white/30' : 'border-gray-100 text-gray-400'"
+        >
+          <span class="material-icons mb-2 block text-3xl opacity-40">article</span>
+          본문이 아직 등록되지 않았습니다.
         </div>
 
         <!-- 외부 링크 버튼 -->

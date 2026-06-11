@@ -69,6 +69,19 @@ useIntersectionObserver(sectionRef, ([entry]) => {
               : 'border-gray-100 bg-white/60 hover:bg-white/90 hover:shadow-md hover:shadow-black/5',
           ]"
         >
+          <!-- 이미지 -->
+          <div
+            v-if="project.imageUrl"
+            class="mb-4 overflow-hidden rounded-xl"
+            :class="isDark ? 'bg-white/5' : 'bg-gray-100'"
+          >
+            <img
+              :src="project.imageUrl"
+              :alt="loc(project.title)"
+              class="h-36 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            />
+          </div>
+
           <!-- 상태 + 기간 -->
           <div class="mb-3 flex items-center gap-2">
             <span class="flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-600">

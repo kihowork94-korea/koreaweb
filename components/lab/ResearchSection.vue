@@ -54,8 +54,22 @@ useIntersectionObserver(sectionRef, ([entry]) => {
               : 'border-gray-100 bg-white/60 hover:bg-white/90 hover:border-gray-200 hover:shadow-lg hover:shadow-black/5',
           ]"
         >
-          <!-- 아이콘 -->
+          <!-- 이미지 (있을 때) -->
           <div
+            v-if="area.imageUrl"
+            class="mb-5 overflow-hidden rounded-xl"
+            :class="isDark ? 'bg-white/5' : 'bg-gray-100'"
+          >
+            <img
+              :src="area.imageUrl"
+              :alt="loc(area.title)"
+              class="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            />
+          </div>
+
+          <!-- 아이콘 (이미지 없을 때) -->
+          <div
+            v-else
             class="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#C21807]/10 transition-colors duration-200 group-hover:bg-[#C21807]/15"
           >
             <UIcon :name="area.iconName" class="h-6 w-6 text-[#C21807]" />

@@ -69,7 +69,7 @@ function transformResearchArea(row: any) {
 
 function transformProject(row: any) {
   const {
-    start_year, end_year, funding_agency, funding_amount, member_ids, links,
+    start_year, end_year, funding_agency, funding_amount, member_ids, image_url, links,
     created_at, updated_at, ...rest
   } = row
   const l = (links ?? {}) as Record<string, string>
@@ -80,6 +80,7 @@ function transformProject(row: any) {
     fundingAgency: funding_agency,
     fundingAmount: funding_amount,
     memberIds:     member_ids ?? [],
+    imageUrl:      image_url,
     githubUrl:     l.github,
     websiteUrl:    l.website,
   }

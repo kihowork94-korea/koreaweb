@@ -88,6 +88,19 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
             isDark ? 'border-white/[0.07] bg-white/[0.03]' : 'border-gray-100 bg-white/70',
           ]"
         >
+          <!-- 이미지 -->
+          <div
+            v-if="proj.imageUrl"
+            class="mb-6 overflow-hidden rounded-2xl"
+            :class="isDark ? 'bg-white/5' : 'bg-gray-100'"
+          >
+            <img
+              :src="proj.imageUrl"
+              :alt="loc(proj.title)"
+              class="h-52 w-full object-cover"
+            />
+          </div>
+
           <div class="flex items-start justify-between gap-4 mobile:flex-col">
             <div class="flex-1">
 

@@ -160,11 +160,12 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
       <Transition name="modal">
         <div
           v-if="selectedMember"
-          class="fixed inset-0 z-[9999] flex items-center justify-center p-6 bg-black/60 backdrop-blur-sm"
+          class="fixed inset-0 z-[9999] overflow-y-auto bg-black/60 backdrop-blur-sm"
           @click.self="selectedMember = null"
         >
+          <div class="flex min-h-full items-center justify-center p-6">
           <div
-            class="relative w-full max-w-[700px] max-h-[90vh] overflow-y-auto rounded-3xl p-8 shadow-2xl mobile:p-6"
+            class="relative w-full max-w-[700px] rounded-3xl p-8 shadow-2xl mobile:p-6"
             :class="isDark ? 'bg-[#111] border border-white/10' : 'bg-white border border-gray-100'"
           >
             <!-- 닫기 -->
@@ -304,6 +305,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
                 </div>
               </div>
             </div>
+          </div>
           </div>
         </div>
       </Transition>

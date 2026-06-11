@@ -26,6 +26,7 @@ const schema = {
     { key: 'end_year', label: '종료연도', type: 'number' as const },
     { key: 'funding_agency', label: '지원 기관', type: 'localized' as const },
     { key: 'funding_amount', label: '연구비', type: 'text' as const },
+    { key: 'image_url', label: '이미지 URL', type: 'text' as const, span: 2 as const },
     { key: 'tags', label: '태그 (쉼표 구분)', type: 'tags' as const, span: 2 as const },
   ],
 }

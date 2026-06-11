@@ -207,7 +207,7 @@ export default defineNuxtConfig({
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' },
       ],
     },
-    pageTransition: { name: 'fade', mode: 'out-in' },
+    pageTransition: { name: 'fade' },
   },
 
   // CSS

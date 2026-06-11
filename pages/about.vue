@@ -53,14 +53,6 @@ useIntersectionObserver(profileRef, ([e]) => { if (e.isIntersecting) profileVis.
     <section ref="introRef" class="px-6 pb-24">
       <div class="mx-auto max-w-[900px]">
 
-        <div class="animate-item mb-10 text-center" :class="{ 'is-visible': introVis }">
-          <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-[#C21807]">Introduction</p>
-          <h2
-            class="text-3xl font-bold"
-            :class="isDark ? 'text-white' : 'text-gray-900'"
-          >연구실 소개</h2>
-        </div>
-
         <div
           class="animate-item delay-1 rounded-3xl border p-10 mobile:p-6"
           :class="[

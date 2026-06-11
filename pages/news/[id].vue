@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const { locale, t } = useI18n()
+const localePath = useLocalePath()
 const themeStore = useThemeStore()
 const isDark = computed(() => themeStore.isDark)
 const route  = useRoute()
@@ -57,7 +58,7 @@ function renderContent(text: string): string {
 
       <!-- 뒤로가기 -->
       <NuxtLink
-        to="/news"
+        :to="localePath('/news')"
         class="mb-8 inline-flex items-center gap-1.5 text-sm font-semibold transition-colors"
         :class="isDark ? 'text-white/50 hover:text-white' : 'text-gray-400 hover:text-gray-700'"
       >
@@ -147,7 +148,7 @@ function renderContent(text: string): string {
           <!-- 이전 (더 오래된 글) -->
           <NuxtLink
             v-if="prevItem"
-            :to="`/news/${prevItem.id}`"
+            :to="localePath(`/news/${prevItem.id}`)"
             class="group flex flex-col gap-1 rounded-xl border p-4 transition-all"
             :class="isDark
               ? 'border-white/[0.07] bg-white/[0.03] hover:bg-white/[0.06]'
@@ -166,7 +167,7 @@ function renderContent(text: string): string {
           <!-- 다음 (더 최신 글) -->
           <NuxtLink
             v-if="nextItem"
-            :to="`/news/${nextItem.id}`"
+            :to="localePath(`/news/${nextItem.id}`)"
             class="group flex flex-col items-end gap-1 rounded-xl border p-4 text-right transition-all"
             :class="isDark
               ? 'border-white/[0.07] bg-white/[0.03] hover:bg-white/[0.06]'

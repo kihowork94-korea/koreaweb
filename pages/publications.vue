@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { PublicationType } from '~/types/lab'
+import type { PublicationType, Publication } from '~/types/lab'
 import { useIntersectionObserver } from '@vueuse/core'
 
 const { t } = useI18n()

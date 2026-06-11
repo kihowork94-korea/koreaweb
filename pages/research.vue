@@ -49,7 +49,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
           <div class="flex flex-shrink-0 flex-col items-center gap-3">
             <div
               v-if="area.imageUrl"
-              class="overflow-hidden rounded-2xl"
+              class="overflow-hidden rounded-2xl mobile:w-full"
               style="width:180px; height:140px"
             >
               <img

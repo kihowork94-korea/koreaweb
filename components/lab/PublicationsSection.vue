@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useIntersectionObserver } from '@vueuse/core'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const localePath = useLocalePath()
 const themeStore = useThemeStore()
 const isDark = computed(() => themeStore.isDark)
@@ -97,7 +97,7 @@ useIntersectionObserver(sectionRef, ([entry]) => {
                   class="flex items-center gap-1 rounded-full bg-amber-500/10 px-2.5 py-0.5 text-[11px] font-semibold text-amber-600"
                 >
                   <span class="material-icons text-[12px]">emoji_events</span>
-                  {{ pub.award.title[useI18n().locale.value as keyof typeof pub.award.title] || pub.award.title.en }}
+                  {{ pub.award.title[locale.value as keyof typeof pub.award.title] || pub.award.title.en }}
                 </span>
                 <span
                   :class="['text-[12px]', isDark ? 'text-white/35' : 'text-gray-400']"

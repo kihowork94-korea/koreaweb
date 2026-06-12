@@ -8,15 +8,17 @@ const route  = useRoute()
 const loc = (f: Record<string, string> | null | undefined) =>
   f ? (f[locale.value as keyof typeof f] || f.en || '') : ''
 
-const { data: newsRaw } = await useLabNews()
-const allNews = computed<any[]>(() => (newsRaw.value as any[]) ?? [])
+// 뉴스 전체를 가져와서 해당 id 항목만 추출
+const { data: allNewsRaw } = await useAsyncData(
+  `news-all`,
+  () => $fetch<any[]>('/api/lab/news'),
+  { getCachedData: (k, nuxtApp) => nuxtApp.payload.data[k] ?? (nuxtApp.static as any).data?.[k] }
+)
+const allNews = computed<any[]>(() => (allNewsRaw.value as any[]) ?? [])
 
-const item = computed(() => allNews.value.find((n: any) => n.id === Number(route.params.id)))
-
-// 없는 ID면 404
-if (!item.value) {
-  throw createError({ statusCode: 404, statusMessage: 'News not found', fatal: true })
-}
+const item = computed(() =>
+  allNews.value.find((n: any) => n.id === Number(route.params.id)) ?? null
+)
 
 useHead(computed(() => ({
   title: `${item.value ? loc(item.value.title) : 'News'} | 지능형 바이오 모니터링 연구실`,
@@ -43,7 +45,6 @@ function formatDate(dateStr: string) {
   return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`
 }
 
-// 마크다운 스타일 렌더링 (간단 처리: 줄바꿈 + 볼드)
 function renderContent(text: string): string {
   return text
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
@@ -66,7 +67,24 @@ function renderContent(text: string): string {
         {{ t('lab.news.backToNews') }}
       </NuxtLink>
 
-      <template v-if="item">
+      <!-- 아이템 없음 (404) -->
+      <div
+        v-if="!item"
+        class="py-24 text-center"
+        :class="isDark ? 'text-white/30' : 'text-gray-300'"
+      >
+        <span class="material-icons mb-3 block text-5xl">newspaper</span>
+        <p class="text-sm">존재하지 않는 뉴스입니다.</p>
+        <NuxtLink
+          :to="localePath('/news')"
+          class="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-[#C21807] transition-opacity hover:opacity-70"
+        >
+          <span class="material-icons text-[16px]">arrow_back</span>
+          뉴스 목록으로
+        </NuxtLink>
+      </div>
+
+      <template v-else>
         <!-- 배지 + 날짜 -->
         <div class="mb-4 flex flex-wrap items-center gap-2">
           <span
@@ -93,11 +111,12 @@ function renderContent(text: string): string {
 
         <!-- 대표 이미지 -->
         <div
+          v-if="item.imageUrl"
           class="mb-8 overflow-hidden rounded-2xl"
           :class="isDark ? 'bg-white/10' : 'bg-gray-100'"
         >
           <img
-            :src="item.imageUrl || '/images/ku-logo.png'"
+            :src="item.imageUrl"
             :alt="loc(item.title)"
             class="h-full w-full object-cover"
             decoding="async"

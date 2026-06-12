@@ -98,81 +98,105 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
           <p>{{ t('lab.common.noData') }}</p>
         </div>
 
-        <component
-          :is="item.externalUrl ? 'a' : 'NuxtLink'"
-          v-for="(item, i) in sorted"
-          :key="item.id"
-          v-bind="item.externalUrl
-            ? { href: item.externalUrl, target: '_blank', rel: 'noopener noreferrer' }
-            : { to: localePath(`/news/${item.id}`) }"
-          class="animate-item group flex items-start gap-5 rounded-2xl border p-6 transition-all duration-200 mobile:flex-col mobile:p-5"
-          :class="[
-            { 'is-visible': isVisible },
-            `delay-${i}`,
-            isDark
-              ? 'border-white/[0.10] bg-[#111] hover:bg-[#1c1c1c]'
-              : 'border-gray-200 bg-white hover:shadow-md hover:shadow-black/5',
-          ]"
-        >
-          <!-- 이미지 썸네일 -->
-          <div
-            class="h-24 w-32 flex-shrink-0 overflow-hidden rounded-xl mobile:aspect-video mobile:h-auto mobile:w-full"
-            :class="isDark ? 'bg-white/10' : 'bg-gray-100'"
+        <template v-for="(item, i) in sorted" :key="item.id">
+          <!-- 외부 링크 -->
+          <a
+            v-if="item.externalUrl"
+            :href="item.externalUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="animate-item group flex items-start gap-5 rounded-2xl border p-6 transition-all duration-200 mobile:flex-col mobile:p-5"
+            :class="[
+              { 'is-visible': isVisible },
+              `delay-${i}`,
+              isDark
+                ? 'border-white/[0.10] bg-[#111] hover:bg-[#1c1c1c]'
+                : 'border-gray-200 bg-white hover:shadow-md hover:shadow-black/5',
+            ]"
           >
-            <img
-              :src="item.imageUrl || '/images/ku-logo.png'"
-              :alt="loc(item.title)"
-              class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-              loading="lazy"
-              decoding="async"
-              @error="($event.target as HTMLImageElement).src='/images/ku-logo.png'"
-            />
-          </div>
-
-          <!-- 본문 -->
-          <div class="flex-1 min-w-0">
-            <!-- 배지 -->
-            <div class="mb-2 flex flex-wrap items-center gap-2">
-              <!-- 고정 배지 -->
-              <span
-                v-if="item.isPinned"
-                class="flex items-center gap-1 rounded-full bg-[#C21807]/10 px-2.5 py-0.5 text-[11px] font-bold text-[#C21807]"
-              >
-                <span class="material-icons text-[11px]">push_pin</span>
-                {{ t('lab.news.pinned') }}
-              </span>
-              <!-- 카테고리 배지 -->
-              <span
-                class="rounded-full px-2.5 py-0.5 text-[11px] font-semibold"
-                :class="categoryBadge[item.category] || 'bg-gray-100 text-gray-500'"
-              >{{ t(`lab.news.${item.category}`) }}</span>
-              <!-- 날짜 -->
-              <span class="text-xs" :class="isDark ? 'text-white/30' : 'text-gray-400'">
-                {{ formatDate(item.date) }}
-              </span>
+            <div
+              class="h-24 w-32 flex-shrink-0 overflow-hidden rounded-xl mobile:aspect-video mobile:h-auto mobile:w-full"
+              :class="isDark ? 'bg-white/10' : 'bg-gray-100'"
+            >
+              <img
+                :src="item.imageUrl || '/images/ku-logo.png'"
+                :alt="loc(item.title)"
+                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+                decoding="async"
+                @error="($event.target as HTMLImageElement).src='/images/ku-logo.png'"
+              />
             </div>
-
-            <!-- 제목 -->
-            <h3
-              class="mb-1.5 font-bold leading-snug transition-colors group-hover:text-[#C21807]"
-              :class="isDark ? 'text-white' : 'text-gray-900'"
-            >{{ loc(item.title) }}</h3>
-
-            <!-- 외부 링크 표시 -->
-            <div v-if="item.externalUrl" class="mt-2 flex items-center gap-1 text-xs text-[#C21807]">
-              <span class="material-icons text-[13px]">open_in_new</span>
-              <span>외부 링크</span>
+            <div class="flex-1 min-w-0">
+              <div class="mb-2 flex flex-wrap items-center gap-2">
+                <span v-if="item.isPinned" class="flex items-center gap-1 rounded-full bg-[#C21807]/10 px-2.5 py-0.5 text-[11px] font-bold text-[#C21807]">
+                  <span class="material-icons text-[11px]">push_pin</span>
+                  {{ t('lab.news.pinned') }}
+                </span>
+                <span class="rounded-full px-2.5 py-0.5 text-[11px] font-semibold" :class="categoryBadge[item.category] || 'bg-gray-100 text-gray-500'">
+                  {{ t(`lab.news.${item.category}`) }}
+                </span>
+                <span class="text-xs" :class="isDark ? 'text-white/30' : 'text-gray-400'">{{ formatDate(item.date) }}</span>
+              </div>
+              <h3 class="mb-1.5 font-bold leading-snug transition-colors group-hover:text-[#C21807]" :class="isDark ? 'text-white' : 'text-gray-900'">
+                {{ loc(item.title) }}
+              </h3>
+              <div class="mt-2 flex items-center gap-1 text-xs text-[#C21807]">
+                <span class="material-icons text-[13px]">open_in_new</span>
+                <span>외부 링크</span>
+              </div>
             </div>
-          </div>
+            <div class="flex-shrink-0 self-center">
+              <span class="material-icons transition-transform group-hover:translate-x-1" :class="isDark ? 'text-white/20' : 'text-gray-300'">chevron_right</span>
+            </div>
+          </a>
 
-          <!-- 화살표 -->
-          <div class="flex-shrink-0 self-center">
-            <span
-              class="material-icons transition-transform group-hover:translate-x-1"
-              :class="isDark ? 'text-white/20' : 'text-gray-300'"
-            >chevron_right</span>
-          </div>
-        </component>
+          <!-- 내부 상세 페이지 -->
+          <NuxtLink
+            v-else
+            :to="localePath(`/news/${item.id}`)"
+            class="animate-item group flex items-start gap-5 rounded-2xl border p-6 transition-all duration-200 mobile:flex-col mobile:p-5"
+            :class="[
+              { 'is-visible': isVisible },
+              `delay-${i}`,
+              isDark
+                ? 'border-white/[0.10] bg-[#111] hover:bg-[#1c1c1c]'
+                : 'border-gray-200 bg-white hover:shadow-md hover:shadow-black/5',
+            ]"
+          >
+            <div
+              class="h-24 w-32 flex-shrink-0 overflow-hidden rounded-xl mobile:aspect-video mobile:h-auto mobile:w-full"
+              :class="isDark ? 'bg-white/10' : 'bg-gray-100'"
+            >
+              <img
+                :src="item.imageUrl || '/images/ku-logo.png'"
+                :alt="loc(item.title)"
+                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+                decoding="async"
+                @error="($event.target as HTMLImageElement).src='/images/ku-logo.png'"
+              />
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="mb-2 flex flex-wrap items-center gap-2">
+                <span v-if="item.isPinned" class="flex items-center gap-1 rounded-full bg-[#C21807]/10 px-2.5 py-0.5 text-[11px] font-bold text-[#C21807]">
+                  <span class="material-icons text-[11px]">push_pin</span>
+                  {{ t('lab.news.pinned') }}
+                </span>
+                <span class="rounded-full px-2.5 py-0.5 text-[11px] font-semibold" :class="categoryBadge[item.category] || 'bg-gray-100 text-gray-500'">
+                  {{ t(`lab.news.${item.category}`) }}
+                </span>
+                <span class="text-xs" :class="isDark ? 'text-white/30' : 'text-gray-400'">{{ formatDate(item.date) }}</span>
+              </div>
+              <h3 class="mb-1.5 font-bold leading-snug transition-colors group-hover:text-[#C21807]" :class="isDark ? 'text-white' : 'text-gray-900'">
+                {{ loc(item.title) }}
+              </h3>
+            </div>
+            <div class="flex-shrink-0 self-center">
+              <span class="material-icons transition-transform group-hover:translate-x-1" :class="isDark ? 'text-white/20' : 'text-gray-300'">chevron_right</span>
+            </div>
+          </NuxtLink>
+        </template>
       </div>
     </div>
   </div>

@@ -17,13 +17,13 @@ useHead({
     <!-- 1. Hero 섹션 -->
     <LabHeroSection />
 
-    <!-- 2. 연구 분야 섹션 -->
+    <!-- 2. 연구실 소개 섹션 -->
+    <LabAboutSection />
+
+    <!-- 3. 연구 분야 섹션 -->
     <LabResearchSection />
 
-    <!-- 3. 대표 논문 섹션 (데이터 없으면 자동 숨김) -->
-    <LabPublicationsSection />
-
-    <!-- 4. 진행 중 프로젝트 섹션 (데이터 없으면 자동 숨김) -->
+    <!-- 4. 진행 중 프로젝트 섹션 -->
     <LabProjectsSection />
   </div>
 </template>

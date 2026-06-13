@@ -93,9 +93,9 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
       >
         <a
           v-for="cta in [
-            { section: 'research',     icon: 'science',    label: $t('lab.nav.research') },
-            { section: 'publications', icon: 'menu_book',  label: $t('lab.nav.publications') },
-            { section: 'projects',     icon: 'folder',     label: $t('lab.nav.projects') },
+            { section: 'about',    icon: 'info',    label: $t('lab.nav.about') },
+            { section: 'research', icon: 'science', label: $t('lab.nav.research') },
+            { section: 'projects', icon: 'folder',  label: $t('lab.nav.projects') },
           ]"
           :key="cta.section"
           :href="`#${cta.section}`"

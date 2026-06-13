@@ -27,7 +27,7 @@ const logout = async () => {
     <aside class="fixed inset-y-0 left-0 flex w-56 flex-col border-r border-white/10 bg-gray-900">
       <!-- 로고 -->
       <div class="border-b border-white/10 px-5 py-4">
-        <div class="text-[13px] font-bold leading-tight text-white">지능형 바이오 모니터링</div>
+        <div class="text-[13px] font-bold leading-tight text-white">ARISE Lab</div>
         <div class="mt-0.5 text-[11px] text-gray-500">관리자 패널</div>
       </div>
 

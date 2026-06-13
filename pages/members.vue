@@ -7,7 +7,7 @@ const localePath = useLocalePath()
 const themeStore = useThemeStore()
 const isDark = computed(() => themeStore.isDark)
 
-useHead({ title: `${t('lab.nav.members')} | 지능형 바이오 모니터링 연구실` })
+useHead({ title: `${t('lab.nav.members')} | ARISE Lab` })
 
 const loc = (f: Record<string, string> | null | undefined) =>
   f ? (f[locale.value as keyof typeof f] || f.en || '') : ''

@@ -17,7 +17,7 @@ const labHistory = computed<any[]>(() => (labHistoryArr.value as any[]) ?? [])
 const { data: membersArr } = useLabMembers()
 const professor = computed(() => (membersArr.value as any[] ?? []).find((m: any) => m.role === 'professor'))
 
-useHead({ title: `${t('lab.nav.about')} | 지능형 바이오 모니터링 연구실` })
+useHead({ title: `${t('lab.nav.about')} | ARISE Lab` })
 
 // 섹션별 등장 애니메이션
 const heroRef    = ref<HTMLElement | null>(null)

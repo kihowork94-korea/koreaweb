@@ -71,7 +71,7 @@ const isActive = (url: string) => {
             />
             <div style="width:1px;height:32px;flex-shrink:0" :style="isDark ? { background: 'rgba(255,255,255,0.2)' } : { background: 'rgba(0,0,0,0.15)' }" />
             <div style="display:flex;flex-direction:column;flex-shrink:0;line-height:1.3" :class="textClass">
-              <span style="font-size:13px;font-weight:700;white-space:nowrap;letter-spacing:-0.01em">지능형 바이오 모니터링 연구실</span>
+              <span style="font-size:13px;font-weight:700;white-space:nowrap;letter-spacing:-0.01em">ARISE Lab</span>
               <span style="font-size:11px;font-weight:500;white-space:nowrap" :style="isDark ? { color: 'rgba(255,255,255,0.5)' } : { color: '#9ca3af' }">KU-KIST 융합대학원</span>
             </div>
           </div>
@@ -82,7 +82,7 @@ const isActive = (url: string) => {
           :to="localePath('/')"
           :class="['mr-auto hidden text-[15px] font-bold leading-tight mobile:block', textClass]"
         >
-          IBM Lab
+          ARISE Lab
         </NuxtLink>
 
         <!-- 모바일 메뉴 버튼 -->
@@ -145,7 +145,7 @@ const isActive = (url: string) => {
 
         <!-- 모바일 로고 -->
         <div :class="['mb-8 text-center', textClass]">
-          <p class="text-xl font-bold">지능형 바이오 모니터링 연구실</p>
+          <p class="text-xl font-bold">ARISE Lab</p>
           <p :class="['text-sm', isDark ? 'text-white/50' : 'text-gray-400']">KU-KIST 융합대학원</p>
         </div>
 

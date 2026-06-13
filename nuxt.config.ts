@@ -67,7 +67,7 @@ export default defineNuxtConfig({
   // 사이트 기본 정보 (OG 이미지, sitemap용)
   site: {
     url: process.env.NUXT_PUBLIC_SITE_URL || 'https://TODO.ac.kr', // TODO: 실제 도메인으로 변경
-    name: '이관희 연구실 — KU-KIST 융합대학원',
+    name: 'ARISE Lab — KU-KIST 융합대학원',
   },
 
   // Sitemap
@@ -160,8 +160,8 @@ export default defineNuxtConfig({
   // 앱 설정
   app: {
     head: {
-      title: '지능형 바이오 모니터링 연구실 | KU-KIST 융합대학원',
-      titleTemplate: '%s | 지능형 바이오 모니터링 연구실',
+      title: 'ARISE Lab | KU-KIST 융합대학원',
+      titleTemplate: '%s | ARISE Lab',
       htmlAttrs: {
         lang: 'ko',
       },
@@ -170,14 +170,14 @@ export default defineNuxtConfig({
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         {
           name: 'description',
-          content: '고려대학교-KIST 융합대학원 지능형 바이오 모니터링 연구실. AI와 바이오센서로 암·감염병 조기진단 연구를 수행합니다.',
+          content: '고려대학교-KIST 융합대학원 ARISE Lab. AI와 바이오센서로 암·감염병 조기진단 연구를 수행합니다.',
         },
         {
           name: 'keywords',
-          content: '이관희, 지능형 바이오 모니터링, KU-KIST, 융합대학원, 바이오센서, AI 진단, 암 조기진단',
+          content: '이관희, ARISE Lab, ARISE, KU-KIST, 융합대학원, 바이오센서, AI 진단, 암 조기진단',
         },
         { property: 'og:type', content: 'website' },
-        { property: 'og:site_name', content: '지능형 바이오 모니터링 연구실' },
+        { property: 'og:site_name', content: 'ARISE Lab' },
         { property: 'og:url', content: process.env.NUXT_PUBLIC_SITE_URL || 'https://TODO.ac.kr' },
         { property: 'og:locale', content: 'ko_KR' },
         { property: 'og:locale:alternate', content: 'en_US' },
@@ -190,7 +190,7 @@ export default defineNuxtConfig({
             ? 'noindex, nofollow'
             : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
         },
-        { name: 'author', content: '지능형 바이오 모니터링 연구실, KU-KIST 융합대학원' },
+        { name: 'author', content: 'ARISE Lab, KU-KIST 융합대학원' },
         { name: 'google-site-verification', content: process.env.NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION || '' },
         { name: 'format-detection', content: 'telephone=no' },
         // 고려대학교 크림슨 레드

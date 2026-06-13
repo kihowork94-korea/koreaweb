@@ -13,10 +13,10 @@ export default {
       darkMode: 'Dark Mode',
     },
     footer: {
-      labName: 'Lee Kwanhee Lab',
+      labName: 'ARISE Lab',
       university: 'KU-KIST Graduate School of Converging Science and Technology',
       address: '5, Hwarang-ro 14-gil, Seongbuk-gu, Seoul, KIST',
-      copyright: '© {year} Lee Kwanhee Lab. All rights reserved.',
+      copyright: '© {year} ARISE Lab. All rights reserved.',
       openKakaoMap: 'Open in KakaoMap',
       openGoogleMap: 'Open in Google Maps',
     },

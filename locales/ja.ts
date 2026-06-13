@@ -13,10 +13,10 @@ export default {
       darkMode: 'ダークモード',
     },
     footer: {
-      labName: 'イ・グァンヒ研究室',
+      labName: 'ARISEラボ',
       university: 'KU-KIST融合大学院',
       address: 'ソウル市城北区花郎路14街5 KIST本院',
-      copyright: '© {year} イ・グァンヒ研究室. All rights reserved.',
+      copyright: '© {year} ARISE Lab. All rights reserved.',
       openKakaoMap: 'KakaoMapで見る',
       openGoogleMap: 'Googleマップで見る',
     },

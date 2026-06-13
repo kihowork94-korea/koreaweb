@@ -13,10 +13,10 @@ export default {
       darkMode: '深色模式',
     },
     footer: {
-      labName: '李冠熙实验室',
+      labName: 'ARISE实验室',
       university: '高丽大学-KIST融合研究生院',
       address: '首尔市城北区花郎路14街5号 KIST本院',
-      copyright: '© {year} 李冠熙实验室. 保留所有权利.',
+      copyright: '© {year} ARISE Lab. 保留所有权利.',
       openKakaoMap: '在KakaoMap中查看',
       openGoogleMap: '在Google地图中查看',
     },

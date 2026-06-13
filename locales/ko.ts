@@ -13,10 +13,10 @@ export default {
       darkMode: '다크 모드',
     },
     footer: {
-      labName: '지능형 바이오 모니터링 연구실',
+      labName: 'ARISE 연구실',
       university: '고려대학교-KIST 융합대학원',
       address: '서울특별시 성북구 화랑로 14길 5 KIST 본원',
-      copyright: '© {year} 이관희 연구실. All rights reserved.',
+      copyright: '© {year} ARISE Lab. All rights reserved.',
       openKakaoMap: '카카오맵에서 보기',
       openGoogleMap: '구글맵에서 보기',
     },

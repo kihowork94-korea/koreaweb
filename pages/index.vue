@@ -2,11 +2,11 @@
 const { t } = useI18n()
 
 useHead({
-  title: '지능형 바이오 모니터링 연구실 | KU-KIST 융합대학원',
+  title: 'ARISE Lab | KU-KIST 융합대학원',
   meta: [
     {
       name: 'description',
-      content: '고려대학교-KIST 융합대학원 지능형 바이오 모니터링 연구실. AI와 바이오센서로 암·감염병 조기진단 연구를 수행합니다.',
+      content: '고려대학교-KIST 융합대학원 ARISE Lab. AI와 바이오센서로 암·감염병 조기진단 연구를 수행합니다.',
     },
   ],
 })

@@ -21,7 +21,7 @@ const item = computed(() =>
 )
 
 useHead(computed(() => ({
-  title: `${item.value ? loc(item.value.title) : 'News'} | 지능형 바이오 모니터링 연구실`,
+  title: `${item.value ? loc(item.value.title) : 'News'} | ARISE Lab`,
 })))
 
 // 이전/다음 뉴스 (날짜순 정렬 기준)

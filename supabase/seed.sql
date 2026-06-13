@@ -5,8 +5,8 @@
 -- lab_info
 INSERT INTO lab_info (id, name, short_name, slogan, university, department, established, location, contact, sns) VALUES (
   1,
-  '{"ko":"지능형 바이오 모니터링 연구실","en":"Intelligent Bio-Monitoring Lab","zh":"智能生物监测实验室","ja":"知的バイオモニタリング研究室"}',
-  '{"ko":"이관희 연구실","en":"Lee Kwanhee Lab","zh":"李冠熙实验室","ja":"イ・グァンヒ研究室"}',
+  '{"ko":"ARISE 연구실","en":"ARISE Lab","zh":"ARISE实验室","ja":"ARISEラボ"}',
+  '{"ko":"ARISE 연구실","en":"ARISE Lab","zh":"ARISE实验室","ja":"ARISEラボ"}',
   '{"ko":"AI와 바이오센서로 암·감염병 진단의 미래를 열다","en":"Advancing Cancer & Infectious Disease Diagnostics with AI and Biosensors","zh":"以人工智能与生物传感器，开创癌症与感染病诊断的未来","ja":"AIとバイオセンサーで、がん・感染症診断の未来を切り拓く"}',
   '{"ko":"KU-KIST 융합대학원","en":"KU-KIST Graduate School of Converging Science and Technology","zh":"高丽大学-KIST融合研究生院","ja":"KU-KIST融合大学院"}',
   '{"ko":"융합대학원","en":"Graduate School of Converging Science and Technology","zh":"融合研究生院","ja":"融合大学院"}',

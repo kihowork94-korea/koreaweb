@@ -12,14 +12,8 @@ const loc = (f: Record<string, string> | null | undefined) =>
 const { data: labInfoArr } = useLabInfo()
 const labInfo = computed(() => (labInfoArr.value as any[])?.[0])
 
-const { data: membersArr } = useLabMembers()
-const professor = computed(() => (membersArr.value as any[] ?? []).find((m: any) => m.role === 'professor'))
-
-// 설명 첫 단락만 표시
-const descriptionFirst = computed(() => {
-  const full = labInfo.value ? loc(labInfo.value.description) : ''
-  return full.split('\n\n')[0] ?? full
-})
+const { data: labHistoryArr } = useLabHistory()
+const labHistory = computed<any[]>(() => (labHistoryArr.value as any[]) ?? [])
 
 const sectionRef = ref<HTMLElement | null>(null)
 const isVisible = ref(false)
@@ -30,7 +24,7 @@ useIntersectionObserver(sectionRef, ([entry]) => {
 
 <template>
   <section id="about" ref="sectionRef" class="relative px-6 py-24 mobile:py-16">
-    <div class="mx-auto max-w-[1200px]">
+    <div class="mx-auto max-w-[900px]">
 
       <!-- 섹션 헤더 -->
       <div class="animate-item mb-14 text-center" :class="{ 'is-visible': isVisible }">
@@ -43,7 +37,7 @@ useIntersectionObserver(sectionRef, ([entry]) => {
         </h2>
       </div>
 
-      <!-- 카드 -->
+      <!-- about 페이지와 동일한 소개 카드 -->
       <div
         class="animate-item delay-1 rounded-3xl border p-10 mobile:p-6"
         :class="[
@@ -51,75 +45,74 @@ useIntersectionObserver(sectionRef, ([entry]) => {
           isDark ? 'border-white/[0.10] bg-[#111]' : 'border-gray-200 bg-white',
         ]"
       >
-        <div class="flex gap-12 mobile:flex-col mobile:gap-8">
-
-          <!-- 교수 사진 -->
-          <div class="flex-shrink-0">
-            <div
-              class="h-48 w-48 overflow-hidden rounded-2xl mobile:h-28 mobile:w-28"
-              :class="isDark ? 'bg-white/10' : 'bg-gray-100'"
-            >
-              <img
-                v-if="professor?.imageUrl"
-                :src="professor.imageUrl"
-                :alt="professor ? loc(professor.name) : ''"
-                class="h-full w-full object-cover"
-                loading="lazy"
-                decoding="async"
-                @error="($event.target as HTMLImageElement).style.display='none'"
-              />
-              <div
-                v-else
-                class="flex h-full w-full items-center justify-center"
-              >
-                <span :class="['material-icons text-5xl mobile:text-3xl', isDark ? 'text-white/20' : 'text-gray-300']">person</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 텍스트 -->
-          <div class="flex flex-1 flex-col justify-center gap-5">
-            <!-- ARISE 풀이 뱃지 -->
-            <div
-              class="inline-flex w-fit items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold uppercase tracking-widest"
-              :class="isDark ? 'border-[#C21807]/40 text-[#C21807]/80 bg-[#C21807]/5' : 'border-[#C21807]/30 text-[#C21807] bg-[#C21807]/5'"
-            >
-              <span class="h-1.5 w-1.5 rounded-full bg-[#C21807]" />
-              <span class="text-[#C21807]">A</span>I-Integrated&nbsp;
-              <span class="text-[#C21807]">R</span>ecognition and&nbsp;
-              <span class="text-[#C21807]">I</span>ntelligent&nbsp;
-              <span class="text-[#C21807]">S</span>ensing&nbsp;
-              <span class="text-[#C21807]">E</span>ngineering
-            </div>
-
-            <!-- 교수 이름 + 소속 -->
-            <div v-if="professor">
-              <p
-                class="text-2xl font-extrabold mobile:text-xl"
-                :class="isDark ? 'text-white' : 'text-gray-900'"
-              >{{ loc(professor.name) }}</p>
-              <p class="mt-0.5 text-sm font-medium text-[#C21807]">
-                {{ labInfo ? loc(labInfo.university) : '' }}
-              </p>
-            </div>
-
-            <!-- 소개 첫 단락 -->
-            <p
-              class="text-sm leading-[1.9]"
-              :class="isDark ? 'text-white/60' : 'text-gray-600'"
-            >
-              {{ descriptionFirst }}
+        <!-- 대표 수치 -->
+        <div
+          class="mb-8 grid grid-cols-3 gap-4 border-b pb-8 mobile:grid-cols-1"
+          :class="isDark ? 'border-white/[0.07]' : 'border-gray-100'"
+        >
+          <div class="text-center">
+            <p class="text-3xl font-extrabold text-[#C21807]">
+              {{ labInfo?.established ? new Date().getFullYear() - Number(labInfo.established) + 1 : '—' }}
             </p>
-
-            <!-- 더보기 -->
-            <NuxtLink
-              :to="localePath('/about')"
-              class="inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-[#C21807] transition-all duration-200 hover:gap-3"
-            >
-              {{ t('lab.common.learnMore') }}
-              <span class="material-icons text-[18px]">arrow_forward</span>
-            </NuxtLink>
+            <p class="mt-1 text-xs font-medium uppercase tracking-wider" :class="isDark ? 'text-white/40' : 'text-gray-400'">
+              Years of Research
+            </p>
           </div>
+          <div class="text-center">
+            <p class="text-3xl font-extrabold text-[#C21807]">
+              {{ labHistory.length || '—' }}
+            </p>
+            <p class="mt-1 text-xs font-medium uppercase tracking-wider" :class="isDark ? 'text-white/40' : 'text-gray-400'">
+              Milestones
+            </p>
+          </div>
+          <div class="text-center">
+            <p class="text-3xl font-extrabold text-[#C21807]">
+              {{ labInfo?.established || '—' }}
+            </p>
+            <p class="mt-1 text-xs font-medium uppercase tracking-wider" :class="isDark ? 'text-white/40' : 'text-gray-400'">
+              Founded
+            </p>
+          </div>
+        </div>
+
+        <!-- 소개 텍스트 -->
+        <p
+          class="text-base leading-[1.9]"
+          :class="isDark ? 'text-white/65' : 'text-gray-600'"
+        >
+          {{ labInfo ? loc(labInfo.description) : '' }}
+        </p>
+
+        <!-- 소속 태그 -->
+        <div class="mt-8 flex flex-wrap gap-2">
+          <span
+            v-if="labInfo?.university"
+            class="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold"
+            :class="isDark ? 'bg-white/[0.07] text-white/60' : 'bg-gray-100 text-gray-500'"
+          >
+            <span class="material-icons text-[13px]">account_balance</span>
+            {{ loc(labInfo.university) }}
+          </span>
+          <span
+            v-if="labInfo?.department"
+            class="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold"
+            :class="isDark ? 'bg-white/[0.07] text-white/60' : 'bg-gray-100 text-gray-500'"
+          >
+            <span class="material-icons text-[13px]">school</span>
+            {{ loc(labInfo.department) }}
+          </span>
+        </div>
+
+        <!-- 더보기 -->
+        <div class="mt-8">
+          <NuxtLink
+            :to="localePath('/about')"
+            class="inline-flex items-center gap-1.5 text-sm font-semibold text-[#C21807] transition-all duration-200 hover:gap-3"
+          >
+            {{ t('lab.common.learnMore') }}
+            <span class="material-icons text-[18px]">arrow_forward</span>
+          </NuxtLink>
         </div>
       </div>
 

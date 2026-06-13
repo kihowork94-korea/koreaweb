@@ -64,6 +64,19 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
         {{ name }}
       </h1>
 
+      <!-- ARISE 약어 풀이 -->
+      <p
+        class="animate-fade-in-up text-[11px] font-semibold tracking-[0.18em] uppercase mobile:text-[10px]"
+        :class="isDark ? 'text-white/30' : 'text-gray-400'"
+        style="animation-delay: 160ms"
+      >
+        <span class="text-[#C21807]">A</span>I-Integrated&nbsp;
+        <span class="text-[#C21807]">R</span>ecognition and&nbsp;
+        <span class="text-[#C21807]">I</span>ntelligent&nbsp;
+        <span class="text-[#C21807]">S</span>ensing&nbsp;
+        <span class="text-[#C21807]">E</span>ngineering
+      </p>
+
       <!-- 슬로건 -->
       <p
         class="animate-fade-in-up max-w-2xl text-xl leading-relaxed mobile:text-base"

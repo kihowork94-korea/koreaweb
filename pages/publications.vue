@@ -88,6 +88,7 @@ const typeLabel: Record<string, string> = {
 // ── 섹션 등장 ──────────────────────────────────
 const listRef   = ref<HTMLElement | null>(null)
 const isVisible = ref(false)
+onMounted(() => { isVisible.value = true })
 useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.value = true }, { threshold: 0.05 })
 </script>
 

@@ -64,8 +64,8 @@ export const labInfo: LabInfo = {
     lng: 127.0586,
   },
   contact: {
-    email: 'kwanhyi@korea.ac.kr',
-    phone: '02-958-6804',
+    email: 'kwanhyi@kist.re.kr',
+    phone: '02-958-6840',
     fax: '02-958-5308',
   },
   sns: {

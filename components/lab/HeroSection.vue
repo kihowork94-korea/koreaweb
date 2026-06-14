@@ -61,13 +61,13 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
         :class="isDark ? 'text-white' : 'text-gray-900'"
         style="animation-delay: 100ms"
       >
-        {{ name }}
+        ARISE Lab
       </h1>
 
       <!-- ARISE 약어 풀이 -->
       <p
-        class="animate-fade-in-up text-[11px] font-semibold tracking-[0.18em] uppercase mobile:text-[10px]"
-        :class="isDark ? 'text-white/30' : 'text-gray-400'"
+        class="animate-fade-in-up text-[13px] font-semibold tracking-[0.15em] uppercase mobile:text-[11px]"
+        :class="isDark ? 'text-white/35' : 'text-gray-400'"
         style="animation-delay: 160ms"
       >
         <span class="text-[#C21807]">A</span>I-Integrated&nbsp;

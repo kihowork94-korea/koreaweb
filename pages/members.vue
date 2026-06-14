@@ -16,7 +16,9 @@ const { data: membersRaw, pending } = useLabMembers()
 const members = computed<any[]>(() => (membersRaw.value as any[]) ?? [])
 
 // 탭 구성 (alumni 제외)
-const tabs: { key: MemberRole; label: string }[] = [
+type TabKey = MemberRole | 'all'
+const tabs: { key: TabKey; label: string }[] = [
+  { key: 'all',           label: t('lab.common.all') },
   { key: 'professor',     label: t('lab.member.professor') },
   { key: 'postdoc',       label: t('lab.member.postdoc') },
   { key: 'phd',           label: t('lab.member.phd') },
@@ -25,15 +27,17 @@ const tabs: { key: MemberRole; label: string }[] = [
   { key: 'undergraduate', label: t('lab.member.undergraduate') },
 ]
 
-// 실제 구성원이 있는 탭만 표시
+// 실제 구성원이 있는 탭만 표시 (전체 탭은 항상 포함)
 const activeTabs = computed(() =>
-  tabs.filter(tab => members.value.some((m: any) => m.role === tab.key))
+  tabs.filter(tab => tab.key === 'all' || members.value.some((m: any) => m.role === tab.key))
 )
 
-const activeTab = ref<MemberRole>(activeTabs.value[0]?.key ?? 'professor')
+const activeTab = ref<TabKey>('all')
 
 const filteredMembers = computed(() =>
-  members.value.filter((m: any) => m.role === activeTab.value)
+  activeTab.value === 'all'
+    ? members.value.filter((m: any) => m.role !== 'alumni')
+    : members.value.filter((m: any) => m.role === activeTab.value)
 )
 
 // 선택된 구성원 (상세 모달)
@@ -83,7 +87,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
         <button
           v-for="tab in activeTabs"
           :key="tab.key"
-          @click="activeTab = tab.key"
+          @click="activeTab = (tab.key as TabKey)"
           class="rounded-full px-5 py-2 text-sm font-semibold transition-all duration-200"
           :class="activeTab === tab.key
             ? 'bg-[#C21807] text-white shadow-lg shadow-[#C21807]/20'
@@ -92,7 +96,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
               : 'bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-800'"
         >
           {{ tab.label }}
-          <span class="ml-1.5 text-xs opacity-60">({{ members.filter(m => m.role === tab.key).length }})</span>
+          <span class="ml-1.5 text-xs opacity-60">({{ tab.key === 'all' ? members.filter((m: any) => m.role !== 'alumni').length : members.filter((m: any) => m.role === tab.key).length }})</span>
         </button>
       </div>
 

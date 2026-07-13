@@ -17,7 +17,7 @@ const members = computed<any[]>(() => (membersRaw.value as any[]) ?? [])
 
 // 탭 구성 (alumni 제외)
 type TabKey = MemberRole | 'all'
-const tabs: { key: TabKey; label: string }[] = [
+const tabs = computed<{ key: TabKey; label: string }[]>(() => [
   { key: 'all',           label: t('lab.common.all') },
   { key: 'professor',     label: t('lab.member.professor') },
   { key: 'postdoc',       label: t('lab.member.postdoc') },
@@ -25,11 +25,11 @@ const tabs: { key: TabKey; label: string }[] = [
   { key: 'combined',      label: t('lab.member.combined') },
   { key: 'ms',            label: t('lab.member.ms') },
   { key: 'undergraduate', label: t('lab.member.undergraduate') },
-]
+])
 
 // 실제 구성원이 있는 탭만 표시 (전체 탭은 항상 포함)
 const activeTabs = computed(() =>
-  tabs.filter(tab => tab.key === 'all' || members.value.some((m: any) => m.role === tab.key))
+  tabs.value.filter(tab => tab.key === 'all' || members.value.some((m: any) => m.role === tab.key))
 )
 
 const activeTab = ref<TabKey>('all')

@@ -15,7 +15,7 @@ export const members: LabMember[] = [
     },
     role: 'professor',
     imageUrl: '/images/members/professor-lee.jpg',
-    email: 'kwanhyi@kist.re.kr',
+    email: 'kwanhyi@korea.ac.kr',
 
     bio: {
       ko: 'KIST 생체분자인식연구센터 센터장 / KU-KIST 융합대학원 교수',
@@ -64,8 +64,13 @@ export const members: LabMember[] = [
     achievements: [
       {
         year: 2022,
-        title: { ko: 'KIST 우수연구팀상', en: 'KIST Outstanding Research Team Award', zh: 'KIST优秀研究团队奖', ja: 'KIST優秀研究チーム賞' },
+        title: { ko: 'KIST 연구개발팀상', en: 'KIST R&D Team Award', zh: 'KIST研发团队奖', ja: 'KIST研究開発チーム賞' },
         organizer: { ko: 'KIST', en: 'KIST', zh: 'KIST', ja: 'KIST' },
+      },
+      {
+        year: 2021,
+        title: { ko: '대한민국 10대 과학기술뉴스 선정 (인공지능 진단기술)', en: 'Top 10 Science & Technology News of Korea (AI Diagnostics)', zh: '韩国十大科技新闻评选（人工智能诊断技术）', ja: '大韓民国10大科学技術ニュース選定（AI診断技術）' },
+        organizer: { ko: '한국과학기술단체총연합회', en: 'KOFST', zh: '韩国科学技术团体总联合会', ja: '韓国科学技術団体総連合会' },
       },
       {
         year: 2020,
@@ -78,19 +83,54 @@ export const members: LabMember[] = [
         organizer: { ko: 'KIST', en: 'KIST', zh: 'KIST', ja: 'KIST' },
       },
       {
+        year: 2019,
+        title: { ko: '대한민국 10대 과학기술뉴스 후보선정 (조류인플루엔자 진단기술)', en: 'Top 10 Science & Technology News Nominee (AI Influenza Diagnostics)', zh: '韩国十大科技新闻候选（禽流感诊断技术）', ja: '大韓民国10大科学技術ニュース候補選定（鳥インフルエンザ診断技術）' },
+        organizer: { ko: '한국과학기술단체총연합회', en: 'KOFST', zh: '韩国科学技术团体总联合会', ja: '韓国科学技術団体総連合会' },
+      },
+      {
+        year: 2017,
+        title: { ko: '한국바이오칩학회 우수논문상', en: 'Korean BioChip Society Outstanding Paper Award', zh: '韩国生物芯片学会优秀论文奖', ja: '韓国バイオチップ学会優秀論文賞' },
+        organizer: { ko: '한국바이오칩학회', en: 'Korean BioChip Society', zh: '韩国生物芯片学会', ja: '韓国バイオチップ学会' },
+      },
+      {
         year: 2015,
         title: { ko: 'UST 우수연구지도상', en: 'UST Outstanding Research Adviser Award', zh: 'UST优秀研究指导奖', ja: 'UST優秀研究指導賞' },
         organizer: { ko: 'UST', en: 'UST', zh: 'UST', ja: 'UST' },
       },
       {
         year: 2014,
-        title: { ko: 'KIST 창립 49주년 우수연구상', en: 'KIST 49th Anniversary Excellence Research Award', zh: 'KIST创立49周年优秀研究奖', ja: 'KIST創立49周年優秀研究賞' },
+        title: { ko: 'UST 우수논문지도상', en: 'UST Outstanding Thesis Adviser Award', zh: 'UST优秀论文指导奖', ja: 'UST優秀論文指導賞' },
+        organizer: { ko: 'UST', en: 'UST', zh: 'UST', ja: 'UST' },
+      },
+      {
+        year: 2012,
+        title: { ko: 'KIST Unsung Hero상', en: 'KIST Unsung Hero Award', zh: 'KIST无名英雄奖', ja: 'KIST Unsung Hero賞' },
+        organizer: { ko: 'KIST', en: 'KIST', zh: 'KIST', ja: 'KIST' },
+      },
+      {
+        year: 2012,
+        title: { ko: 'KIST 우수연구팀상', en: 'KIST Outstanding Research Team Award', zh: 'KIST优秀研究团队奖', ja: 'KIST優秀研究チーム賞' },
+        organizer: { ko: 'KIST', en: 'KIST', zh: 'KIST', ja: 'KIST' },
+      },
+      {
+        year: 2010,
+        title: { ko: '미국생체재료학회 STAR Award', en: 'Society for Biomaterials STAR Award', zh: '美国生物材料学会STAR奖', ja: '米国生体材料学会STAR Award' },
+        organizer: { ko: '미국생체재료학회', en: 'Society for Biomaterials', zh: '美国生物材料学会', ja: '米国生体材料学会' },
+      },
+      {
+        year: 2009,
+        title: { ko: '미국생체재료학회 STAR Award', en: 'Society for Biomaterials STAR Award', zh: '美国生物材料学会STAR奖', ja: '米国生体材料学会STAR Award' },
+        organizer: { ko: '미국생체재료학회', en: 'Society for Biomaterials', zh: '美国生物材料学会', ja: '米国生体材料学会' },
+      },
+      {
+        year: 2002,
+        title: { ko: 'KIST 우수연구팀상', en: 'KIST Outstanding Research Team Award', zh: 'KIST优秀研究团队奖', ja: 'KIST優秀研究チーム賞' },
         organizer: { ko: 'KIST', en: 'KIST', zh: 'KIST', ja: 'KIST' },
       },
     ],
 
-    email: 'kwanhyi@kist.re.kr',
-    homepage: '',
+    email: 'kwanhyi@korea.ac.kr',
+    homepage: 'http://bnml.kist.re.kr/',
     googleScholar: '',
     researchgate: '',
     orcid: '',

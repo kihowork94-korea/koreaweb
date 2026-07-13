@@ -21,6 +21,7 @@ export default {
       openGoogleMap: '구글맵에서 보기',
     },
     common: {
+      all: '전체',
       learnMore: '자세히 보기',
       viewAll: '전체 보기',
       backToList: '목록으로',

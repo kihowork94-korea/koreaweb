@@ -21,6 +21,7 @@ export default {
       openGoogleMap: '在Google地图中查看',
     },
     common: {
+      all: '全部',
       learnMore: '了解更多',
       viewAll: '查看全部',
       backToList: '返回列表',

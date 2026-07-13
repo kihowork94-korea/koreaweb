@@ -21,6 +21,7 @@ export default {
       openGoogleMap: 'Googleマップで見る',
     },
     common: {
+      all: 'すべて',
       learnMore: '詳しく見る',
       viewAll: 'すべて見る',
       backToList: '一覧に戻る',

@@ -21,6 +21,7 @@ export default {
       openGoogleMap: 'Open in Google Maps',
     },
     common: {
+      all: 'All',
       learnMore: 'Learn More',
       viewAll: 'View All',
       backToList: 'Back to List',

@@ -10,16 +10,19 @@ const handleScroll = () => { isScrolled.value = window.scrollY > 10 }
 onMounted(() => { window.addEventListener('scroll', handleScroll); handleScroll() })
 onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 
-// 네비게이션 링크
+// 네비게이션 링크 — navVisibility가 false인 항목만 숨김 (undefined/true면 표시)
+const { data: labInfoData } = useLabInfo()
+const navVisibility = computed(() => (labInfoData.value as any)?.[0]?.navVisibility ?? {})
+
 const links = computed(() => [
-  { key: 'lab.nav.about',        url: '/about' },
-  { key: 'lab.nav.members',      url: '/members' },
-  { key: 'lab.nav.research',     url: '/research' },
-  { key: 'lab.nav.publications', url: '/publications' },
-  { key: 'lab.nav.projects',     url: '/projects' },
-  { key: 'lab.nav.news',         url: '/news' },
-  { key: 'lab.nav.contact',      url: '/contact' },
-])
+  { key: 'lab.nav.about',        url: '/about',        navKey: 'about' },
+  { key: 'lab.nav.members',      url: '/members',      navKey: 'members' },
+  { key: 'lab.nav.research',     url: '/research',     navKey: 'research' },
+  { key: 'lab.nav.publications', url: '/publications', navKey: 'publications' },
+  { key: 'lab.nav.projects',     url: '/projects',     navKey: 'projects' },
+  { key: 'lab.nav.news',         url: '/news',         navKey: 'news' },
+  { key: 'lab.nav.contact',      url: '/contact',      navKey: 'contact' },
+].filter(link => navVisibility.value[link.navKey] !== false))
 
 const mobileMenuOpen = ref(false)
 const isDark = computed(() => themeStore.isDark)

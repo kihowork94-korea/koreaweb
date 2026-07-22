@@ -7,17 +7,28 @@ const infoSaving  = ref(false)
 const infoError   = ref<string | null>(null)
 const infoSaved   = ref(false)
 
+const NAV_ITEMS = [
+  { key: 'about',        label: '소개 (About)' },
+  { key: 'members',      label: '구성원 (Members)' },
+  { key: 'research',     label: '연구 (Research)' },
+  { key: 'publications', label: '논문 (Publications)' },
+  { key: 'projects',     label: '프로젝트 (Projects)' },
+  { key: 'news',         label: '뉴스 (News)' },
+  { key: 'contact',      label: '연락처 (Contact)' },
+] as const
+
 const info = ref({
-  name:        { ko: '', en: '', zh: '', ja: '' },
-  short_name:  { ko: '', en: '', zh: '', ja: '' },
-  slogan:      { ko: '', en: '', zh: '', ja: '' },
-  description: { ko: '', en: '', zh: '', ja: '' },
-  university:  { ko: '', en: '', zh: '', ja: '' },
-  department:  { ko: '', en: '', zh: '', ja: '' },
-  established: '' as string | number,
-  location:    '',
-  contact:     '',
-  sns:         '',
+  name:           { ko: '', en: '', zh: '', ja: '' },
+  short_name:     { ko: '', en: '', zh: '', ja: '' },
+  slogan:         { ko: '', en: '', zh: '', ja: '' },
+  description:    { ko: '', en: '', zh: '', ja: '' },
+  university:     { ko: '', en: '', zh: '', ja: '' },
+  department:     { ko: '', en: '', zh: '', ja: '' },
+  established:    '' as string | number,
+  location:       '',
+  contact:        '',
+  sns:            '',
+  nav_visibility: { about: true, members: true, research: true, publications: true, projects: true, news: true, contact: true } as Record<string, boolean>,
 })
 
 function localized(val: any) {
@@ -50,6 +61,9 @@ onMounted(async () => {
       info.value.location    = jsonStr(row.location)
       info.value.contact     = jsonStr(row.contact)
       info.value.sns         = jsonStr(row.sns)
+      if (row.nav_visibility && typeof row.nav_visibility === 'object') {
+        info.value.nav_visibility = { ...info.value.nav_visibility, ...row.nav_visibility }
+      }
     }
   }
   catch (e: any) {
@@ -77,9 +91,10 @@ async function saveInfo() {
       university:  info.value.university,
       department:  info.value.department,
       established: info.value.established === '' ? null : Number(info.value.established),
-      location:    parseJson(info.value.location as string),
-      contact:     parseJson(info.value.contact as string),
-      sns:         parseJson(info.value.sns as string),
+      location:       parseJson(info.value.location as string),
+      contact:        parseJson(info.value.contact as string),
+      sns:            parseJson(info.value.sns as string),
+      nav_visibility: info.value.nav_visibility,
     }
     await $fetch('/api/admin/lab_info/1', { method: 'PUT', body: payload })
     infoSaved.value = true
@@ -200,6 +215,36 @@ const jsonFields = [
             />
           </div>
         </template>
+
+        <!-- 네비게이션 메뉴 표시 설정 -->
+        <div class="rounded-xl border border-white/10 bg-gray-900 p-5">
+          <p class="mb-1 text-[13px] font-semibold text-gray-300">네비게이션 메뉴 표시</p>
+          <p class="mb-4 text-[11px] text-gray-600">OFF로 설정하면 해당 메뉴가 사이트에서 숨겨집니다.</p>
+          <div class="grid grid-cols-2 gap-3">
+            <label
+              v-for="item in NAV_ITEMS"
+              :key="item.key"
+              class="flex cursor-pointer items-center justify-between rounded-lg border border-white/[0.07] bg-gray-800 px-4 py-3"
+            >
+              <span class="text-[13px] text-gray-200">{{ item.label }}</span>
+              <button
+                type="button"
+                @click="info.nav_visibility[item.key] = !info.nav_visibility[item.key]"
+                :class="[
+                  'relative inline-flex h-5 w-9 flex-shrink-0 rounded-full border-2 border-transparent transition-colors duration-200',
+                  info.nav_visibility[item.key] !== false ? 'bg-blue-600' : 'bg-gray-600',
+                ]"
+              >
+                <span
+                  :class="[
+                    'inline-block h-4 w-4 transform rounded-full bg-white shadow transition duration-200',
+                    info.nav_visibility[item.key] !== false ? 'translate-x-4' : 'translate-x-0',
+                  ]"
+                />
+              </button>
+            </label>
+          </div>
+        </div>
 
         <!-- 에러 / 성공 메시지 -->
         <div v-if="infoError" class="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-[13px] text-red-400">

@@ -97,9 +97,10 @@ function transformNews(row: any) {
 }
 
 function transformLabInfo(row: any) {
-  const { short_name, updated_at, ...rest } = row
+  const { short_name, nav_visibility, updated_at, ...rest } = row
   return {
     ...rest,
     shortName: short_name,
+    navVisibility: nav_visibility ?? {},
   }
 }

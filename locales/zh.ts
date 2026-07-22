@@ -39,6 +39,7 @@ export default {
     },
     member: {
       professor: '教授',
+      student: '学生',
       postdoc: '博士后研究员',
       phd: '博士研究生',
       combined: '硕博连读',

@@ -39,6 +39,7 @@ export default {
     },
     member: {
       professor: '교수',
+      student: '학생',
       postdoc: '박사후연구원',
       phd: '박사과정',
       combined: '석박통합과정',

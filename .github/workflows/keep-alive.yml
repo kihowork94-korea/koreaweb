@@ -6,4 +6,4 @@ jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - run: curl -sf https://korea-web-two.vercel.app/api/lab/lab_info
+      - run: curl -sfL https://www.ariselab.kr/api/lab/lab_info

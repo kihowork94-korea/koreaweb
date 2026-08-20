@@ -48,10 +48,10 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
       <!-- 소속 배지 -->
       <div
         class="animate-fade-in-up inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold uppercase tracking-widest"
-        :class="isDark ? 'border-[#C21807]/40 text-[#C21807]/80 bg-[#C21807]/5' : 'border-[#C21807]/30 text-[#C21807] bg-[#C21807]/5'"
+        :class="isDark ? 'border-[#3F3F46]/40 text-[#3F3F46]/80 bg-[#3F3F46]/5' : 'border-[#3F3F46]/30 text-[#3F3F46] bg-[#3F3F46]/5'"
         style="animation-delay: 0ms"
       >
-        <span class="h-1.5 w-1.5 rounded-full bg-[#C21807] animate-pulse" />
+        <span class="h-1.5 w-1.5 rounded-full bg-[#3F3F46] animate-pulse" />
         {{ univ }}
       </div>
 
@@ -70,11 +70,11 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
         :class="isDark ? 'text-white/35' : 'text-gray-400'"
         style="animation-delay: 160ms"
       >
-        <span class="text-[#C21807]">A</span>I-Integrated&nbsp;
-        <span class="text-[#C21807]">R</span>ecognition and&nbsp;
-        <span class="text-[#C21807]">I</span>ntelligent&nbsp;
-        <span class="text-[#C21807]">S</span>ensing&nbsp;
-        <span class="text-[#C21807]">E</span>ngineering
+        <span class="text-[#3F3F46]">A</span>I-Integrated&nbsp;
+        <span class="text-[#3F3F46]">R</span>ecognition and&nbsp;
+        <span class="text-[#3F3F46]">I</span>ntelligent&nbsp;
+        <span class="text-[#3F3F46]">S</span>ensing&nbsp;
+        <span class="text-[#3F3F46]">E</span>ngineering
       </p>
 
       <!-- 슬로건 -->
@@ -101,7 +101,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
           :href="`#${cta.section}`"
           class="group flex items-center gap-2 rounded-xl border px-6 py-3 text-sm font-semibold transition-all duration-200 hover:scale-[1.03]"
           :class="activeSection === cta.section
-            ? 'border-[#C21807] bg-[#C21807] text-white shadow-lg shadow-[#C21807]/20'
+            ? 'border-[#3F3F46] bg-[#3F3F46] text-white shadow-lg shadow-[#3F3F46]/20'
             : isDark
               ? 'border-white/15 text-white/80 hover:bg-white/8'
               : 'border-gray-200 text-gray-700 hover:bg-gray-50'"

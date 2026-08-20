@@ -1,10 +1,10 @@
 export default defineAppConfig({
   // @nuxt/ui 설정
   ui: {
-    // 고려대학교 크림슨 레드를 primary 컬러로 사용
+    // 차콜과 그레이 기반의 무채색 연구실 브랜드 컬러
     colors: {
-      primary: 'red',   // Tailwind red 팔레트 기반 (CSS 변수로 #C21807 적용)
-      neutral: 'zinc',  // 기본 회색 계열
+      primary: 'zinc',
+      neutral: 'zinc',
     },
     toaster: {
       expand: true,

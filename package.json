@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "lsof -ti:3500 | xargs kill -9 2>/dev/null || true && nuxt dev --no-fork 2>&1",
-    "dev:clean": "rm -rf .nuxt node_modules/.cache && yarn dev",
+    "dev": "nuxt dev --no-fork",
+    "dev:clean": "nuxt cleanup && nuxt dev --no-fork",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",

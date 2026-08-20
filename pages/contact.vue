@@ -34,7 +34,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
 
       <!-- 헤더 -->
       <div class="mb-12 text-center">
-        <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-[#C21807]">Contact</p>
+        <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-[#3F3F46]">Contact</p>
         <h1
           class="text-5xl font-extrabold mobile:text-3xl"
           :class="isDark ? 'text-white' : 'text-gray-900'"
@@ -60,11 +60,11 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
           <div class="grid grid-cols-2 gap-8 mobile:grid-cols-1">
             <!-- 이메일 -->
             <div class="flex items-start gap-3">
-              <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-[#C21807]/10">
-                <span class="material-icons text-[18px] text-[#C21807]">mail</span>
+              <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-[#3F3F46]/10">
+                <span class="material-icons text-[18px] text-[#3F3F46]">mail</span>
               </div>
               <div>
-                <p class="mb-1 text-xs font-semibold uppercase tracking-wider text-[#C21807]">
+                <p class="mb-1 text-xs font-semibold uppercase tracking-wider text-[#3F3F46]">
                   {{ t('lab.contact.email') }}
                 </p>
                 <a
@@ -77,11 +77,11 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
 
             <!-- 전화 -->
             <div v-if="labInfo?.contact?.phone" class="flex items-start gap-3">
-              <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-[#C21807]/10">
-                <span class="material-icons text-[18px] text-[#C21807]">phone</span>
+              <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-[#3F3F46]/10">
+                <span class="material-icons text-[18px] text-[#3F3F46]">phone</span>
               </div>
               <div>
-                <p class="mb-1 text-xs font-semibold uppercase tracking-wider text-[#C21807]">
+                <p class="mb-1 text-xs font-semibold uppercase tracking-wider text-[#3F3F46]">
                   {{ t('lab.contact.phone') }}
                 </p>
                 <p class="text-sm font-medium" :class="isDark ? 'text-white/80' : 'text-gray-700'">
@@ -92,11 +92,11 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
 
             <!-- 주소 -->
             <div class="flex items-start gap-3 col-span-2 mobile:col-span-1">
-              <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-[#C21807]/10">
-                <span class="material-icons text-[18px] text-[#C21807]">location_on</span>
+              <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-[#3F3F46]/10">
+                <span class="material-icons text-[18px] text-[#3F3F46]">location_on</span>
               </div>
               <div>
-                <p class="mb-1 text-xs font-semibold uppercase tracking-wider text-[#C21807]">
+                <p class="mb-1 text-xs font-semibold uppercase tracking-wider text-[#3F3F46]">
                   {{ t('lab.contact.location') }}
                 </p>
                 <p class="text-sm font-medium" :class="isDark ? 'text-white/80' : 'text-gray-700'">
@@ -147,8 +147,8 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
             isDark ? 'border-white/[0.10] bg-[#111]' : 'border-gray-200 bg-white',
           ]"
         >
-          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#C21807]/10">
-            <span class="material-icons text-[22px] text-[#C21807]">school</span>
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#3F3F46]/10">
+            <span class="material-icons text-[22px] text-[#3F3F46]">school</span>
           </div>
           <h2
             class="mb-3 text-lg font-bold"
@@ -160,7 +160,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
           >{{ t('lab.contact.admissionsDesc') }}</p>
           <a
             :href="labInfo?.contact?.email ? `mailto:${labInfo.contact.email}` : '#'"
-            class="inline-flex items-center gap-2 rounded-xl bg-[#C21807] px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-80"
+            class="inline-flex items-center gap-2 rounded-xl bg-[#3F3F46] px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-80"
           >
             <span class="material-icons text-[16px]">mail</span>
             {{ t('lab.contact.email') }}로 문의
@@ -177,8 +177,8 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
             isDark ? 'border-white/[0.10] bg-[#111]' : 'border-gray-200 bg-white',
           ]"
         >
-          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#C21807]/10">
-            <span class="material-icons text-[22px] text-[#C21807]">link</span>
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#3F3F46]/10">
+            <span class="material-icons text-[22px] text-[#3F3F46]">link</span>
           </div>
           <h2
             class="mb-5 text-lg font-bold"

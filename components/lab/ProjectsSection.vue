@@ -55,7 +55,7 @@ function onImgError(id: number, e: Event) {
         class="animate-item mb-14 text-center"
         :class="{ 'is-visible': isVisible }"
       >
-        <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-[#C21807]">
+        <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-[#3F3F46]">
           Projects
         </p>
         <h2
@@ -147,7 +147,7 @@ function onImgError(id: number, e: Event) {
       >
         <NuxtLink
           :to="localePath('/projects')"
-          class="inline-flex items-center gap-1.5 text-sm font-semibold text-[#C21807] transition-all duration-200 hover:gap-3"
+          class="inline-flex items-center gap-1.5 text-sm font-semibold text-[#3F3F46] transition-all duration-200 hover:gap-3"
         >
           {{ t('lab.common.viewAll') }}
           <span class="material-icons text-[18px]">arrow_forward</span>

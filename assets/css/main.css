@@ -24,33 +24,33 @@ html.fonts-loaded body {
    커스텀 색상 테마
    ======================================== */
 @theme {
-  /* Primary — 고려대학교 크림슨 레드 (#C21807) */
-  --color-primary-main: #C21807;
-  --color-primary-10: #3A0000;
-  --color-primary-20: #5E0500;
-  --color-primary-30: #880900;
-  --color-primary-40: #A81005;
-  --color-primary-50: #C21807;
-  --color-primary-60: #E02010;
-  --color-primary-70: #F04030;
-  --color-primary-80: #F87060;
-  --color-primary-90: #FCA898;
-  --color-primary-95: #FECFC8;
-  --color-primary-99: #FFF0EE;
+  /* Primary — 모던한 차콜 */
+  --color-primary-main: #3F3F46;
+  --color-primary-10: #09090B;
+  --color-primary-20: #18181B;
+  --color-primary-30: #27272A;
+  --color-primary-40: #3F3F46;
+  --color-primary-50: #52525B;
+  --color-primary-60: #71717A;
+  --color-primary-70: #A1A1AA;
+  --color-primary-80: #D4D4D8;
+  --color-primary-90: #E4E4E7;
+  --color-primary-95: #F4F4F5;
+  --color-primary-99: #FAFAFA;
 
-  /* Secondary — KIST 블루 (#003087) */
-  --color-secondary-main: #003087;
-  --color-secondary-10: #000F2E;
-  --color-secondary-20: #001A50;
-  --color-secondary-30: #002472;
-  --color-secondary-40: #002B82;
-  --color-secondary-50: #003087;
-  --color-secondary-60: #1A4FA0;
-  --color-secondary-70: #4A78C4;
-  --color-secondary-80: #7FA2D8;
-  --color-secondary-90: #B8CEEC;
-  --color-secondary-95: #D8E5F5;
-  --color-secondary-99: #F0F5FB;
+  /* Secondary — 부드러운 그레이 */
+  --color-secondary-main: #52525B;
+  --color-secondary-10: #09090B;
+  --color-secondary-20: #18181B;
+  --color-secondary-30: #27272A;
+  --color-secondary-40: #3F3F46;
+  --color-secondary-50: #52525B;
+  --color-secondary-60: #71717A;
+  --color-secondary-70: #A1A1AA;
+  --color-secondary-80: #D4D4D8;
+  --color-secondary-90: #E4E4E7;
+  --color-secondary-95: #F4F4F5;
+  --color-secondary-99: #FAFAFA;
 
   /* Success (초록) */
   --color-success-50: #00D83C;
@@ -60,10 +60,10 @@ html.fonts-loaded body {
   --color-warning-50: #EFB110;
   --color-warning-60: #FCC22C;
 
-  /* 연구실 브랜드 색상 */
-  --color-lab-crimson: #C21807;
-  --color-lab-kist-blue: #003087;
-  --color-lab-accent: #9262EC;
+  /* 연구실 브랜드 색상 (기존 클래스명은 호환성을 위해 유지) */
+  --color-lab-crimson: #3F3F46;
+  --color-lab-kist-blue: #52525B;
+  --color-lab-accent: #71717A;
 
   /* 그레이 스케일 (커스텀) */
   --color-gray-00: #000000;
@@ -80,18 +80,18 @@ html.fonts-loaded body {
   --color-gray-f8: #F8F8F8;
   --color-gray-fc: #FCFCFC;
 
-  /* Tailwind gray 팔레트 - Neutral (순수 무채색) 오버라이드 */
+  /* Tailwind gray 팔레트 - 중립적인 Zinc */
   --color-gray-50: #fafafa;
-  --color-gray-100: #f5f5f5;
-  --color-gray-200: #e5e5e5;
-  --color-gray-300: #d4d4d4;
-  --color-gray-400: #a3a3a3;
-  --color-gray-500: #737373;
-  --color-gray-600: #525252;
-  --color-gray-700: #404040;
-  --color-gray-800: #262626;
-  --color-gray-900: #171717;
-  --color-gray-950: #0a0a0a;
+  --color-gray-100: #f4f4f5;
+  --color-gray-200: #e4e4e7;
+  --color-gray-300: #d4d4d8;
+  --color-gray-400: #a1a1aa;
+  --color-gray-500: #71717a;
+  --color-gray-600: #52525b;
+  --color-gray-700: #3f3f46;
+  --color-gray-800: #27272a;
+  --color-gray-900: #18181b;
+  --color-gray-950: #09090b;
 
   /* 폰트 패밀리 */
   --font-suit: 'SUIT', sans-serif;
@@ -242,8 +242,8 @@ body.dark,
 
 body.light,
 .light body {
-  background-color: #f5f5f5;
-  color: #1a1a1a;
+  background-color: #fafafa;
+  color: #18181b;
 }
 
 /* ========================================
@@ -321,15 +321,15 @@ body.light,
    그라데이션 배경
    ======================================== */
 .bg-lab-crimson {
-  background: linear-gradient(111deg, #C21807 30%, #8A0F03 96%);
+  background: linear-gradient(111deg, #3F3F46 30%, #27272A 96%);
 }
 
 .bg-lab-kist-blue {
-  background: linear-gradient(100deg, #003087 1.91%, #001A50 86.28%);
+  background: linear-gradient(100deg, #52525B 1.91%, #18181B 86.28%);
 }
 
 .bg-lab-accent {
-  background: linear-gradient(86deg, #9262EC 4%, #496EE8 96%);
+  background: linear-gradient(86deg, #71717A 4%, #52525B 96%);
 }
 
 /* ========================================

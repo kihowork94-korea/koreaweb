@@ -161,7 +161,7 @@ const isActive = (url: string) => {
             :class="[
               'text-2xl font-semibold transition-all hover:scale-105',
               textClass,
-              isActive(link.url) ? '!text-[#C21807]' : '',
+              isActive(link.url) ? '!text-[#3F3F46]' : '',
             ]"
           >
             {{ t(link.key) }}
@@ -194,14 +194,14 @@ const isActive = (url: string) => {
   left: 50%;
   width: 0;
   height: 2px;
-  background: #C21807;
+  background: #3F3F46;
   border-radius: 1px;
   transition: all 0.25s ease;
   transform: translateX(-50%);
 }
 
 .nav-link:hover {
-  color: #C21807 !important;
+  color: #3F3F46 !important;
 }
 
 .nav-link:hover::after {
@@ -209,7 +209,7 @@ const isActive = (url: string) => {
 }
 
 .nav-link--active {
-  color: #C21807 !important;
+  color: #3F3F46 !important;
 }
 
 .nav-link--active::after {

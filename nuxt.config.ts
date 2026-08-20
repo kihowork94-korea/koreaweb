@@ -194,8 +194,8 @@ export default defineNuxtConfig({
         { name: 'google-site-verification', content: process.env.NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION || '' },
         { name: 'format-detection', content: 'telephone=no' },
         // 고려대학교 크림슨 레드
-        { name: 'theme-color', content: '#C21807' },
-        { name: 'msapplication-TileColor', content: '#C21807' },
+        { name: 'theme-color', content: '#3F3F46' },
+        { name: 'msapplication-TileColor', content: '#3F3F46' },
       ],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },

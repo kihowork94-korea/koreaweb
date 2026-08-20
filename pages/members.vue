@@ -74,7 +74,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
 
       <!-- 헤더 -->
       <div class="mb-14 text-center">
-        <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-[#C21807]">People</p>
+        <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-[#3F3F46]">People</p>
         <h1
           class="text-5xl font-extrabold mobile:text-3xl"
           :class="isDark ? 'text-white' : 'text-gray-900'"
@@ -92,7 +92,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
           @click="activeTab = (tab.key as TabKey)"
           class="rounded-full px-5 py-2 text-sm font-semibold transition-all duration-200"
           :class="activeTab === tab.key
-            ? 'bg-[#C21807] text-white shadow-lg shadow-[#C21807]/20'
+            ? 'bg-[#3F3F46] text-white shadow-lg shadow-[#3F3F46]/20'
             : isDark
               ? 'bg-white/[0.06] text-white/60 hover:bg-white/[0.10] hover:text-white'
               : 'bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-800'"
@@ -113,7 +113,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
           class="animate-pulse rounded-2xl border p-6"
           :class="isDark ? 'border-white/[0.10] bg-[#111]' : 'border-gray-200 bg-white'"
         >
-          <div class="mb-4 h-24 w-24 rounded-xl" :class="isDark ? 'bg-white/10' : 'bg-gray-200'" />
+          <div class="mb-5 h-36 w-36 rounded-xl" :class="isDark ? 'bg-white/10' : 'bg-gray-200'" />
           <div class="mb-2 h-5 w-2/3 rounded-md" :class="isDark ? 'bg-white/10' : 'bg-gray-200'" />
           <div class="mb-1 h-4 w-full rounded-md" :class="isDark ? 'bg-white/[0.06]' : 'bg-gray-100'" />
           <div class="mb-3 h-4 w-4/5 rounded-md" :class="isDark ? 'bg-white/[0.06]' : 'bg-gray-100'" />
@@ -135,19 +135,19 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
             `delay-${i}`,
             isDark
               ? 'border-white/[0.10] bg-[#111] hover:bg-[#1c1c1c]'
-              : 'border-gray-200 bg-white hover:shadow-lg hover:shadow-black/5',
+              : 'border-gray-200/80 bg-white hover:border-gray-300 hover:shadow-xl hover:shadow-slate-900/8',
           ]"
           @click="selectedMember = member"
         >
           <!-- 사진 -->
           <div
-            class="mb-4 h-24 w-24 overflow-hidden rounded-xl"
+            class="mb-5 h-36 w-36 overflow-hidden rounded-xl mobile:h-32 mobile:w-32"
             :class="isDark ? 'bg-white/10' : 'bg-gray-100'"
           >
             <img
               :src="member.imageUrl || '/images/ku-logo.png'"
               :alt="loc(member.name)"
-              class="h-full w-full object-cover"
+              class="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.035]"
               loading="lazy"
               decoding="async"
               @error="($event.target as HTMLImageElement).src='/images/ku-logo.png'"
@@ -178,7 +178,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
           <a
             v-if="member.email"
             :href="`mailto:${member.email}`"
-            class="mt-3 flex items-center gap-1 text-xs text-[#C21807] transition-opacity mobile:opacity-100 opacity-0 group-hover:opacity-100"
+            class="mt-3 flex items-center gap-1 text-xs text-[#3F3F46] transition-opacity mobile:opacity-100 opacity-0 group-hover:opacity-100"
             @click.stop
           >
             <span class="material-icons text-[14px]">mail</span>
@@ -233,7 +233,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
             <!-- 기본 정보 -->
             <div class="flex gap-6 mobile:flex-col">
               <div
-                class="h-32 w-32 flex-shrink-0 overflow-hidden rounded-2xl mobile:h-24 mobile:w-24"
+                class="h-40 w-40 flex-shrink-0 overflow-hidden rounded-2xl mobile:h-32 mobile:w-32"
                 :class="isDark ? 'bg-white/10' : 'bg-gray-100'"
               >
                 <img
@@ -245,7 +245,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
                 />
               </div>
               <div>
-                <p class="mb-1 text-xs font-semibold uppercase tracking-wider text-[#C21807]">
+                <p class="mb-1 text-xs font-semibold uppercase tracking-wider text-[#3F3F46]">
                   {{ t(`lab.member.${selectedMember.role}`) }}
                 </p>
                 <h2
@@ -262,7 +262,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
                 <!-- 링크 -->
                 <div class="mt-3 flex flex-wrap gap-3">
                   <a v-if="selectedMember.email" :href="`mailto:${selectedMember.email}`"
-                    class="flex items-center gap-1 text-sm text-[#C21807] hover:opacity-70">
+                    class="flex items-center gap-1 text-sm text-[#3F3F46] hover:opacity-70">
                     <span class="material-icons text-[15px]">mail</span>{{ selectedMember.email }}
                   </a>
                   <a v-if="selectedMember.homepage" :href="selectedMember.homepage" target="_blank"
@@ -286,7 +286,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
 
             <!-- 연구 관심사 -->
             <div v-if="selectedMember.researchInterests?.length" class="mb-6">
-              <h4 class="mb-3 text-xs font-semibold uppercase tracking-wider text-[#C21807]">
+              <h4 class="mb-3 text-xs font-semibold uppercase tracking-wider text-[#3F3F46]">
                 {{ t('lab.member.researchInterests') }}
               </h4>
               <div class="flex flex-wrap gap-2">
@@ -294,14 +294,14 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
                   v-for="ri in selectedMember.researchInterests"
                   :key="loc(ri)"
                   class="rounded-full px-3 py-1 text-xs font-medium"
-                  :class="isDark ? 'bg-[#C21807]/12 text-[#C21807]/80' : 'bg-[#C21807]/8 text-[#C21807]'"
+                  :class="isDark ? 'bg-[#3F3F46]/12 text-[#3F3F46]/80' : 'bg-[#3F3F46]/8 text-[#3F3F46]'"
                 >{{ loc(ri) }}</span>
               </div>
             </div>
 
             <!-- 상세 소개 -->
             <div v-if="selectedMember.description && loc(selectedMember.description)" class="mb-6">
-              <h4 class="mb-3 text-xs font-semibold uppercase tracking-wider text-[#C21807]">About</h4>
+              <h4 class="mb-3 text-xs font-semibold uppercase tracking-wider text-[#3F3F46]">About</h4>
               <p class="text-sm leading-relaxed" :class="isDark ? 'text-white/65' : 'text-gray-600'">
                 {{ loc(selectedMember.description) }}
               </p>
@@ -309,7 +309,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
 
             <!-- 학력 -->
             <div v-if="selectedMember.education?.length" class="mb-6">
-              <h4 class="mb-3 text-xs font-semibold uppercase tracking-wider text-[#C21807]">
+              <h4 class="mb-3 text-xs font-semibold uppercase tracking-wider text-[#3F3F46]">
                 {{ t('lab.member.education') }}
               </h4>
               <div class="flex flex-col gap-2">
@@ -318,7 +318,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
                   :key="`${edu.year}-${loc(edu.degree)}`"
                   class="flex items-start gap-3"
                 >
-                  <span class="mt-0.5 text-[11px] font-bold text-[#C21807]">{{ edu.year }}</span>
+                  <span class="mt-0.5 text-[11px] font-bold text-[#3F3F46]">{{ edu.year }}</span>
                   <div>
                     <p class="text-sm font-semibold" :class="isDark ? 'text-white/80' : 'text-gray-800'">
                       {{ loc(edu.degree) }}, {{ loc(edu.major) }}
@@ -333,7 +333,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
 
             <!-- 수상/성과 -->
             <div v-if="selectedMember.achievements?.length" class="mb-6">
-              <h4 class="mb-3 text-xs font-semibold uppercase tracking-wider text-[#C21807]">
+              <h4 class="mb-3 text-xs font-semibold uppercase tracking-wider text-[#3F3F46]">
                 {{ t('lab.member.achievements') }}
               </h4>
               <div class="flex flex-col gap-2">

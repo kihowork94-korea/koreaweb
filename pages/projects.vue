@@ -37,7 +37,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
 
       <!-- 헤더 -->
       <div class="mb-12 text-center">
-        <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-[#C21807]">Research Projects</p>
+        <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-[#3F3F46]">Research Projects</p>
         <h1
           class="text-5xl font-extrabold mobile:text-3xl"
           :class="isDark ? 'text-white' : 'text-gray-900'"
@@ -52,7 +52,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
           @click="activeTab = tab"
           class="flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold transition-all"
           :class="activeTab === tab
-            ? 'bg-[#C21807] text-white shadow-md shadow-[#C21807]/20'
+            ? 'bg-[#3F3F46] text-white shadow-md shadow-[#3F3F46]/20'
             : isDark ? 'bg-white/[0.06] text-white/60 hover:bg-white/[0.10]' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'"
         >
           <span
@@ -159,13 +159,13 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
               <!-- 메타 정보 -->
               <div class="flex flex-wrap gap-x-8 gap-y-2">
                 <div v-if="proj.fundingAgency" class="flex items-center gap-2">
-                  <span class="material-icons text-[15px] text-[#C21807]">account_balance</span>
+                  <span class="material-icons text-[15px] text-[#3F3F46]">account_balance</span>
                   <span class="text-sm" :class="isDark ? 'text-white/60' : 'text-gray-600'">
                     {{ loc(proj.fundingAgency) }}
                   </span>
                 </div>
                 <div v-if="proj.memberIds?.length" class="flex items-center gap-2">
-                  <span class="material-icons text-[15px] text-[#C21807]">group</span>
+                  <span class="material-icons text-[15px] text-[#3F3F46]">group</span>
                   <span class="text-sm" :class="isDark ? 'text-white/60' : 'text-gray-600'">
                     {{
                       proj.memberIds

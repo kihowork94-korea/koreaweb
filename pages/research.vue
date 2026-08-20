@@ -24,7 +24,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
 
       <!-- 헤더 -->
       <div class="mb-16 text-center">
-        <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-[#C21807]">Research Areas</p>
+        <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-[#3F3F46]">Research Areas</p>
         <h1
           class="text-5xl font-extrabold mobile:text-3xl"
           :class="isDark ? 'text-white' : 'text-gray-900'"
@@ -62,8 +62,8 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
               />
             </div>
             <template v-else>
-              <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#C21807]/10">
-                <UIcon :name="area.iconName" class="h-8 w-8 text-[#C21807]" />
+              <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#3F3F46]/10">
+                <UIcon :name="area.iconName" class="h-8 w-8 text-[#3F3F46]" />
               </div>
             </template>
             <span
@@ -90,8 +90,8 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
                 :key="loc(kw)"
                 class="rounded-full border px-3.5 py-1.5 text-[12px] font-semibold transition-colors"
                 :class="isDark
-                  ? 'border-white/[0.08] bg-white/[0.04] text-white/60 hover:border-[#C21807]/40 hover:text-[#C21807]/80'
-                  : 'border-gray-200 bg-gray-50 text-gray-500 hover:border-[#C21807]/30 hover:text-[#C21807]'"
+                  ? 'border-white/[0.08] bg-white/[0.04] text-white/60 hover:border-[#3F3F46]/40 hover:text-[#3F3F46]/80'
+                  : 'border-gray-200 bg-gray-50 text-gray-500 hover:border-[#3F3F46]/30 hover:text-[#3F3F46]'"
               >{{ loc(kw) }}</span>
             </div>
           </div>

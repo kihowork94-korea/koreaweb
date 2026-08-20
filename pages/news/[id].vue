@@ -36,7 +36,7 @@ const categoryBadge: Record<string, string> = {
   announcement: 'bg-blue-500/10 text-blue-500',
   award:        'bg-amber-500/10 text-amber-600',
   press:        'bg-violet-500/10 text-violet-500',
-  recruitment:  'bg-[#C21807]/10 text-[#C21807]',
+  recruitment:  'bg-[#3F3F46]/10 text-[#3F3F46]',
   event:        'bg-emerald-500/10 text-emerald-600',
 }
 
@@ -77,7 +77,7 @@ function renderContent(text: string): string {
         <p class="text-sm">존재하지 않는 뉴스입니다.</p>
         <NuxtLink
           :to="localePath('/news')"
-          class="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-[#C21807] transition-opacity hover:opacity-70"
+          class="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-[#3F3F46] transition-opacity hover:opacity-70"
         >
           <span class="material-icons text-[16px]">arrow_back</span>
           뉴스 목록으로
@@ -89,7 +89,7 @@ function renderContent(text: string): string {
         <div class="mb-4 flex flex-wrap items-center gap-2">
           <span
             v-if="item.isPinned"
-            class="flex items-center gap-1 rounded-full bg-[#C21807]/10 px-2.5 py-0.5 text-[11px] font-bold text-[#C21807]"
+            class="flex items-center gap-1 rounded-full bg-[#3F3F46]/10 px-2.5 py-0.5 text-[11px] font-bold text-[#3F3F46]"
           >
             <span class="material-icons text-[11px]">push_pin</span>
             {{ t('lab.news.pinned') }}
@@ -154,7 +154,7 @@ function renderContent(text: string): string {
             :href="item.externalUrl"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 rounded-xl bg-[#C21807] px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-80"
+            class="inline-flex items-center gap-2 rounded-xl bg-[#3F3F46] px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-80"
           >
             <span class="material-icons text-[16px]">open_in_new</span>
             원문 보기
@@ -179,7 +179,7 @@ function renderContent(text: string): string {
               <span class="material-icons text-[13px]">arrow_back</span>이전 글
             </span>
             <span
-              class="line-clamp-2 text-sm font-semibold transition-colors group-hover:text-[#C21807]"
+              class="line-clamp-2 text-sm font-semibold transition-colors group-hover:text-[#3F3F46]"
               :class="isDark ? 'text-white/80' : 'text-gray-700'"
             >{{ loc(prevItem.title) }}</span>
           </NuxtLink>
@@ -198,7 +198,7 @@ function renderContent(text: string): string {
               다음 글<span class="material-icons text-[13px]">arrow_forward</span>
             </span>
             <span
-              class="line-clamp-2 text-sm font-semibold transition-colors group-hover:text-[#C21807]"
+              class="line-clamp-2 text-sm font-semibold transition-colors group-hover:text-[#3F3F46]"
               :class="isDark ? 'text-white/80' : 'text-gray-700'"
             >{{ loc(nextItem.title) }}</span>
           </NuxtLink>

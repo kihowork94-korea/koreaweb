@@ -40,7 +40,7 @@ useIntersectionObserver(profileRef, ([e]) => { if (e.isIntersecting) profileVis.
     <!-- ── 페이지 헤더 ─────────────────────────── -->
     <section ref="heroRef" class="px-6 pb-16 pt-20 text-center">
       <p
-        class="animate-item mb-3 text-sm font-semibold uppercase tracking-widest text-[#C21807]"
+        class="animate-item mb-3 text-sm font-semibold uppercase tracking-widest text-[#3F3F46]"
         :class="{ 'is-visible': heroVis }"
       >About</p>
       <h1
@@ -66,7 +66,7 @@ useIntersectionObserver(profileRef, ([e]) => { if (e.isIntersecting) profileVis.
             :class="isDark ? 'border-white/[0.07]' : 'border-gray-100'"
           >
             <div class="text-center">
-              <p class="text-3xl font-extrabold text-[#C21807]">
+              <p class="text-3xl font-extrabold text-[#3F3F46]">
                 {{ labInfo?.established ? new Date().getFullYear() - Number(labInfo.established) + 1 : '—' }}
               </p>
               <p class="mt-1 text-xs font-medium uppercase tracking-wider" :class="isDark ? 'text-white/40' : 'text-gray-400'">
@@ -74,7 +74,7 @@ useIntersectionObserver(profileRef, ([e]) => { if (e.isIntersecting) profileVis.
               </p>
             </div>
             <div class="text-center">
-              <p class="text-3xl font-extrabold text-[#C21807]">
+              <p class="text-3xl font-extrabold text-[#3F3F46]">
                 {{ labHistory.length || '—' }}
               </p>
               <p class="mt-1 text-xs font-medium uppercase tracking-wider" :class="isDark ? 'text-white/40' : 'text-gray-400'">
@@ -82,7 +82,7 @@ useIntersectionObserver(profileRef, ([e]) => { if (e.isIntersecting) profileVis.
               </p>
             </div>
             <div class="text-center">
-              <p class="text-3xl font-extrabold text-[#C21807]">
+              <p class="text-3xl font-extrabold text-[#3F3F46]">
                 {{ labInfo?.established || '—' }}
               </p>
               <p class="mt-1 text-xs font-medium uppercase tracking-wider" :class="isDark ? 'text-white/40' : 'text-gray-400'">
@@ -127,7 +127,7 @@ useIntersectionObserver(profileRef, ([e]) => { if (e.isIntersecting) profileVis.
       <div class="mx-auto max-w-[900px]">
 
         <div class="animate-item mb-12 text-center" :class="{ 'is-visible': historyVis }">
-          <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-[#C21807]">History</p>
+          <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-[#3F3F46]">History</p>
           <h2
             class="text-3xl font-bold"
             :class="isDark ? 'text-white' : 'text-gray-900'"
@@ -158,7 +158,7 @@ useIntersectionObserver(profileRef, ([e]) => { if (e.isIntersecting) profileVis.
 
             <!-- 원형 마커 -->
             <div class="relative mt-1.5 flex-shrink-0">
-              <div class="h-3 w-3 rounded-full bg-[#C21807] ring-4"
+              <div class="h-3 w-3 rounded-full bg-[#3F3F46] ring-4"
                 :class="isDark ? 'ring-black' : 'ring-white'"
               />
             </div>
@@ -195,7 +195,7 @@ useIntersectionObserver(profileRef, ([e]) => { if (e.isIntersecting) profileVis.
       <div class="mx-auto max-w-[900px]">
 
         <div class="animate-item mb-12 text-center" :class="{ 'is-visible': profileVis }">
-          <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-[#C21807]">Principal Investigator</p>
+          <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-[#3F3F46]">Principal Investigator</p>
           <h2
             class="text-3xl font-bold"
             :class="isDark ? 'text-white' : 'text-gray-900'"
@@ -251,7 +251,7 @@ useIntersectionObserver(profileRef, ([e]) => { if (e.isIntersecting) profileVis.
                 class="text-3xl font-extrabold mobile:text-2xl"
                 :class="isDark ? 'text-white' : 'text-gray-900'"
               >{{ professor ? loc(professor.name) : '' }}</h2>
-              <p class="mt-1 text-base font-medium text-[#C21807]">
+              <p class="mt-1 text-base font-medium text-[#3F3F46]">
                 {{ labInfo ? loc(labInfo.university) : '' }}
               </p>
             </div>
@@ -262,7 +262,7 @@ useIntersectionObserver(profileRef, ([e]) => { if (e.isIntersecting) profileVis.
                 v-for="ri in professor.researchInterests"
                 :key="loc(ri)"
                 class="rounded-full px-3 py-1 text-[12px] font-medium"
-                :class="isDark ? 'bg-[#C21807]/15 text-[#C21807]/90' : 'bg-[#C21807]/8 text-[#C21807]'"
+                :class="isDark ? 'bg-[#3F3F46]/15 text-[#3F3F46]/90' : 'bg-[#3F3F46]/8 text-[#3F3F46]'"
               >{{ loc(ri) }}</span>
             </div>
 
@@ -278,7 +278,7 @@ useIntersectionObserver(profileRef, ([e]) => { if (e.isIntersecting) profileVis.
               <a
                 v-if="professor?.email"
                 :href="`mailto:${professor.email}`"
-                class="flex items-center gap-1.5 text-sm font-medium text-[#C21807] transition-opacity hover:opacity-70"
+                class="flex items-center gap-1.5 text-sm font-medium text-[#3F3F46] transition-opacity hover:opacity-70"
               >
                 <span class="material-icons text-[16px]">mail</span>
                 {{ professor.email }}

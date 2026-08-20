@@ -21,7 +21,7 @@ const typeLabel: Record<string, string> = {
 
 const typeBadgeClass: Record<string, string> = {
   journal:    'bg-blue-500/10 text-blue-500',
-  conference: 'bg-[#C21807]/10 text-[#C21807]',
+  conference: 'bg-[#3F3F46]/10 text-[#3F3F46]',
   patent:     'bg-amber-500/10 text-amber-600',
   preprint:   'bg-violet-500/10 text-violet-500',
   book:       'bg-emerald-500/10 text-emerald-600',
@@ -56,7 +56,7 @@ useIntersectionObserver(sectionRef, ([entry]) => {
         class="animate-item mb-14 text-center"
         :class="{ 'is-visible': isVisible }"
       >
-        <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-[#C21807]">
+        <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-[#3F3F46]">
           Publications
         </p>
         <h2
@@ -137,7 +137,7 @@ useIntersectionObserver(sectionRef, ([entry]) => {
                 v-if="pub.pdfUrl"
                 :href="pub.pdfUrl"
                 target="_blank"
-                class="flex items-center gap-1 rounded-lg bg-[#C21807]/10 px-3 py-1.5 text-[12px] font-semibold text-[#C21807] transition-colors hover:bg-[#C21807]/20"
+                class="flex items-center gap-1 rounded-lg bg-[#3F3F46]/10 px-3 py-1.5 text-[12px] font-semibold text-[#3F3F46] transition-colors hover:bg-[#3F3F46]/20"
               >
                 <span class="material-icons text-[14px]">picture_as_pdf</span>
                 {{ t('lab.common.pdf') }}
@@ -194,7 +194,7 @@ useIntersectionObserver(sectionRef, ([entry]) => {
       >
         <NuxtLink
           :to="localePath('/publications')"
-          class="inline-flex items-center gap-1.5 text-sm font-semibold text-[#C21807] transition-all duration-200 hover:gap-3"
+          class="inline-flex items-center gap-1.5 text-sm font-semibold text-[#3F3F46] transition-all duration-200 hover:gap-3"
         >
           {{ t('lab.common.viewAll') }}
           <span class="material-icons text-[18px]">arrow_forward</span>

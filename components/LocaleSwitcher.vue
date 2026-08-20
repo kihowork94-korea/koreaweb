@@ -81,7 +81,7 @@ onUnmounted(() => document.removeEventListener('click', handleClickOutside))
           <span>{{ option.name }}</span>
           <span
             v-if="locale === option.code"
-            class="ml-auto h-1.5 w-1.5 rounded-full bg-[#C21807]"
+            class="ml-auto h-1.5 w-1.5 rounded-full bg-[#3F3F46]"
           />
         </button>
       </div>

@@ -45,7 +45,7 @@ const categoryBadge: Record<string, string> = {
   announcement: 'bg-blue-500/10 text-blue-500',
   award:        'bg-amber-500/10 text-amber-600',
   press:        'bg-violet-500/10 text-violet-500',
-  recruitment:  'bg-[#C21807]/10 text-[#C21807]',
+  recruitment:  'bg-[#3F3F46]/10 text-[#3F3F46]',
   event:        'bg-emerald-500/10 text-emerald-600',
 }
 
@@ -65,7 +65,7 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
 
       <!-- 헤더 -->
       <div class="mb-12 text-center">
-        <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-[#C21807]">News & Announcements</p>
+        <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-[#3F3F46]">News & Announcements</p>
         <h1
           class="text-5xl font-extrabold mobile:text-3xl"
           :class="isDark ? 'text-white' : 'text-gray-900'"
@@ -80,7 +80,7 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
           @click="activeCategory = cat.key"
           class="rounded-full px-4 py-1.5 text-[13px] font-semibold transition-all"
           :class="activeCategory === cat.key
-            ? 'bg-[#C21807] text-white shadow-md shadow-[#C21807]/20'
+            ? 'bg-[#3F3F46] text-white shadow-md shadow-[#3F3F46]/20'
             : isDark ? 'bg-white/[0.06] text-white/55 hover:bg-white/[0.10]' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'"
         >{{ cat.label }}</button>
       </div>
@@ -129,7 +129,7 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
             </div>
             <div class="flex-1 min-w-0">
               <div class="mb-2 flex flex-wrap items-center gap-2">
-                <span v-if="item.isPinned" class="flex items-center gap-1 rounded-full bg-[#C21807]/10 px-2.5 py-0.5 text-[11px] font-bold text-[#C21807]">
+                <span v-if="item.isPinned" class="flex items-center gap-1 rounded-full bg-[#3F3F46]/10 px-2.5 py-0.5 text-[11px] font-bold text-[#3F3F46]">
                   <span class="material-icons text-[11px]">push_pin</span>
                   {{ t('lab.news.pinned') }}
                 </span>
@@ -138,10 +138,10 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
                 </span>
                 <span class="text-xs" :class="isDark ? 'text-white/30' : 'text-gray-400'">{{ formatDate(item.date) }}</span>
               </div>
-              <h3 class="mb-1.5 font-bold leading-snug transition-colors group-hover:text-[#C21807]" :class="isDark ? 'text-white' : 'text-gray-900'">
+              <h3 class="mb-1.5 font-bold leading-snug transition-colors group-hover:text-[#3F3F46]" :class="isDark ? 'text-white' : 'text-gray-900'">
                 {{ loc(item.title) }}
               </h3>
-              <div class="mt-2 flex items-center gap-1 text-xs text-[#C21807]">
+              <div class="mt-2 flex items-center gap-1 text-xs text-[#3F3F46]">
                 <span class="material-icons text-[13px]">open_in_new</span>
                 <span>외부 링크</span>
               </div>
@@ -179,7 +179,7 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
             </div>
             <div class="flex-1 min-w-0">
               <div class="mb-2 flex flex-wrap items-center gap-2">
-                <span v-if="item.isPinned" class="flex items-center gap-1 rounded-full bg-[#C21807]/10 px-2.5 py-0.5 text-[11px] font-bold text-[#C21807]">
+                <span v-if="item.isPinned" class="flex items-center gap-1 rounded-full bg-[#3F3F46]/10 px-2.5 py-0.5 text-[11px] font-bold text-[#3F3F46]">
                   <span class="material-icons text-[11px]">push_pin</span>
                   {{ t('lab.news.pinned') }}
                 </span>
@@ -188,7 +188,7 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
                 </span>
                 <span class="text-xs" :class="isDark ? 'text-white/30' : 'text-gray-400'">{{ formatDate(item.date) }}</span>
               </div>
-              <h3 class="mb-1.5 font-bold leading-snug transition-colors group-hover:text-[#C21807]" :class="isDark ? 'text-white' : 'text-gray-900'">
+              <h3 class="mb-1.5 font-bold leading-snug transition-colors group-hover:text-[#3F3F46]" :class="isDark ? 'text-white' : 'text-gray-900'">
                 {{ loc(item.title) }}
               </h3>
             </div>

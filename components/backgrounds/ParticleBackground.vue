@@ -25,10 +25,10 @@ interface Particle {
 }
 
 const pointColors = {
-  red: { r: 250, g: 41, b: 41 },
-  orange: { r: 255, g: 138, b: 1 },
-  purple: { r: 99, g: 102, b: 241 },
-  pink: { r: 249, g: 83, b: 83 },
+  red: { r: 96, g: 165, b: 250 },
+  orange: { r: 125, g: 211, b: 252 },
+  purple: { r: 129, g: 140, b: 248 },
+  pink: { r: 167, g: 139, b: 250 },
 }
 
 const colors = computed(() => {
@@ -36,13 +36,13 @@ const colors = computed(() => {
     return {
       particle: 'rgba(0, 0, 0, 0.25)',
       line: (opacity: number) => `rgba(0, 0, 0, ${0.06 * opacity})`,
-      bg: '#ffffff',
+      bg: '#fafafa',
     }
   }
   return {
     particle: 'rgba(255, 255, 255, 0.25)',
     line: (opacity: number) => `rgba(255, 255, 255, ${0.05 * opacity})`,
-    bg: '#0a0a0a',
+    bg: '#09090b',
   }
 })
 

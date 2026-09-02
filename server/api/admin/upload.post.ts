@@ -40,7 +40,12 @@ export default defineEventHandler(async (event) => {
     await $fetch(`${storageUrl}/bucket/${BUCKET}`, { headers: authHeaders })
   }
   catch (error: any) {
-    if (error?.statusCode !== 404 && error?.response?.status !== 404) throw error
+    const isMissingBucket = error?.statusCode === 404
+      || error?.response?.status === 404
+      || String(error?.data?.statusCode) === '404'
+      || error?.data?.code === 'NoSuchBucket'
+
+    if (!isMissingBucket) throw error
     await $fetch(`${storageUrl}/bucket`, {
       method: 'POST',
       headers: { ...authHeaders, 'Content-Type': 'application/json' },

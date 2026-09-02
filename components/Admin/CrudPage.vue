@@ -14,7 +14,7 @@ interface SelectOption {
 interface FormField {
   key: string
   label: string
-  type: 'text' | 'textarea' | 'number' | 'date' | 'select' | 'boolean' | 'localized' | 'localized-textarea' | 'tags' | 'json'
+  type: 'text' | 'textarea' | 'number' | 'date' | 'select' | 'boolean' | 'localized' | 'localized-textarea' | 'tags' | 'json' | 'image'
   options?: SelectOption[]
   required?: boolean
   placeholder?: string
@@ -38,6 +38,7 @@ const isEdit = ref(false)
 const editId = ref<number | null>(null)
 const formState = ref<Record<string, any>>({})
 const saveError = ref<string | null>(null)
+const uploadingField = ref<string | null>(null)
 
 const confirmDeleteId = ref<number | null>(null)
 
@@ -146,6 +147,31 @@ async function onSave() {
   }
   catch (e: any) {
     saveError.value = e?.data?.message ?? e?.message ?? '저장에 실패했습니다.'
+  }
+}
+
+async function onImageSelected(fieldKey: string, event: Event) {
+  const input = event.target as HTMLInputElement
+  const file = input.files?.[0]
+  input.value = ''
+  if (!file) return
+
+  saveError.value = null
+  uploadingField.value = fieldKey
+  try {
+    const formData = new FormData()
+    formData.append('file', file)
+    const result = await $fetch<{ url: string }>('/api/admin/upload', {
+      method: 'POST',
+      body: formData,
+    })
+    formState.value[fieldKey] = result.url
+  }
+  catch (e: any) {
+    saveError.value = e?.data?.message ?? e?.message ?? '이미지 업로드에 실패했습니다.'
+  }
+  finally {
+    uploadingField.value = null
   }
 }
 
@@ -321,6 +347,55 @@ onMounted(fetchList)
                     </select>
                   </template>
 
+                  <!-- image upload -->
+                  <template v-else-if="field.type === 'image'">
+                    <label class="mb-1 block text-[12px] font-medium text-gray-400">
+                      {{ field.label }}<span v-if="field.required" class="ml-0.5 text-red-400">*</span>
+                    </label>
+                    <div class="flex items-center gap-4 rounded-xl border border-dashed border-white/15 bg-gray-800/60 p-4">
+                      <div class="flex h-28 w-24 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-gray-950">
+                        <img
+                          v-if="formState[field.key]"
+                          :src="formState[field.key]"
+                          alt="프로필 이미지 미리보기"
+                          class="h-full w-full object-cover"
+                        >
+                        <span v-else class="material-icons text-3xl text-gray-600">person</span>
+                      </div>
+                      <div class="min-w-0 flex-1">
+                        <p class="mb-3 text-[12px] leading-5 text-gray-500">
+                          JPG, PNG, WebP · 최대 5MB
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                          <label
+                            :class="[
+                              'inline-flex cursor-pointer items-center gap-1.5 rounded-lg bg-blue-600 px-3 py-2 text-[12px] font-medium text-white transition-colors hover:bg-blue-500',
+                              uploadingField === field.key ? 'pointer-events-none opacity-50' : '',
+                            ]"
+                          >
+                            <span class="material-icons text-[15px]">upload</span>
+                            {{ uploadingField === field.key ? '업로드 중…' : '사진 선택' }}
+                            <input
+                              type="file"
+                              accept="image/jpeg,image/png,image/webp"
+                              class="sr-only"
+                              :disabled="uploadingField === field.key"
+                              @change="onImageSelected(field.key, $event)"
+                            >
+                          </label>
+                          <button
+                            v-if="formState[field.key]"
+                            type="button"
+                            class="rounded-lg border border-white/10 px-3 py-2 text-[12px] text-gray-300 transition-colors hover:bg-white/5"
+                            @click="formState[field.key] = ''"
+                          >
+                            사진 제거
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </template>
+
                   <!-- textarea (plain) -->
                   <template v-else-if="field.type === 'textarea'">
                     <label class="mb-1 block text-[12px] font-medium text-gray-400">
@@ -423,7 +498,7 @@ onMounted(fetchList)
               </button>
               <button
                 type="submit"
-                :disabled="loading"
+                :disabled="loading || uploadingField !== null"
                 class="rounded-lg bg-blue-600 px-5 py-2 text-[13px] font-medium text-white transition-colors hover:bg-blue-500 disabled:opacity-50"
               >
                 {{ loading ? '저장 중…' : '저장' }}

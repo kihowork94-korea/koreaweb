@@ -41,7 +41,7 @@ const schema = {
       ],
     },
     { key: 'email', label: '이메일', type: 'text' as const },
-    { key: 'image_url', label: '프로필 이미지 URL (선택)', type: 'text' as const, span: 2 as const, placeholder: '비우면 기본 이미지(고려대 마크) 사용' },
+    { key: 'image_url', label: '프로필 사진 (선택)', type: 'image' as const, span: 2 as const },
     { key: 'bio', label: '한 줄 소개', type: 'localized' as const, span: 2 as const },
     { key: 'research_interests', label: '연구 관심사 (JSON 배열)', type: 'json' as const, span: 2 as const },
     { key: 'education', label: '학력 (JSON 배열)', type: 'json' as const, span: 2 as const },

@@ -1,14 +1,9 @@
 <script setup lang="ts">
 const { t } = useI18n()
 
-useHead({
-  title: 'ARISE Lab | KU-KIST 융합대학원',
-  meta: [
-    {
-      name: 'description',
-      content: '고려대학교-KIST 융합대학원 ARISE Lab. AI와 바이오센서로 암·감염병 조기진단 연구를 수행합니다.',
-    },
-  ],
+useSeoMeta({
+  title: 'ARISE Lab — KIST 이관희 교수 연구실 | KU-KIST 융합대학원',
+  description: 'KIST 이관희 교수가 이끄는 고려대학교 KU-KIST 융합대학원 ARISE Lab입니다. AI, 나노바이오센서, 암·감염병 조기진단 및 지능형 센싱을 연구합니다.',
 })
 </script>
 

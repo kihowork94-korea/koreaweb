@@ -66,7 +66,7 @@ export default defineNuxtConfig({
 
   // 사이트 기본 정보 (OG 이미지, sitemap용)
   site: {
-    url: process.env.NUXT_PUBLIC_SITE_URL || 'https://TODO.ac.kr', // TODO: 실제 도메인으로 변경
+    url: 'https://www.ariselab.kr',
     name: 'ARISE Lab — KU-KIST 융합대학원',
   },
 
@@ -89,9 +89,9 @@ export default defineNuxtConfig({
 
   // Robots.txt
   robots: {
-    disallow: process.env.NOINDEX === 'true' ? ['/'] : ['/api/', '/_nuxt/'],
+    disallow: process.env.NOINDEX === 'true' ? ['/'] : ['/admin/', '/api/'],
     allow: process.env.NOINDEX === 'true' ? [] : ['/api/__sitemap__/'],
-    sitemap: `${process.env.NUXT_PUBLIC_SITE_URL || 'https://TODO.ac.kr'}/sitemap.xml`,
+    sitemap: 'https://www.ariselab.kr/sitemap.xml',
     credits: false,
   },
 
@@ -160,8 +160,7 @@ export default defineNuxtConfig({
   // 앱 설정
   app: {
     head: {
-      title: 'ARISE Lab | KU-KIST 융합대학원',
-      titleTemplate: '%s | ARISE Lab',
+      title: 'ARISE Lab — KIST 이관희 교수 연구실 | KU-KIST 융합대학원',
       htmlAttrs: {
         lang: 'ko',
       },
@@ -170,15 +169,15 @@ export default defineNuxtConfig({
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         {
           name: 'description',
-          content: '고려대학교-KIST 융합대학원 ARISE Lab. AI와 바이오센서로 암·감염병 조기진단 연구를 수행합니다.',
+          content: 'KIST 이관희 교수가 이끄는 고려대학교 KU-KIST 융합대학원 ARISE Lab입니다. AI, 나노바이오센서, 암·감염병 조기진단 및 지능형 센싱을 연구합니다.',
         },
         {
           name: 'keywords',
-          content: '이관희, ARISE Lab, ARISE, KU-KIST, 융합대학원, 바이오센서, AI 진단, 암 조기진단',
+          content: 'ARISE Lab, ARISE 연구실, 이관희 교수, KIST 이관희, KU-KIST, 고려대학교 KIST 융합대학원, 바이오센서, 나노바이오센서, AI 진단, 암 조기진단, 감염병 진단',
         },
         { property: 'og:type', content: 'website' },
         { property: 'og:site_name', content: 'ARISE Lab' },
-        { property: 'og:url', content: process.env.NUXT_PUBLIC_SITE_URL || 'https://TODO.ac.kr' },
+        { property: 'og:url', content: 'https://www.ariselab.kr' },
         { property: 'og:locale', content: 'ko_KR' },
         { property: 'og:locale:alternate', content: 'en_US' },
         { property: 'og:locale:alternate', content: 'zh_CN' },
@@ -218,7 +217,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     supabaseServiceKey: process.env.NUXT_SUPABASE_SECRET_KEY || '',
     public: {
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://TODO.ac.kr',
+      siteUrl: 'https://www.ariselab.kr',
       apiBase: process.env.NUXT_PUBLIC_API_BASE || '',
       debug: process.env.NUXT_PUBLIC_DEBUG === 'true',
       gtmId: process.env.NUXT_PUBLIC_GTM_ID || '',

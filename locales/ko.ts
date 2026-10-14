@@ -15,7 +15,7 @@ export default {
     footer: {
       labName: 'ARISE 연구실',
       university: '고려대학교-KIST 융합대학원',
-      address: '서울특별시 성북구 화랑로 14길 5 KIST 본원',
+      address: '서울특별시 성북구 화랑로 14길 5 한국과학기술연구원 L3연구동 3551',
       copyright: '© {year} ARISE Lab. All rights reserved.',
       openKakaoMap: '카카오맵에서 보기',
       openGoogleMap: '구글맵에서 보기',

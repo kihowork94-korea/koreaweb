@@ -15,7 +15,7 @@ export default {
     footer: {
       labName: 'ARISE实验室',
       university: '高丽大学-KIST融合研究生院',
-      address: '首尔市城北区花郎路14街5号 KIST本院',
+      address: '首尔特别市城北区花郎路14街5号 韩国科学技术研究院 L3研究楼 3551室',
       copyright: '© {year} ARISE Lab. 保留所有权利.',
       openKakaoMap: '在KakaoMap中查看',
       openGoogleMap: '在Google地图中查看',

@@ -15,7 +15,7 @@ export default {
     footer: {
       labName: 'ARISEラボ',
       university: 'KU-KIST融合大学院',
-      address: 'ソウル市城北区花郎路14街5 KIST本院',
+      address: 'ソウル特別市城北区花郎路14街5 韓国科学技術研究院 L3研究棟 3551号室',
       copyright: '© {year} ARISE Lab. All rights reserved.',
       openKakaoMap: 'KakaoMapで見る',
       openGoogleMap: 'Googleマップで見る',

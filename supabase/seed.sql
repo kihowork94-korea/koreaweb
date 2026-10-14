@@ -11,7 +11,7 @@ INSERT INTO lab_info (id, name, short_name, slogan, university, department, esta
   '{"ko":"KU-KIST 융합대학원","en":"KU-KIST Graduate School of Converging Science and Technology","zh":"高丽大学-KIST融合研究生院","ja":"KU-KIST融合大学院"}',
   '{"ko":"융합대학원","en":"Graduate School of Converging Science and Technology","zh":"融合研究生院","ja":"融合大学院"}',
   2018,
-  '{"address":{"ko":"서울특별시 성북구 화랑로 14길 5 한국과학기술연구원(KIST)","en":"5, Hwarang-ro 14-gil, Seongbuk-gu, Seoul, KIST"},"building":{"ko":"KIST 본원","en":"KIST Main Campus"},"room":"L0-420","lat":37.6027,"lng":127.0586}',
+  '{"address":{"ko":"서울특별시 성북구 화랑로 14길 5 한국과학기술연구원 L3연구동 3551","en":"Room 3551, L3 Research Building, KIST, 5 Hwarang-ro 14-gil, Seongbuk-gu, Seoul","zh":"首尔特别市城北区花郎路14街5号 韩国科学技术研究院 L3研究楼 3551室","ja":"ソウル特別市城北区花郎路14街5 韓国科学技術研究院 L3研究棟 3551号室"},"building":{"ko":"","en":"","zh":"","ja":""},"room":"","lat":37.6027,"lng":127.0586}',
   '{"email":"kwanhyi@korea.ac.kr","phone":"02-958-6804","fax":"02-958-5308"}',
   '{}'
 );

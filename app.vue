@@ -37,7 +37,7 @@ useHead(() => ({
           telephone: '+82-2-958-6804',
           address: {
             '@type': 'PostalAddress',
-            streetAddress: '화랑로14길 5 한국과학기술연구원(KIST)',
+            streetAddress: '화랑로 14길 5 한국과학기술연구원 L3연구동 3551',
             addressLocality: '성북구',
             addressRegion: '서울특별시',
             addressCountry: 'KR',

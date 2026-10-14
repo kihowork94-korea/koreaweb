@@ -15,7 +15,7 @@ export default {
     footer: {
       labName: 'ARISE Lab',
       university: 'KU-KIST Graduate School of Converging Science and Technology',
-      address: '5, Hwarang-ro 14-gil, Seongbuk-gu, Seoul, KIST',
+      address: 'Room 3551, L3 Research Building, KIST, 5 Hwarang-ro 14-gil, Seongbuk-gu, Seoul',
       copyright: '© {year} ARISE Lab. All rights reserved.',
       openKakaoMap: 'Open in KakaoMap',
       openGoogleMap: 'Open in Google Maps',

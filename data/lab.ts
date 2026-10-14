@@ -46,18 +46,18 @@ export const labInfo: LabInfo = {
   heroImageUrl: '/images/lab/hero.jpg',
   location: {
     address: {
-      ko: '서울특별시 성북구 화랑로 14길 5 한국과학기술연구원(KIST)',
-      en: '5, Hwarang-ro 14-gil, Seongbuk-gu, Seoul, Korea Institute of Science and Technology (KIST)',
-      zh: '首尔市城北区花郎路14街5号 韩国科学技术研究院(KIST)',
-      ja: 'ソウル特別市城北区花郎路14街5 韓国科学技術研究院(KIST)',
+      ko: '서울특별시 성북구 화랑로 14길 5 한국과학기술연구원 L3연구동 3551',
+      en: 'Room 3551, L3 Research Building, KIST, 5 Hwarang-ro 14-gil, Seongbuk-gu, Seoul',
+      zh: '首尔特别市城北区花郎路14街5号 韩国科学技术研究院 L3研究楼 3551室',
+      ja: 'ソウル特別市城北区花郎路14街5 韓国科学技術研究院 L3研究棟 3551号室',
     },
     building: {
-      ko: 'KIST 본원',
-      en: 'KIST Main Campus',
-      zh: 'KIST主园区',
-      ja: 'KIST本院',
+      ko: '',
+      en: '',
+      zh: '',
+      ja: '',
     },
-    room: 'L0-420',
+    room: '',
     // 카카오맵: KIST 좌표 기반 링크
     mapUrl: 'https://map.kakao.com/link/map/한국과학기술연구원,37.6027,127.0586',
     lat: 37.6027,

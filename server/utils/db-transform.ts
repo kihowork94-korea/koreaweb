@@ -98,8 +98,20 @@ function transformNews(row: any) {
 
 function transformLabInfo(row: any) {
   const { short_name, nav_visibility, updated_at, ...rest } = row
+  const canonicalLocation = {
+    ...(rest.location ?? {}),
+    address: {
+      ko: '서울특별시 성북구 화랑로 14길 5 한국과학기술연구원 L3연구동 3551',
+      en: 'Room 3551, L3 Research Building, KIST, 5 Hwarang-ro 14-gil, Seongbuk-gu, Seoul',
+      zh: '首尔特别市城北区花郎路14街5号 韩国科学技术研究院 L3研究楼 3551室',
+      ja: 'ソウル特別市城北区花郎路14街5 韓国科学技術研究院 L3研究棟 3551号室',
+    },
+    building: { ko: '', en: '', zh: '', ja: '' },
+    room: '',
+  }
   return {
     ...rest,
+    location: canonicalLocation,
     shortName: short_name,
     navVisibility: nav_visibility ?? {},
   }

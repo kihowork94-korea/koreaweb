@@ -133,38 +133,33 @@ useIntersectionObserver(profileRef, ([e]) => { if (e.isIntersecting) profileVis.
 
         <div
           v-else
-          class="animate-item delay-1 flex gap-12 rounded-3xl border p-10 mobile:flex-col mobile:p-6"
+          class="animate-item delay-1 grid min-h-[360px] grid-cols-[42%_1fr] overflow-hidden rounded-3xl border mobile:grid-cols-1"
           :class="[
             { 'is-visible': profileVis },
             isDark ? 'border-white/[0.10] bg-[#111]' : 'border-gray-200 bg-white',
           ]"
         >
           <!-- 사진 -->
-          <div class="flex-shrink-0">
+          <div class="min-h-[360px] overflow-hidden mobile:h-[340px] mobile:min-h-0" :class="isDark ? 'bg-white/10' : 'bg-gray-100'">
+            <img
+              v-if="professor?.imageUrl"
+              :src="professor.imageUrl"
+              :alt="loc(professor.name)"
+              class="h-full w-full object-cover object-top"
+              loading="lazy"
+              decoding="async"
+              @error="($event.target as HTMLImageElement).style.display='none'"
+            />
             <div
-              class="h-52 w-52 overflow-hidden rounded-2xl mobile:h-32 mobile:w-32"
-              :class="isDark ? 'bg-white/10' : 'bg-gray-100'"
+              v-else
+              class="flex h-full w-full items-center justify-center"
             >
-              <img
-                v-if="professor?.imageUrl"
-                :src="professor.imageUrl"
-                :alt="loc(professor.name)"
-                class="h-full w-full object-cover"
-                loading="lazy"
-                decoding="async"
-                @error="($event.target as HTMLImageElement).style.display='none'"
-              />
-              <div
-                v-else
-                class="flex h-full w-full items-center justify-center"
-              >
-                <span :class="['material-icons text-6xl mobile:text-4xl', isDark ? 'text-white/20' : 'text-gray-300']">person</span>
-              </div>
+              <span :class="['material-icons text-6xl mobile:text-4xl', isDark ? 'text-white/20' : 'text-gray-300']">person</span>
             </div>
           </div>
 
           <!-- 정보 -->
-          <div class="flex flex-1 flex-col justify-center gap-4">
+          <div class="flex min-w-0 flex-col justify-center gap-4 p-10 mobile:p-6">
             <div>
               <h2
                 class="text-3xl font-extrabold mobile:text-2xl"

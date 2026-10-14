@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { PublicationType, Publication } from '~/types/lab'
+import type { PublicationType } from '~/types/lab'
 import { useIntersectionObserver } from '@vueuse/core'
 
 const { t } = useI18n()
@@ -57,24 +57,10 @@ const filtered = computed(() => {
   return list.sort((a, b) => b.year - a.year || (b.month ?? 0) - (a.month ?? 0))
 })
 
-// 연도별 그룹
-const groupedByYear = computed(() => {
-  const groups: Record<number, Publication[]> = {}
-  filtered.value.forEach(p => {
-    if (!groups[p.year]) groups[p.year] = []
-    groups[p.year].push(p)
-  })
-  return groups
-})
-
-const sortedYears = computed(() =>
-  Object.keys(groupedByYear.value).map(Number).sort((a, b) => b - a)
-)
-
 // ── 뱃지 스타일 ────────────────────────────────
 const typeBadge: Record<string, string> = {
   journal:    'bg-blue-500/10 text-blue-500',
-  conference: 'bg-[#3F3F46]/10 text-[#3F3F46]',
+  conference: 'bg-[#D97720]/10 text-[#D97720]',
   patent:     'bg-amber-500/10 text-amber-600',
   preprint:   'bg-violet-500/10 text-violet-500',
   book:       'bg-emerald-500/10 text-emerald-600',
@@ -98,7 +84,7 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
 
       <!-- 헤더 -->
       <div class="mb-12 text-center">
-        <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-[#3F3F46]">Research Output</p>
+        <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-[#D97720]">Research Output</p>
         <h1
           class="text-5xl font-extrabold mobile:text-3xl"
           :class="isDark ? 'text-white' : 'text-gray-900'"
@@ -119,7 +105,7 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
             @click="typeFilter = opt.key"
             class="rounded-full px-4 py-1.5 text-[13px] font-semibold transition-all"
             :class="typeFilter === opt.key
-              ? 'bg-[#3F3F46] text-white shadow-md shadow-[#3F3F46]/20'
+              ? 'bg-[#D97720] text-white shadow-md shadow-[#D97720]/20'
               : isDark ? 'bg-white/[0.06] text-white/55 hover:bg-white/[0.10]' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'"
           >{{ opt.label }}</button>
         </div>
@@ -128,7 +114,7 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
         <select
           v-model="yearFilter"
           class="ml-auto rounded-xl border px-3 py-1.5 text-[13px] font-semibold outline-none transition-colors"
-          :class="[isDark ? 'bg-white/[0.06] border-white/10 text-white/70' : 'bg-white border-gray-200 text-gray-600', yearFilter !== 'all' ? 'ring-2 ring-[#3F3F46]/40' : '']"
+          :class="[isDark ? 'bg-white/[0.06] border-white/10 text-white/70' : 'bg-white border-gray-200 text-gray-600', yearFilter !== 'all' ? 'ring-2 ring-[#D97720]/40' : '']"
         >
           <option value="all">{{ t('lab.publication.filterByYear') }}: 전체</option>
           <option v-for="y in availableYears" :key="y" :value="y">{{ y }}</option>
@@ -139,7 +125,7 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
           v-if="allTags.length > 0"
           v-model="tagFilter"
           class="rounded-xl border px-3 py-1.5 text-[13px] font-semibold outline-none transition-colors"
-          :class="[isDark ? 'bg-white/[0.06] border-white/10 text-white/70' : 'bg-white border-gray-200 text-gray-600', tagFilter !== 'all' ? 'ring-2 ring-[#3F3F46]/40' : '']"
+          :class="[isDark ? 'bg-white/[0.06] border-white/10 text-white/70' : 'bg-white border-gray-200 text-gray-600', tagFilter !== 'all' ? 'ring-2 ring-[#D97720]/40' : '']"
         >
           <option value="all">{{ t('lab.publication.filterByTag') }}: 전체</option>
           <option v-for="tag in allTags" :key="tag" :value="tag">{{ tag }}</option>
@@ -149,7 +135,7 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
         <button
           v-if="hasActiveFilter"
           @click="resetFilters"
-          class="flex items-center gap-1 rounded-full px-3 py-1.5 text-[12px] font-semibold text-[#3F3F46] transition-colors hover:bg-[#3F3F46]/10"
+          class="flex items-center gap-1 rounded-full px-3 py-1.5 text-[12px] font-semibold text-[#D97720] transition-colors hover:bg-[#D97720]/10"
         >
           <span class="material-icons text-[14px]">close</span>
           필터 초기화
@@ -161,7 +147,7 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
         <span :class="isDark ? 'text-white/40' : 'text-gray-400'">필터:</span>
         <span
           v-if="typeFilter !== 'all'"
-          class="flex items-center gap-1 rounded-full bg-[#3F3F46]/10 px-3 py-0.5 font-semibold text-[#3F3F46]"
+          class="flex items-center gap-1 rounded-full bg-[#D97720]/10 px-3 py-0.5 font-semibold text-[#D97720]"
         >
           {{ typeOptions.find(o => o.key === typeFilter)?.label }}
           <button @click="typeFilter = 'all'" class="ml-0.5 hover:opacity-70">
@@ -170,7 +156,7 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
         </span>
         <span
           v-if="yearFilter !== 'all'"
-          class="flex items-center gap-1 rounded-full bg-[#3F3F46]/10 px-3 py-0.5 font-semibold text-[#3F3F46]"
+          class="flex items-center gap-1 rounded-full bg-[#D97720]/10 px-3 py-0.5 font-semibold text-[#D97720]"
         >
           {{ yearFilter }}년
           <button @click="yearFilter = 'all'" class="ml-0.5 hover:opacity-70">
@@ -179,7 +165,7 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
         </span>
         <span
           v-if="tagFilter !== 'all'"
-          class="flex items-center gap-1 rounded-full bg-[#3F3F46]/10 px-3 py-0.5 font-semibold text-[#3F3F46]"
+          class="flex items-center gap-1 rounded-full bg-[#D97720]/10 px-3 py-0.5 font-semibold text-[#D97720]"
         >
           #{{ tagFilter }}
           <button @click="tagFilter = 'all'" class="ml-0.5 hover:opacity-70">
@@ -218,7 +204,7 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
       <div v-else ref="listRef">
         <!-- 결과 없음 -->
         <div
-          v-if="sortedYears.length === 0"
+          v-if="filtered.length === 0"
           class="py-20 text-center"
           :class="isDark ? 'text-white/30' : 'text-gray-300'"
         >
@@ -226,20 +212,10 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
           <p>{{ t('lab.publication.noResults') }}</p>
         </div>
 
-        <!-- 연도별 그룹 -->
-        <div v-for="year in sortedYears" :key="year" class="mb-10">
-          <!-- 연도 구분선 -->
-          <div class="mb-5 flex items-center gap-4">
-            <span
-              class="text-2xl font-extrabold tabular-nums"
-              :class="isDark ? 'text-white/80' : 'text-gray-800'"
-            >{{ year }}</span>
-            <div :class="['flex-1 h-px', isDark ? 'bg-white/[0.07]' : 'bg-gray-100']" />
-          </div>
-
-          <div class="flex flex-col gap-4">
+        <!-- 연도 그룹 없이 최신순으로 표시 -->
+        <div v-if="filtered.length" class="flex flex-col gap-4">
             <div
-              v-for="(pub, i) in groupedByYear[year]"
+              v-for="(pub, i) in filtered"
               :key="pub.id"
               class="animate-item rounded-2xl border p-6 transition-all duration-200"
               :class="[
@@ -291,7 +267,7 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
                   <!-- 초록 (접기/펼치기) -->
                   <details v-if="pub.abstract" class="mt-3">
                     <summary
-                      class="cursor-pointer text-xs font-semibold text-[#3F3F46] select-none"
+                      class="cursor-pointer text-xs font-semibold text-[#D97720] select-none"
                     >Abstract</summary>
                     <p
                       class="mt-2 text-sm leading-relaxed"
@@ -312,7 +288,7 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
 
                 <!-- 링크 버튼 -->
                 <div class="flex flex-shrink-0 flex-wrap gap-2 mobile:flex-row">
-                  <a v-if="pub.pdfUrl"      :href="pub.pdfUrl"      target="_blank" class="pub-link bg-[#3F3F46]/10 text-[#3F3F46] hover:bg-[#3F3F46]/20">
+                  <a v-if="pub.pdfUrl"      :href="pub.pdfUrl"      target="_blank" class="pub-link bg-[#D97720]/10 text-[#D97720] hover:bg-[#D97720]/20">
                     <span class="material-icons text-[14px]">picture_as_pdf</span>PDF
                   </a>
                   <a v-if="pub.codeUrl"     :href="pub.codeUrl"     target="_blank" :class="['pub-link', isDark ? 'pub-link-dark' : 'pub-link-light']">
@@ -335,7 +311,6 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
                 </div>
               </div>
             </div>
-          </div>
         </div>
       </div>
     </div>

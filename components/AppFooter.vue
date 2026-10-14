@@ -1,10 +1,18 @@
 <script setup lang="ts">
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const localePath = useLocalePath()
 const themeStore = useThemeStore()
 const isDark = computed(() => themeStore.isDark)
 
 const currentYear = new Date().getFullYear()
+const { data: labInfoArr } = useLabInfo()
+const labInfo = computed(() => (labInfoArr.value as any[])?.[0])
+const loc = (f: Record<string, string> | null | undefined) =>
+  f ? (f[locale.value as keyof typeof f] || f.en || '') : ''
+const kakaoMapUrl = computed(() => labInfo.value?.location?.mapUrl || '#')
+const googleMapUrl = computed(() => labInfo.value?.location
+  ? `https://www.google.com/maps?q=${labInfo.value.location.lat},${labInfo.value.location.lng}`
+  : '#')
 
 const navLinks = computed(() => [
   { key: 'lab.nav.about',        url: '/about' },
@@ -41,8 +49,8 @@ const linkClass = computed(() => isDark.value ? 'text-white/60 hover:text-white'
             >
               {{ t('lab.footer.labName') }}
             </NuxtLink>
-            <p :class="['text-[13px]', subTextClass]">{{ t('lab.footer.university') }}</p>
-            <p :class="['text-[13px]', subTextClass]">{{ t('lab.footer.address') }}</p>
+            <p :class="['text-[13px]', subTextClass]">{{ labInfo ? loc(labInfo.university) : t('lab.footer.university') }}</p>
+            <p :class="['text-[13px]', subTextClass]">{{ labInfo ? loc(labInfo.location?.address) : t('lab.footer.address') }}</p>
           </div>
 
           <!-- 네비게이션 -->
@@ -68,7 +76,7 @@ const linkClass = computed(() => isDark.value ? 'text-white/60 hover:text-white'
           </p>
           <div class="flex items-center gap-4">
             <a
-              href="https://map.kakao.com/link/map/한국과학기술연구원,37.6027,127.0586"
+              :href="kakaoMapUrl"
               target="_blank"
               rel="noopener noreferrer"
               :class="['flex items-center gap-1 text-[12px] transition-colors', linkClass]"
@@ -77,7 +85,7 @@ const linkClass = computed(() => isDark.value ? 'text-white/60 hover:text-white'
               {{ t('lab.footer.openKakaoMap') }}
             </a>
             <a
-              href="https://www.google.com/maps?q=37.6027,127.0586"
+              :href="googleMapUrl"
               target="_blank"
               rel="noopener noreferrer"
               :class="['flex items-center gap-1 text-[12px] transition-colors', linkClass]"

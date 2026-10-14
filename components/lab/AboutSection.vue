@@ -12,9 +12,6 @@ const loc = (f: Record<string, string> | null | undefined) =>
 const { data: labInfoArr } = useLabInfo()
 const labInfo = computed(() => (labInfoArr.value as any[])?.[0])
 
-const { data: labHistoryArr } = useLabHistory()
-const labHistory = computed<any[]>(() => (labHistoryArr.value as any[]) ?? [])
-
 const sectionRef = ref<HTMLElement | null>(null)
 const isVisible = ref(false)
 useIntersectionObserver(sectionRef, ([entry]) => {
@@ -28,7 +25,7 @@ useIntersectionObserver(sectionRef, ([entry]) => {
 
       <!-- 섹션 헤더 -->
       <div class="animate-item mb-14 text-center" :class="{ 'is-visible': isVisible }">
-        <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-[#3F3F46]">About</p>
+        <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-[#D97720]">About</p>
         <h2
           class="text-4xl font-bold mobile:text-2xl"
           :class="isDark ? 'text-white' : 'text-gray-900'"
@@ -47,11 +44,11 @@ useIntersectionObserver(sectionRef, ([entry]) => {
       >
         <!-- 대표 수치 -->
         <div
-          class="mb-8 grid grid-cols-3 gap-4 border-b pb-8 mobile:grid-cols-1"
+          class="mb-8 grid grid-cols-2 gap-4 border-b pb-8 mobile:grid-cols-1"
           :class="isDark ? 'border-white/[0.07]' : 'border-gray-100'"
         >
           <div class="text-center">
-            <p class="text-3xl font-extrabold text-[#3F3F46]">
+            <p class="text-3xl font-extrabold text-[#D97720]">
               {{ labInfo?.established ? new Date().getFullYear() - Number(labInfo.established) + 1 : '—' }}
             </p>
             <p class="mt-1 text-xs font-medium uppercase tracking-wider" :class="isDark ? 'text-white/40' : 'text-gray-400'">
@@ -59,15 +56,7 @@ useIntersectionObserver(sectionRef, ([entry]) => {
             </p>
           </div>
           <div class="text-center">
-            <p class="text-3xl font-extrabold text-[#3F3F46]">
-              {{ labHistory.length || '—' }}
-            </p>
-            <p class="mt-1 text-xs font-medium uppercase tracking-wider" :class="isDark ? 'text-white/40' : 'text-gray-400'">
-              Milestones
-            </p>
-          </div>
-          <div class="text-center">
-            <p class="text-3xl font-extrabold text-[#3F3F46]">
+            <p class="text-3xl font-extrabold text-[#D97720]">
               {{ labInfo?.established || '—' }}
             </p>
             <p class="mt-1 text-xs font-medium uppercase tracking-wider" :class="isDark ? 'text-white/40' : 'text-gray-400'">
@@ -108,7 +97,7 @@ useIntersectionObserver(sectionRef, ([entry]) => {
         <div class="mt-8">
           <NuxtLink
             :to="localePath('/about')"
-            class="inline-flex items-center gap-1.5 text-sm font-semibold text-[#3F3F46] transition-all duration-200 hover:gap-3"
+            class="inline-flex items-center gap-1.5 text-sm font-semibold text-[#D97720] transition-all duration-200 hover:gap-3"
           >
             {{ t('lab.common.learnMore') }}
             <span class="material-icons text-[18px]">arrow_forward</span>

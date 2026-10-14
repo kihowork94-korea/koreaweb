@@ -72,6 +72,11 @@ const isActive = (url: string) => {
               style="display:block;width:88px;height:24px;object-fit:contain;flex-shrink:0"
               :style="isDark ? { filter: 'brightness(0) invert(1)' } : {}"
             />
+            <span
+              class="kist-wordmark"
+              :class="isDark ? 'text-white' : 'text-[#f28c28]'"
+              aria-label="KIST"
+            >KIST</span>
             <div style="width:1px;height:32px;flex-shrink:0" :style="isDark ? { background: 'rgba(255,255,255,0.2)' } : { background: 'rgba(0,0,0,0.15)' }" />
             <div style="display:flex;flex-direction:column;flex-shrink:0;line-height:1.3" :class="textClass">
               <span style="font-size:13px;font-weight:700;white-space:nowrap;letter-spacing:-0.01em">ARISE Lab</span>
@@ -161,7 +166,7 @@ const isActive = (url: string) => {
             :class="[
               'text-2xl font-semibold transition-all hover:scale-105',
               textClass,
-              isActive(link.url) ? '!text-[#3F3F46]' : '',
+              isActive(link.url) ? '!text-[#D97720]' : '',
             ]"
           >
             {{ t(link.key) }}
@@ -194,14 +199,14 @@ const isActive = (url: string) => {
   left: 50%;
   width: 0;
   height: 2px;
-  background: #3F3F46;
+  background: #e8892f;
   border-radius: 1px;
   transition: all 0.25s ease;
   transform: translateX(-50%);
 }
 
 .nav-link:hover {
-  color: #3F3F46 !important;
+  color: #d97720 !important;
 }
 
 .nav-link:hover::after {
@@ -209,7 +214,14 @@ const isActive = (url: string) => {
 }
 
 .nav-link--active {
-  color: #3F3F46 !important;
+  color: #d97720 !important;
+}
+
+.kist-wordmark {
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
 }
 
 .nav-link--active::after {

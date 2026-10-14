@@ -76,6 +76,17 @@ const filteredMembers = computed(() => {
   return members.value.filter((m: any) => m.role !== 'alumni')
 })
 
+const memberGroups = computed(() => {
+  const list = filteredMembers.value
+  if (activeTab.value === 'all') {
+    return [
+      { key: 'professor', label: t('lab.member.professor'), members: list.filter((m: any) => m.role === 'professor') },
+      { key: 'student', label: t('lab.member.student'), members: list.filter((m: any) => STUDENT_ROLES.includes(m.role)) },
+    ].filter(group => group.members.length > 0)
+  }
+  return [{ key: activeTab.value, label: '', members: list }]
+})
+
 // 선택된 구성원 (상세 모달)
 const selectedMember = ref<any | null>(null)
 
@@ -108,7 +119,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
 
       <!-- 헤더 -->
       <div class="mb-14 text-center">
-        <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-[#3F3F46]">People</p>
+        <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-[#D97720]">People</p>
         <h1
           class="text-5xl font-extrabold mobile:text-3xl"
           :class="isDark ? 'text-white' : 'text-gray-900'"
@@ -126,7 +137,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
           @click="activeTab = (tab.key as TabKey)"
           class="rounded-full px-5 py-2 text-sm font-semibold transition-all duration-200"
           :class="activeTab === tab.key
-            ? 'bg-[#3F3F46] text-white shadow-lg shadow-[#3F3F46]/20'
+            ? 'bg-[#D97720] text-white shadow-lg shadow-[#D97720]/20'
             : isDark
               ? 'bg-white/[0.06] text-white/60 hover:bg-white/[0.10] hover:text-white'
               : 'bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-800'"
@@ -159,66 +170,69 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
       </div>
 
       <!-- 구성원 카드 그리드 -->
-      <div v-else ref="sectionRef" class="grid grid-cols-3 gap-6 mobile:grid-cols-1 md:grid-cols-2">
-        <div
-          v-for="(member, i) in filteredMembers"
-          :key="member.id"
-          class="animate-item group cursor-pointer rounded-2xl border p-6 transition-all duration-300 hover:-translate-y-1"
-          :class="[
-            { 'is-visible': isVisible },
-            `delay-${i}`,
-            isDark
-              ? 'border-white/[0.10] bg-[#111] hover:bg-[#1c1c1c]'
-              : 'border-gray-200/80 bg-white hover:border-gray-300 hover:shadow-xl hover:shadow-slate-900/8',
-          ]"
-          @click="selectedMember = member"
+      <div v-else ref="sectionRef" class="flex flex-col">
+        <section
+          v-for="(group, groupIndex) in memberGroups"
+          :key="group.key"
+          :class="groupIndex > 0 ? 'mt-16 border-t pt-14' : ''"
+          :style="groupIndex > 0 ? { borderColor: isDark ? 'rgba(255,255,255,.12)' : 'rgba(39,39,42,.14)' } : {}"
         >
-          <!-- 사진 -->
-          <div
-            class="mb-5 h-36 w-36 overflow-hidden rounded-xl mobile:h-32 mobile:w-32"
-            :class="isDark ? 'bg-white/10' : 'bg-gray-100'"
-          >
-            <img
-              :src="member.imageUrl || '/images/ku-logo.png'"
-              :alt="loc(member.name)"
-              class="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.035]"
-              loading="lazy"
-              decoding="async"
-              @error="($event.target as HTMLImageElement).src='/images/ku-logo.png'"
-            />
+          <div v-if="activeTab === 'all'" class="mb-7 flex items-center gap-4">
+            <h2 class="text-xl font-bold" :class="isDark ? 'text-white' : 'text-gray-900'">{{ group.label }}</h2>
+            <span class="rounded-full bg-[#f28c28]/10 px-2.5 py-1 text-xs font-bold text-[#d97720]">{{ group.members.length }}</span>
           </div>
 
-          <!-- 이름 + 소개 -->
-          <h3
-            class="mb-1 text-lg font-bold"
-            :class="isDark ? 'text-white' : 'text-gray-900'"
-          >{{ loc(member.name) }}</h3>
-          <p
-            class="mb-3 text-sm leading-relaxed line-clamp-2"
-            :class="isDark ? 'text-white/50' : 'text-gray-500'"
-          >{{ loc(member.bio) || '—' }}</p>
+          <div class="grid grid-cols-2 gap-6 mobile:grid-cols-1">
+            <article
+              v-for="(member, i) in group.members"
+              :key="member.id"
+              class="animate-item group min-h-[250px] cursor-pointer overflow-hidden rounded-2xl border transition-all duration-300 hover:-translate-y-1"
+              :class="[
+                { 'is-visible': isVisible },
+                `delay-${Math.min(i, 8)}`,
+                isDark
+                  ? 'border-white/[0.10] bg-[#111] hover:bg-[#1c1c1c]'
+                  : 'border-gray-200/80 bg-white hover:border-gray-300 hover:shadow-xl hover:shadow-slate-900/8',
+              ]"
+              @click="selectedMember = member"
+            >
+              <div class="grid h-full grid-cols-[42%_1fr] mobile:grid-cols-[40%_1fr]">
+                <div class="min-h-[250px] overflow-hidden" :class="isDark ? 'bg-white/10' : 'bg-gray-100'">
+                  <img
+                    :src="member.imageUrl || '/images/ku-logo.png'"
+                    :alt="loc(member.name)"
+                    class="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.035]"
+                    loading="lazy"
+                    decoding="async"
+                    @error="($event.target as HTMLImageElement).src='/images/ku-logo.png'"
+                  />
+                </div>
 
-          <!-- 연구 관심사 태그 -->
-          <div class="flex flex-wrap gap-1.5">
-            <span
-              v-for="ri in member.researchInterests.slice(0, 2)"
-              :key="loc(ri)"
-              class="rounded-full px-2.5 py-0.5 text-[11px] font-medium"
-              :class="isDark ? 'bg-white/8 text-white/55' : 'bg-gray-100 text-gray-500'"
-            >{{ loc(ri) }}</span>
+                <div class="flex min-w-0 flex-col justify-center p-6 mobile:p-4">
+                  <h3 class="mb-1 text-lg font-bold" :class="isDark ? 'text-white' : 'text-gray-900'">{{ loc(member.name) }}</h3>
+                  <p class="mb-4 text-sm leading-relaxed line-clamp-3" :class="isDark ? 'text-white/50' : 'text-gray-500'">{{ loc(member.bio) || '—' }}</p>
+                  <div class="flex flex-wrap gap-1.5">
+                    <span
+                      v-for="ri in member.researchInterests.slice(0, 2)"
+                      :key="loc(ri)"
+                      class="rounded-full px-2.5 py-0.5 text-[11px] font-medium"
+                      :class="isDark ? 'bg-white/8 text-white/55' : 'bg-gray-100 text-gray-500'"
+                    >{{ loc(ri) }}</span>
+                  </div>
+                  <a
+                    v-if="member.email"
+                    :href="`mailto:${member.email}`"
+                    class="mt-4 flex items-center gap-1 truncate text-xs text-[#d97720]"
+                    @click.stop
+                  >
+                    <span class="material-icons text-[14px]">mail</span>
+                    <span class="truncate">{{ member.email }}</span>
+                  </a>
+                </div>
+              </div>
+            </article>
           </div>
-
-          <!-- 이메일 링크 (모바일: 항상 표시 / 데스크톱: hover 시 표시) -->
-          <a
-            v-if="member.email"
-            :href="`mailto:${member.email}`"
-            class="mt-3 flex items-center gap-1 text-xs text-[#3F3F46] transition-opacity mobile:opacity-100 opacity-0 group-hover:opacity-100"
-            @click.stop
-          >
-            <span class="material-icons text-[14px]">mail</span>
-            {{ member.email }}
-          </a>
-        </div>
+        </section>
       </div>
 
       <!-- 빈 상태 -->
@@ -279,7 +293,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
                 />
               </div>
               <div>
-                <p class="mb-1 text-xs font-semibold uppercase tracking-wider text-[#3F3F46]">
+                <p class="mb-1 text-xs font-semibold uppercase tracking-wider text-[#D97720]">
                   {{ t(`lab.member.${selectedMember.role}`) }}
                 </p>
                 <h2
@@ -296,7 +310,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
                 <!-- 링크 -->
                 <div class="mt-3 flex flex-wrap gap-3">
                   <a v-if="selectedMember.email" :href="`mailto:${selectedMember.email}`"
-                    class="flex items-center gap-1 text-sm text-[#3F3F46] hover:opacity-70">
+                    class="flex items-center gap-1 text-sm text-[#D97720] hover:opacity-70">
                     <span class="material-icons text-[15px]">mail</span>{{ selectedMember.email }}
                   </a>
                   <a v-if="selectedMember.homepage" :href="selectedMember.homepage" target="_blank"
@@ -320,7 +334,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
 
             <!-- 연구 관심사 -->
             <div v-if="selectedMember.researchInterests?.length" class="mb-6">
-              <h4 class="mb-3 text-xs font-semibold uppercase tracking-wider text-[#3F3F46]">
+              <h4 class="mb-3 text-xs font-semibold uppercase tracking-wider text-[#D97720]">
                 {{ t('lab.member.researchInterests') }}
               </h4>
               <div class="flex flex-wrap gap-2">
@@ -328,14 +342,14 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
                   v-for="ri in selectedMember.researchInterests"
                   :key="loc(ri)"
                   class="rounded-full px-3 py-1 text-xs font-medium"
-                  :class="isDark ? 'bg-[#3F3F46]/12 text-[#3F3F46]/80' : 'bg-[#3F3F46]/8 text-[#3F3F46]'"
+                  :class="isDark ? 'bg-[#D97720]/12 text-[#D97720]/80' : 'bg-[#D97720]/8 text-[#D97720]'"
                 >{{ loc(ri) }}</span>
               </div>
             </div>
 
             <!-- 상세 소개 -->
             <div v-if="selectedMember.description && loc(selectedMember.description)" class="mb-6">
-              <h4 class="mb-3 text-xs font-semibold uppercase tracking-wider text-[#3F3F46]">About</h4>
+              <h4 class="mb-3 text-xs font-semibold uppercase tracking-wider text-[#D97720]">About</h4>
               <p class="text-sm leading-relaxed" :class="isDark ? 'text-white/65' : 'text-gray-600'">
                 {{ loc(selectedMember.description) }}
               </p>
@@ -343,7 +357,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
 
             <!-- 학력 -->
             <div v-if="selectedMember.education?.length" class="mb-6">
-              <h4 class="mb-3 text-xs font-semibold uppercase tracking-wider text-[#3F3F46]">
+              <h4 class="mb-3 text-xs font-semibold uppercase tracking-wider text-[#D97720]">
                 {{ t('lab.member.education') }}
               </h4>
               <div class="flex flex-col gap-2">
@@ -352,7 +366,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
                   :key="`${edu.year}-${loc(edu.degree)}`"
                   class="flex items-start gap-3"
                 >
-                  <span class="mt-0.5 text-[11px] font-bold text-[#3F3F46]">{{ edu.year }}</span>
+                  <span class="mt-0.5 text-[11px] font-bold text-[#D97720]">{{ edu.year }}</span>
                   <div>
                     <p class="text-sm font-semibold" :class="isDark ? 'text-white/80' : 'text-gray-800'">
                       {{ loc(edu.degree) }}, {{ loc(edu.major) }}
@@ -367,7 +381,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
 
             <!-- 수상/성과 -->
             <div v-if="selectedMember.achievements?.length" class="mb-6">
-              <h4 class="mb-3 text-xs font-semibold uppercase tracking-wider text-[#3F3F46]">
+              <h4 class="mb-3 text-xs font-semibold uppercase tracking-wider text-[#D97720]">
                 {{ t('lab.member.achievements') }}
               </h4>
               <div class="flex flex-col gap-2">

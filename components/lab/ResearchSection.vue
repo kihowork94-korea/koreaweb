@@ -40,7 +40,7 @@ useIntersectionObserver(sectionRef, ([entry]) => {
         class="animate-item mb-14 text-center"
         :class="{ 'is-visible': isVisible }"
       >
-        <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-[#3F3F46]">
+        <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-[#D97720]">
           Research
         </p>
         <h2
@@ -88,9 +88,9 @@ useIntersectionObserver(sectionRef, ([entry]) => {
           <!-- 아이콘 (이미지 없을 때) -->
           <div
             v-else
-            class="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#3F3F46]/10 transition-colors duration-200 group-hover:bg-[#3F3F46]/15"
+            class="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#D97720]/10 transition-colors duration-200 group-hover:bg-[#D97720]/15"
           >
-            <UIcon :name="area.iconName" class="h-6 w-6 text-[#3F3F46]" />
+            <UIcon :name="area.iconName" class="h-6 w-6 text-[#D97720]" />
           </div>
 
           <!-- 제목 -->
@@ -131,7 +131,7 @@ useIntersectionObserver(sectionRef, ([entry]) => {
       >
         <NuxtLink
           :to="localePath('/research')"
-          class="inline-flex items-center gap-1.5 text-sm font-semibold text-[#3F3F46] transition-all duration-200 hover:gap-3"
+          class="inline-flex items-center gap-1.5 text-sm font-semibold text-[#D97720] transition-all duration-200 hover:gap-3"
         >
           {{ t('lab.common.viewAll') }}
           <span class="material-icons text-[18px]">arrow_forward</span>

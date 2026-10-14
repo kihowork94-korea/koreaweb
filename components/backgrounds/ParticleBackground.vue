@@ -24,11 +24,12 @@ interface Particle {
   baseVy: number
 }
 
+// KIST orange를 중심으로 한 부드러운 웜 뉴트럴 팔레트
 const pointColors = {
-  red: { r: 96, g: 165, b: 250 },
-  orange: { r: 125, g: 211, b: 252 },
-  purple: { r: 129, g: 140, b: 248 },
-  pink: { r: 167, g: 139, b: 250 },
+  red: { r: 242, g: 140, b: 40 },
+  orange: { r: 249, g: 178, b: 104 },
+  purple: { r: 232, g: 157, b: 88 },
+  pink: { r: 255, g: 204, b: 153 },
 }
 
 const colors = computed(() => {

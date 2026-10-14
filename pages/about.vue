@@ -11,9 +11,6 @@ const loc = (f: Record<string, string> | null | undefined) =>
 const { data: labInfoArr } = useLabInfo()
 const labInfo = computed(() => (labInfoArr.value as any[])?.[0])
 
-const { data: labHistoryArr } = useLabHistory()
-const labHistory = computed<any[]>(() => (labHistoryArr.value as any[]) ?? [])
-
 const { data: membersArr } = useLabMembers()
 const professor = computed(() => (membersArr.value as any[] ?? []).find((m: any) => m.role === 'professor'))
 
@@ -22,16 +19,13 @@ useHead({ title: `${t('lab.nav.about')} | ARISE Lab` })
 // 섹션별 등장 애니메이션
 const heroRef    = ref<HTMLElement | null>(null)
 const introRef   = ref<HTMLElement | null>(null)
-const historyRef = ref<HTMLElement | null>(null)
 const profileRef = ref<HTMLElement | null>(null)
 const heroVis    = ref(false)
 const introVis   = ref(false)
-const historyVis = ref(false)
 const profileVis = ref(false)
 
 useIntersectionObserver(heroRef,    ([e]) => { if (e.isIntersecting) heroVis.value    = true }, { threshold: 0.1 })
 useIntersectionObserver(introRef,   ([e]) => { if (e.isIntersecting) introVis.value   = true }, { threshold: 0.1 })
-useIntersectionObserver(historyRef, ([e]) => { if (e.isIntersecting) historyVis.value = true }, { threshold: 0.1 })
 useIntersectionObserver(profileRef, ([e]) => { if (e.isIntersecting) profileVis.value = true }, { threshold: 0.1 })
 </script>
 
@@ -40,7 +34,7 @@ useIntersectionObserver(profileRef, ([e]) => { if (e.isIntersecting) profileVis.
     <!-- ── 페이지 헤더 ─────────────────────────── -->
     <section ref="heroRef" class="px-6 pb-16 pt-20 text-center">
       <p
-        class="animate-item mb-3 text-sm font-semibold uppercase tracking-widest text-[#3F3F46]"
+        class="animate-item mb-3 text-sm font-semibold uppercase tracking-widest text-[#D97720]"
         :class="{ 'is-visible': heroVis }"
       >About</p>
       <h1
@@ -62,11 +56,11 @@ useIntersectionObserver(profileRef, ([e]) => { if (e.isIntersecting) profileVis.
         >
           <!-- 상단: 대표 수치 -->
           <div
-            class="mb-8 grid grid-cols-3 gap-4 mobile:grid-cols-1 border-b pb-8"
+            class="mb-8 grid grid-cols-2 gap-4 mobile:grid-cols-1 border-b pb-8"
             :class="isDark ? 'border-white/[0.07]' : 'border-gray-100'"
           >
             <div class="text-center">
-              <p class="text-3xl font-extrabold text-[#3F3F46]">
+              <p class="text-3xl font-extrabold text-[#D97720]">
                 {{ labInfo?.established ? new Date().getFullYear() - Number(labInfo.established) + 1 : '—' }}
               </p>
               <p class="mt-1 text-xs font-medium uppercase tracking-wider" :class="isDark ? 'text-white/40' : 'text-gray-400'">
@@ -74,15 +68,7 @@ useIntersectionObserver(profileRef, ([e]) => { if (e.isIntersecting) profileVis.
               </p>
             </div>
             <div class="text-center">
-              <p class="text-3xl font-extrabold text-[#3F3F46]">
-                {{ labHistory.length || '—' }}
-              </p>
-              <p class="mt-1 text-xs font-medium uppercase tracking-wider" :class="isDark ? 'text-white/40' : 'text-gray-400'">
-                Milestones
-              </p>
-            </div>
-            <div class="text-center">
-              <p class="text-3xl font-extrabold text-[#3F3F46]">
+              <p class="text-3xl font-extrabold text-[#D97720]">
                 {{ labInfo?.established || '—' }}
               </p>
               <p class="mt-1 text-xs font-medium uppercase tracking-wider" :class="isDark ? 'text-white/40' : 'text-gray-400'">
@@ -123,79 +109,12 @@ useIntersectionObserver(profileRef, ([e]) => { if (e.isIntersecting) profileVis.
     </section>
 
     <!-- ── 연혁 타임라인 ──────────────────────────── -->
-    <section ref="historyRef" class="px-6 pb-24">
-      <div class="mx-auto max-w-[900px]">
-
-        <div class="animate-item mb-12 text-center" :class="{ 'is-visible': historyVis }">
-          <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-[#3F3F46]">History</p>
-          <h2
-            class="text-3xl font-bold"
-            :class="isDark ? 'text-white' : 'text-gray-900'"
-          >연혁</h2>
-        </div>
-
-        <!-- 타임라인 -->
-        <div class="relative">
-          <!-- 세로선 -->
-          <div
-            class="absolute left-[90px] top-0 h-full w-px mobile:left-[64px]"
-            :class="isDark ? 'bg-white/[0.07]' : 'bg-gray-100'"
-          />
-
-          <div
-            v-for="(item, i) in [...labHistory].sort((a: any, b: any) => b.year - a.year || b.month - a.month)"
-            :key="`${item.year}-${item.month}`"
-            class="animate-item relative mb-8 flex items-start gap-8 mobile:gap-5"
-            :class="[{ 'is-visible': historyVis }, `delay-${Math.min(i + 1, 12)}`]"
-          >
-            <!-- 날짜 -->
-            <div class="w-[90px] flex-shrink-0 pt-1 text-right mobile:w-[64px]">
-              <span class="text-sm font-bold" :class="isDark ? 'text-white/80' : 'text-gray-700'">{{ item.year }}</span>
-              <span class="block text-xs" :class="isDark ? 'text-white/35' : 'text-gray-400'">
-                {{ String(item.month).padStart(2, '0') }}월
-              </span>
-            </div>
-
-            <!-- 원형 마커 -->
-            <div class="relative mt-1.5 flex-shrink-0">
-              <div class="h-3 w-3 rounded-full bg-[#3F3F46] ring-4"
-                :class="isDark ? 'ring-black' : 'ring-white'"
-              />
-            </div>
-
-            <!-- 내용 -->
-            <div
-              class="flex-1 rounded-xl border p-4 transition-colors"
-              :class="isDark
-                ? 'border-white/[0.10] bg-[#111]'
-                : 'border-gray-200 bg-white'"
-            >
-              <p
-                class="text-sm leading-relaxed"
-                :class="isDark ? 'text-white/75' : 'text-gray-700'"
-              >{{ loc(item.content) }}</p>
-            </div>
-          </div>
-
-          <!-- 연혁 없을 때 -->
-          <div
-            v-if="labHistory.length === 0"
-            class="py-16 text-center"
-            :class="isDark ? 'text-white/30' : 'text-gray-300'"
-          >
-            <span class="material-icons mb-2 block text-4xl">history</span>
-            <p class="text-sm">{{ t('lab.common.noData') }}</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- ── 교수 소개 ─────────────────────────────── -->
     <section ref="profileRef" class="px-6 pb-28">
       <div class="mx-auto max-w-[900px]">
 
         <div class="animate-item mb-12 text-center" :class="{ 'is-visible': profileVis }">
-          <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-[#3F3F46]">Principal Investigator</p>
+          <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-[#D97720]">Principal Investigator</p>
           <h2
             class="text-3xl font-bold"
             :class="isDark ? 'text-white' : 'text-gray-900'"
@@ -251,7 +170,7 @@ useIntersectionObserver(profileRef, ([e]) => { if (e.isIntersecting) profileVis.
                 class="text-3xl font-extrabold mobile:text-2xl"
                 :class="isDark ? 'text-white' : 'text-gray-900'"
               >{{ professor ? loc(professor.name) : '' }}</h2>
-              <p class="mt-1 text-base font-medium text-[#3F3F46]">
+              <p class="mt-1 text-base font-medium text-[#D97720]">
                 {{ labInfo ? loc(labInfo.university) : '' }}
               </p>
             </div>
@@ -262,7 +181,7 @@ useIntersectionObserver(profileRef, ([e]) => { if (e.isIntersecting) profileVis.
                 v-for="ri in professor.researchInterests"
                 :key="loc(ri)"
                 class="rounded-full px-3 py-1 text-[12px] font-medium"
-                :class="isDark ? 'bg-[#3F3F46]/15 text-[#3F3F46]/90' : 'bg-[#3F3F46]/8 text-[#3F3F46]'"
+                :class="isDark ? 'bg-[#D97720]/15 text-[#D97720]/90' : 'bg-[#D97720]/8 text-[#D97720]'"
               >{{ loc(ri) }}</span>
             </div>
 
@@ -278,7 +197,7 @@ useIntersectionObserver(profileRef, ([e]) => { if (e.isIntersecting) profileVis.
               <a
                 v-if="professor?.email"
                 :href="`mailto:${professor.email}`"
-                class="flex items-center gap-1.5 text-sm font-medium text-[#3F3F46] transition-opacity hover:opacity-70"
+                class="flex items-center gap-1.5 text-sm font-medium text-[#D97720] transition-opacity hover:opacity-70"
               >
                 <span class="material-icons text-[16px]">mail</span>
                 {{ professor.email }}

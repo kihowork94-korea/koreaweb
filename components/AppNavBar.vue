@@ -61,29 +61,47 @@ const isActive = (url: string) => {
     >
       <div class="mx-auto flex w-full max-w-[1400px] items-center px-6">
         <!-- 로고 -->
-        <NuxtLink
-          :to="localePath('/')"
-          class="mr-auto mobile:hidden transition-opacity hover:opacity-80"
-        >
-          <div style="display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;gap:12px">
+        <div class="brand-links mr-auto flex items-center gap-2.5 mobile:hidden">
+          <a
+            href="https://kukistschool.korea.ac.kr/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="brand-link"
+            aria-label="고려대학교 KU-KIST 융합대학원 홈페이지 열기"
+            title="고려대학교 KU-KIST 융합대학원"
+          >
             <img
               src="/images/ku-logo.png"
               alt="고려대학교"
-              style="display:block;width:88px;height:24px;object-fit:contain;flex-shrink:0"
+              class="h-6 w-[88px] shrink-0 object-contain"
               :style="isDark ? { filter: 'brightness(0) invert(1)' } : {}"
             />
-            <span
-              class="kist-wordmark"
-              :class="isDark ? 'text-white' : 'text-[#f28c28]'"
-              aria-label="KIST"
-            >KIST</span>
-            <div style="width:1px;height:32px;flex-shrink:0" :style="isDark ? { background: 'rgba(255,255,255,0.2)' } : { background: 'rgba(0,0,0,0.15)' }" />
-            <div style="display:flex;flex-direction:column;flex-shrink:0;line-height:1.3" :class="textClass">
-              <span style="font-size:13px;font-weight:700;white-space:nowrap;letter-spacing:-0.01em">ARISE Lab</span>
-              <span style="font-size:11px;font-weight:500;white-space:nowrap" :style="isDark ? { color: 'rgba(255,255,255,0.5)' } : { color: '#9ca3af' }">KU-KIST 융합대학원</span>
-            </div>
-          </div>
-        </NuxtLink>
+          </a>
+          <a
+            href="https://www.kist.re.kr/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="brand-link"
+            aria-label="KIST 공식 홈페이지 열기"
+            title="한국과학기술연구원 KIST"
+          >
+            <img
+              :src="isDark ? '/images/kist-logo.png' : '/images/kist-logo-dark.png'"
+              alt="한국과학기술연구원 KIST"
+              class="h-[25px] w-[105px] shrink-0 object-contain"
+            />
+          </a>
+          <div class="h-8 w-px shrink-0" :style="isDark ? { background: 'rgba(255,255,255,0.2)' } : { background: 'rgba(0,0,0,0.15)' }" />
+          <NuxtLink
+            :to="localePath('/')"
+            class="brand-link flex shrink-0 flex-col leading-[1.3]"
+            :class="textClass"
+            aria-label="ARISE Lab 메인으로 이동"
+          >
+            <span class="whitespace-nowrap text-[13px] font-bold tracking-[-0.01em]">ARISE Lab</span>
+            <span class="whitespace-nowrap text-[11px] font-medium" :style="isDark ? { color: 'rgba(255,255,255,0.5)' } : { color: '#9ca3af' }">KU-KIST 융합대학원</span>
+          </NuxtLink>
+        </div>
 
         <!-- 모바일 로고 -->
         <NuxtLink
@@ -217,11 +235,21 @@ const isActive = (url: string) => {
   color: #d97720 !important;
 }
 
-.kist-wordmark {
-  font-size: 18px;
-  font-weight: 900;
-  letter-spacing: -0.04em;
-  line-height: 1;
+.brand-link {
+  display: flex;
+  align-items: center;
+  border-radius: 0.375rem;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.brand-link:hover {
+  opacity: 0.72;
+  transform: translateY(-1px);
+}
+
+.brand-link:focus-visible {
+  outline: 2px solid #e8892f;
+  outline-offset: 4px;
 }
 
 .nav-link--active::after {

@@ -13,6 +13,7 @@ const labInfo = computed(() => (labInfoArr.value as any[])?.[0])
 
 const { data: membersArr } = useLabMembers()
 const professor = computed(() => (membersArr.value as any[] ?? []).find((m: any) => m.role === 'professor'))
+const professorPortrait = '/images/members/professor-lee-full.png'
 
 useHead({ title: `${t('lab.nav.about')} | ARISE Lab` })
 
@@ -142,20 +143,13 @@ useIntersectionObserver(profileRef, ([e]) => { if (e.isIntersecting) profileVis.
           <!-- 사진 -->
           <div class="min-h-[360px] overflow-hidden mobile:h-[340px] mobile:min-h-0" :class="isDark ? 'bg-white/10' : 'bg-gray-100'">
             <img
-              v-if="professor?.imageUrl"
-              :src="professor.imageUrl"
+              :src="professorPortrait"
               :alt="loc(professor.name)"
-              class="h-full w-full object-cover object-top"
+              class="h-full w-full object-contain object-bottom"
               loading="lazy"
               decoding="async"
               @error="($event.target as HTMLImageElement).style.display='none'"
             />
-            <div
-              v-else
-              class="flex h-full w-full items-center justify-center"
-            >
-              <span :class="['material-icons text-6xl mobile:text-4xl', isDark ? 'text-white/20' : 'text-gray-300']">person</span>
-            </div>
           </div>
 
           <!-- 정보 -->

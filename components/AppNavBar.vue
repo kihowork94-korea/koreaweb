@@ -63,7 +63,7 @@ const isActive = (url: string) => {
         <!-- 로고 -->
         <div class="brand-links mr-auto flex items-center gap-2.5 mobile:hidden">
           <a
-            href="https://kukistschool.korea.ac.kr/"
+            href="https://kukistschool.korea.ac.kr/about/professor_view.html?no=22&page=1"
             target="_blank"
             rel="noopener noreferrer"
             class="brand-link"
@@ -78,7 +78,7 @@ const isActive = (url: string) => {
             />
           </a>
           <a
-            href="https://www.kist.re.kr/"
+            href="https://kist.re.kr/ko/research/introduction-row-molecule.do"
             target="_blank"
             rel="noopener noreferrer"
             class="brand-link"

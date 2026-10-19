@@ -18,7 +18,5 @@ useSeoMeta({
     <!-- 3. 연구 분야 섹션 -->
     <LabResearchSection />
 
-    <!-- 4. 진행 중 프로젝트 섹션 -->
-    <LabProjectsSection />
   </div>
 </template>

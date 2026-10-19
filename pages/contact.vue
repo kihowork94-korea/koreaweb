@@ -14,16 +14,6 @@ const { data: labInfoArr } = useLabInfo()
 const labInfo = computed(() => (labInfoArr.value as any[])?.[0])
 const professorEmail = 'kwanhyi@korea.ac.kr'
 
-// Google Maps URL (위도/경도 기반)
-const googleMapUrl = computed(() =>
-  labInfo.value?.location
-    ? `https://www.google.com/maps?q=${labInfo.value.location.lat},${labInfo.value.location.lng}`
-    : '#'
-)
-
-// Kakao Map URL
-const kakaoMapUrl = computed(() => labInfo.value?.location?.mapUrl)
-
 const sectionRef  = ref<HTMLElement | null>(null)
 const isVisible   = ref(false)
 useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.value = true }, { threshold: 0.05 })
@@ -110,30 +100,6 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
                   </span>
                 </p>
 
-                <!-- 지도 버튼 -->
-                <div class="mt-3 flex flex-wrap gap-2">
-                  <a
-                    v-if="kakaoMapUrl"
-                    :href="kakaoMapUrl"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-[12px] font-semibold transition-colors"
-                    :class="isDark ? 'bg-white/[0.07] text-white/70 hover:bg-white/[0.12]' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'"
-                  >
-                    <span class="material-icons text-[13px]">map</span>
-                    {{ t('lab.footer.openKakaoMap') }}
-                  </a>
-                  <a
-                    :href="googleMapUrl"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-[12px] font-semibold transition-colors"
-                    :class="isDark ? 'bg-white/[0.07] text-white/70 hover:bg-white/[0.12]' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'"
-                  >
-                    <span class="material-icons text-[13px]">open_in_new</span>
-                    {{ t('lab.footer.openGoogleMap') }}
-                  </a>
-                </div>
               </div>
             </div>
           </div>

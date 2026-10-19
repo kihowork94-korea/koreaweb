@@ -9,10 +9,6 @@ const { data: labInfoArr } = useLabInfo()
 const labInfo = computed(() => (labInfoArr.value as any[])?.[0])
 const loc = (f: Record<string, string> | null | undefined) =>
   f ? (f[locale.value as keyof typeof f] || f.en || '') : ''
-const kakaoMapUrl = computed(() => labInfo.value?.location?.mapUrl || '#')
-const googleMapUrl = computed(() => labInfo.value?.location
-  ? `https://www.google.com/maps?q=${labInfo.value.location.lat},${labInfo.value.location.lng}`
-  : '#')
 
 const navLinks = computed(() => [
   { key: 'lab.nav.about',        url: '/about' },
@@ -69,31 +65,11 @@ const linkClass = computed(() => isDark.value ? 'text-white/60 hover:text-white'
         <!-- 구분선 -->
         <div :class="['h-px', isDark ? 'bg-white/[0.06]' : 'bg-black/[0.06]']" />
 
-        <!-- 하단: 저작권 + 카카오맵/구글맵 링크 -->
+        <!-- 하단: 저작권 -->
         <div class="flex items-center justify-between gap-4 mobile:flex-col mobile:items-start">
           <p :class="['text-[12px]', subTextClass]">
             {{ t('lab.footer.copyright', { year: currentYear }) }}
           </p>
-          <div class="flex items-center gap-4">
-            <a
-              :href="kakaoMapUrl"
-              target="_blank"
-              rel="noopener noreferrer"
-              :class="['flex items-center gap-1 text-[12px] transition-colors', linkClass]"
-            >
-              <span class="material-icons text-[14px]">place</span>
-              {{ t('lab.footer.openKakaoMap') }}
-            </a>
-            <a
-              :href="googleMapUrl"
-              target="_blank"
-              rel="noopener noreferrer"
-              :class="['flex items-center gap-1 text-[12px] transition-colors', linkClass]"
-            >
-              <span class="material-icons text-[14px]">map</span>
-              {{ t('lab.footer.openGoogleMap') }}
-            </a>
-          </div>
         </div>
 
       </div>

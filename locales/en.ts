@@ -39,7 +39,7 @@ export default {
     },
     member: {
       professor: 'Professor',
-      student: 'Students',
+      student: 'Researchers',
       postdoc: 'Postdoctoral Researcher',
       phd: 'Ph.D. Student',
       combined: 'Combined MS/Ph.D. Student',

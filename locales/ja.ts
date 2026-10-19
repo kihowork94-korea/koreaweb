@@ -39,7 +39,7 @@ export default {
     },
     member: {
       professor: '教授',
-      student: '学生',
+      student: '研究員',
       postdoc: '博士研究員',
       phd: '博士課程',
       combined: '修士・博士一貫課程',

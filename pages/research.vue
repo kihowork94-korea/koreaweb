@@ -235,4 +235,136 @@ const name = (item: { ko: string; en: string }) => locale.value === 'ko' ? item.
 @media (max-width: 800px) {
   .core-zone { top: 490px; transform: translateX(-50%) scale(.82); }
 }
+
+/* Responsive layout: switch from coordinates to a readable vertical tree. */
+@media (max-width: 800px) {
+  .vision-map {
+    display: flex;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    flex-direction: column;
+    gap: 28px;
+    padding: 28px 18px 24px;
+    border-radius: 2rem;
+  }
+  .map-lines,
+  .glow { display: none; }
+  .tech-zone,
+  .core-zone,
+  .application-zone,
+  .network-zone {
+    position: relative;
+    inset: auto;
+    top: auto;
+    left: auto;
+    right: auto;
+    width: 100%;
+    height: auto;
+    transform: none;
+  }
+  .zone-title,
+  .application-zone .zone-title {
+    position: relative;
+    top: auto;
+    left: auto;
+    margin-bottom: 20px;
+  }
+  .tech-cluster {
+    position: relative;
+    top: auto;
+    left: auto !important;
+    right: auto !important;
+    display: grid;
+    width: 100%;
+    height: auto;
+    min-height: 108px;
+    grid-template-columns: 104px minmax(0, 1fr);
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    transform: none;
+  }
+  .tech-main {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 104px;
+    height: 104px;
+    transform: none;
+  }
+  .tech-main:hover { transform: scale(1.03); }
+  .keyword-row {
+    position: relative;
+    inset: auto;
+    min-width: 0;
+    min-height: 0;
+    justify-content: flex-start;
+    padding: 0;
+  }
+  .satellite {
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  .core-zone {
+    width: 280px;
+    height: 170px;
+    margin: 0 auto;
+  }
+  .application-zone {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .application-zone .zone-title { grid-column: 1 / -1; }
+  .app-bubble {
+    position: relative;
+    inset: auto;
+    top: auto;
+    left: auto;
+    right: auto;
+    width: 110px;
+    height: 110px;
+    margin: auto;
+  }
+  .network-zone { padding-top: 0; }
+  .network-center {
+    position: relative;
+    top: auto;
+    left: auto;
+    margin: 0 auto;
+    transform: none;
+    justify-content: center;
+  }
+  .network-lines { display: none; }
+  .partner-field {
+    position: relative;
+    inset: auto;
+    display: flex;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .8rem 1rem;
+  }
+  .partner {
+    position: static !important;
+    transform: none !important;
+    font-size: .62rem;
+  }
+  .confirm-note {
+    position: relative;
+    bottom: auto;
+    width: 100%;
+    padding: 0;
+  }
+}
+
+@media (min-width: 801px) and (max-width: 1050px) {
+  .vision-map { height: 1080px; }
+  .tech-main { width: 128px; height: 128px; }
+  .satellite { padding: .34rem .48rem; font-size: .62rem; }
+  .app-bubble { width: 125px; height: 125px; }
+  .partner { font-size: .62rem; }
+}
 </style>

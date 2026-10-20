@@ -6,7 +6,7 @@ const { locale, t } = useI18n()
 const themeStore = useThemeStore()
 const isDark = computed(() => themeStore.isDark)
 
-useHead({ title: `${t('lab.nav.projects')} | ARISE Lab` })
+usePageSeo('projects')
 
 const loc = (f: Record<string, string> | null | undefined) =>
   f ? (f[locale.value as keyof typeof f] || f.en || '') : ''

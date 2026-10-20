@@ -36,6 +36,10 @@ export default defineNuxtConfig({
 
   // 보안 헤더
   routeRules: {
+    '/admin/**': { robots: false },
+    '/admin-login': { robots: false },
+    '/login': { robots: false },
+    '/api/**': { robots: false },
     '/**': {
       headers: {
         'X-Frame-Options': 'SAMEORIGIN',
@@ -89,7 +93,7 @@ export default defineNuxtConfig({
 
   // Robots.txt
   robots: {
-    disallow: process.env.NOINDEX === 'true' ? ['/'] : ['/admin/', '/api/'],
+    disallow: process.env.NOINDEX === 'true' ? ['/'] : ['/admin/', '/admin-login', '/login', '/api/'],
     allow: process.env.NOINDEX === 'true' ? [] : ['/api/__sitemap__/'],
     sitemap: 'https://www.ariselab.kr/sitemap.xml',
     credits: false,
@@ -113,11 +117,12 @@ export default defineNuxtConfig({
 
   // i18n 설정 — 한/영/중/일 4개국어
   i18n: {
+    baseUrl: 'https://www.ariselab.kr',
     locales: [
-      { code: 'ko', name: '한국어', file: 'ko.ts', iso: 'ko-KR' },
-      { code: 'en', name: 'English', file: 'en.ts', iso: 'en-US' },
-      { code: 'zh', name: '中文', files: ['en.ts', 'zh.ts'], iso: 'zh-CN' },
-      { code: 'ja', name: '日本語', files: ['en.ts', 'ja.ts'], iso: 'ja-JP' },
+      { code: 'ko', name: '한국어', file: 'ko.ts', language: 'ko-KR' },
+      { code: 'en', name: 'English', file: 'en.ts', language: 'en-US' },
+      { code: 'zh', name: '中文', files: ['en.ts', 'zh.ts'], language: 'zh-CN' },
+      { code: 'ja', name: '日本語', files: ['en.ts', 'ja.ts'], language: 'ja-JP' },
     ],
     defaultLocale: 'ko',
     fallbackLocale: 'ko',

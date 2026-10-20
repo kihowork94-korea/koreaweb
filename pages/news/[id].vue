@@ -20,9 +20,23 @@ const item = computed(() =>
   allNews.value.find((n: any) => n.id === Number(route.params.id)) ?? null
 )
 
-useHead(computed(() => ({
-  title: `${item.value ? loc(item.value.title) : 'News'} | ARISE Lab`,
-})))
+const newsTitle = computed(() => `${item.value ? loc(item.value.title) : 'News'} | ARISE Lab`)
+const newsDescription = computed(() => {
+  const text = item.value ? loc(item.value.content || item.value.summary) : ''
+  return text.replace(/\*\*|<[^>]*>|\s+/g, ' ').trim().slice(0, 160)
+    || 'ARISE Lab의 최신 연구 성과와 연구실 소식을 확인하세요.'
+})
+
+useSeoMeta({
+  title: () => newsTitle.value,
+  description: () => newsDescription.value,
+  ogTitle: () => newsTitle.value,
+  ogDescription: () => newsDescription.value,
+  ogType: 'article',
+  articlePublishedTime: () => item.value?.date || undefined,
+  twitterTitle: () => newsTitle.value,
+  twitterDescription: () => newsDescription.value,
+})
 
 // 이전/다음 뉴스 (날짜순 정렬 기준)
 const sortedAll = computed(() =>

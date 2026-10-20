@@ -7,7 +7,7 @@ const localePath = useLocalePath()
 const themeStore = useThemeStore()
 const isDark = computed(() => themeStore.isDark)
 
-useHead({ title: `${t('lab.nav.news')} | ARISE Lab` })
+usePageSeo('news')
 
 const loc = (f: Record<string, string> | null | undefined) =>
   f ? (f[locale.value as keyof typeof f] || f.en || '') : ''

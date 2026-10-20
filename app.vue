@@ -4,6 +4,12 @@ const route = useRoute()
 const siteUrl = 'https://www.ariselab.kr'
 const canonicalUrl = computed(() => `${siteUrl}${route.path === '/' ? '' : route.path}`)
 
+useSeoMeta({
+  ogImage: `${siteUrl}/images/members/workshop-2024.webp`,
+  ogImageAlt: 'ARISE Lab research team',
+  twitterImage: `${siteUrl}/images/members/workshop-2024.webp`,
+})
+
 useHead(() => ({
   titleTemplate: title => title || 'ARISE Lab — KIST 이관희 교수 연구실 | KU-KIST 융합대학원',
   link: [{ rel: 'canonical', href: canonicalUrl.value }],
@@ -31,7 +37,7 @@ useHead(() => ({
           name: 'ARISE Lab',
           alternateName: ['ARISE 연구실', 'KU-KIST ARISE Lab'],
           url: siteUrl,
-          logo: `${siteUrl}/images/lab/logo.png`,
+          logo: `${siteUrl}/favicon.svg`,
           description: 'KIST 이관희 교수가 이끄는 고려대학교 KU-KIST 융합대학원 연구실로, AI와 나노바이오센서 기반 암·감염병 조기진단을 연구합니다.',
           email: 'kwanhyi@korea.ac.kr',
           telephone: '+82-2-958-6804',

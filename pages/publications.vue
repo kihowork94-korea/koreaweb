@@ -6,7 +6,7 @@ const { t } = useI18n()
 const themeStore = useThemeStore()
 const isDark = computed(() => themeStore.isDark)
 
-useHead({ title: `${t('lab.nav.publications')} | ARISE Lab` })
+usePageSeo('publications')
 
 const { data: pubsRaw, pending } = useLabPublications()
 const publications = computed<any[]>(() => (pubsRaw.value as any[]) ?? [])

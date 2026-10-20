@@ -13,10 +13,7 @@ const loc = (f: Record<string, string> | null | undefined) =>
 const { data: membersRaw, pending } = useLabMembers()
 const members = computed<any[]>(() => (membersRaw.value as any[]) ?? [])
 
-useSeoMeta({
-  title: '구성원 | KIST 이관희 교수 연구실 — ARISE Lab',
-  description: 'KIST 이관희 교수와 고려대학교 KU-KIST 융합대학원 ARISE Lab 연구진을 소개합니다. AI, 나노바이오센서, 암·감염병 진단 분야를 연구합니다.',
-})
+usePageSeo('members')
 
 useHead(() => ({
   script: [{

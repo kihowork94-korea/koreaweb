@@ -15,7 +15,7 @@ const { data: membersArr } = useLabMembers()
 const professor = computed(() => (membersArr.value as any[] ?? []).find((m: any) => m.role === 'professor'))
 const professorPortrait = '/images/members/professor-lee-full.png'
 
-useHead({ title: `${t('lab.nav.about')} | ARISE Lab` })
+usePageSeo('about')
 
 // 섹션별 등장 애니메이션
 const heroRef    = ref<HTMLElement | null>(null)

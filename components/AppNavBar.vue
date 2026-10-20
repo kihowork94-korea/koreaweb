@@ -63,6 +63,20 @@ const isActive = (url: string) => {
         <!-- 로고 -->
         <div class="brand-links mr-auto flex items-center gap-2.5 mobile:hidden">
           <a
+            href="https://kist.re.kr/ko/research/introduction-row-molecule.do"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="brand-link"
+            aria-label="KIST 공식 홈페이지 열기"
+            title="한국과학기술연구원 KIST"
+          >
+            <img
+              :src="isDark ? '/images/kist-logo.png' : '/images/kist-logo-dark.png'"
+              alt="한국과학기술연구원 KIST"
+              class="h-[25px] w-[105px] shrink-0 object-contain"
+            />
+          </a>
+          <a
             href="https://kukistschool.korea.ac.kr/about/professor_view.html?no=22&page=1"
             target="_blank"
             rel="noopener noreferrer"
@@ -75,20 +89,6 @@ const isActive = (url: string) => {
               alt="고려대학교"
               class="h-6 w-[88px] shrink-0 object-contain"
               :style="isDark ? { filter: 'brightness(0) invert(1)' } : {}"
-            />
-          </a>
-          <a
-            href="https://kist.re.kr/ko/research/introduction-row-molecule.do"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="brand-link"
-            aria-label="KIST 공식 홈페이지 열기"
-            title="한국과학기술연구원 KIST"
-          >
-            <img
-              :src="isDark ? '/images/kist-logo.png' : '/images/kist-logo-dark.png'"
-              alt="한국과학기술연구원 KIST"
-              class="h-[25px] w-[105px] shrink-0 object-contain"
             />
           </a>
           <div class="h-8 w-px shrink-0" :style="isDark ? { background: 'rgba(255,255,255,0.2)' } : { background: 'rgba(0,0,0,0.15)' }" />

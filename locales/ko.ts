@@ -13,7 +13,7 @@ export default {
       darkMode: '다크 모드',
     },
     footer: {
-      labName: 'ARISE 연구실',
+      labName: 'ARISE LAB',
       university: '고려대학교-KIST 융합대학원',
       address: '서울특별시 성북구 화랑로 14길 5 한국과학기술연구원 L3연구동 3551',
       copyright: '© {year} ARISE Lab. All rights reserved.',
@@ -92,8 +92,8 @@ export default {
       email: '이메일',
       phone: '전화',
       directions: '오시는 길',
-      admissions: '대학원 지원 안내',
-      admissionsDesc: '대학원 지원에 관심 있는 학생은 연구 분야와 CV를 첨부하여 이메일로 문의해 주세요.',
+      admissions: '연구원 지원 안내',
+      admissionsDesc: '포스트닥 및 대학원 지원에 관심 있는 분은 CV를 제출해 주세요.',
     },
   },
 };

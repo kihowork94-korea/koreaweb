@@ -92,8 +92,8 @@ export default {
       email: 'メール',
       phone: '電話',
       directions: 'アクセス',
-      admissions: '大学院入学案内',
-      admissionsDesc: '研究室への参加に興味のある学生は、CVと研究テーマを添付してメールでお問い合わせください。',
+      admissions: '研究員募集案内',
+      admissionsDesc: 'ポスドクまたは大学院への応募に関心のある方は、CVをご提出ください。',
     },
   },
 };

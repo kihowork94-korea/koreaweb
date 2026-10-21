@@ -18,6 +18,7 @@ const partners = [
   { ko: '존스홉킨스대학교', en: 'Johns Hopkins' }, { ko: '하버드 의과대학', en: 'Harvard Medical' },
   { ko: 'Horizon Europe', en: 'Horizon Europe' }, { ko: 'KIST 유럽연구소', en: 'KIST Europe' },
   { ko: '고려대 안암병원', en: 'KU Anam Hospital' }, { ko: '서울아산병원', en: 'Asan Medical Center' },
+  { ko: '삼성서울병원', en: 'Samsung Medical Center' }, { ko: '전북대학교병원', en: 'JBNU Hospital' },
   { ko: '서울대병원', en: 'SNU Hospital' },
 ]
 const name = (item: { ko: string; en: string }) => locale.value === 'ko' ? item.ko : item.en

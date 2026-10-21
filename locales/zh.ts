@@ -92,8 +92,8 @@ export default {
       email: '电子邮件',
       phone: '电话',
       directions: '交通指南',
-      admissions: '研究生招生',
-      admissionsDesc: '有意加入本实验室的同学，欢迎通过电子邮件发送简历和研究兴趣进行联系。',
+      admissions: '研究人员招聘',
+      admissionsDesc: '有意申请博士后或研究生项目者，请提交个人简历。',
     },
   },
 };

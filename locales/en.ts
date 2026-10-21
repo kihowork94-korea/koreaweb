@@ -92,8 +92,8 @@ export default {
       email: 'Email',
       phone: 'Phone',
       directions: 'Directions',
-      admissions: 'Graduate Admissions',
-      admissionsDesc: 'Prospective students interested in joining our lab are welcome to contact us by email with your CV and research interests.',
+      admissions: 'Researcher Recruitment',
+      admissionsDesc: 'Prospective postdoctoral researchers and graduate students are invited to submit their CV.',
     },
   },
 };

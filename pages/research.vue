@@ -21,8 +21,8 @@ const partners = [
   { ko: 'KIST 유럽연구소', en: 'KIST Europe' },
   { ko: '고려대 안암병원', en: 'KU Anam Hospital' },
   { ko: '서울아산병원', en: 'Asan Medical Center' },
-  { ko: '전북대병원', en: 'JBNU Hospital' },
   { ko: '서울대병원', en: 'SNU Hospital' },
+  { ko: '전북대병원', en: 'JBNU Hospital' },
 ]
 const name = (item: { ko: string; en: string }) => locale.value === 'ko' ? item.ko : item.en
 </script>

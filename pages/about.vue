@@ -183,14 +183,13 @@ useIntersectionObserver(profileRef, ([e]) => { if (e.isIntersecting) profileVis.
 
             <!-- 링크들 -->
             <div class="flex flex-wrap gap-3">
-              <a
+              <span
                 v-if="professor?.email"
-                :href="`mailto:${professor.email}`"
-                class="flex items-center gap-1.5 text-sm font-medium text-[#D97720] transition-opacity hover:opacity-70"
+                class="flex items-center gap-1.5 text-sm font-medium text-[#D97720]"
               >
                 <span class="material-icons text-[16px]">mail</span>
                 {{ professor.email }}
-              </a>
+              </span>
               <a
                 v-if="professor?.homepage"
                 :href="professor.homepage"

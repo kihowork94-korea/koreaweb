@@ -1,4 +1,5 @@
 import { transformRows } from '~/server/utils/db-transform'
+import { latestPublications } from '~/data/latest-publications'
 
 const ALLOWED_PUBLIC_TABLES = [
   'members',
@@ -38,5 +39,27 @@ export default defineEventHandler(async (event) => {
     },
   })
 
-  return transformRows(table, data)
+  const rows = transformRows(table, data)
+
+  if (table === 'publications') {
+    const normalizeTitle = (title: string) => title.toLowerCase().replace(/[^\p{L}\p{N}]/gu, '')
+    const seenDois = new Set(rows.map((row: any) => row.doi?.toLowerCase()).filter(Boolean))
+    const seenTitles = new Set(rows.map((row: any) => normalizeTitle(row.title || '')))
+
+    for (const publication of latestPublications) {
+      const doi = publication.doi.toLowerCase()
+      const title = normalizeTitle(publication.title)
+      if (!seenDois.has(doi) && !seenTitles.has(title)) {
+        rows.push(publication)
+        seenDois.add(doi)
+        seenTitles.add(title)
+      }
+    }
+
+    return rows.sort((a: any, b: any) =>
+      b.year - a.year || (b.month ?? 0) - (a.month ?? 0) || String(b.id).localeCompare(String(a.id)),
+    )
+  }
+
+  return rows
 })

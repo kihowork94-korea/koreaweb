@@ -58,11 +58,10 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
                 <p class="mb-1 text-xs font-semibold uppercase tracking-wider text-[#D97720]">
                   {{ t('lab.contact.email') }}
                 </p>
-                <a
-                  :href="`mailto:${professorEmail}`"
-                  class="text-sm font-medium transition-opacity hover:opacity-70"
+                <p
+                  class="text-sm font-medium"
                   :class="isDark ? 'text-white/80' : 'text-gray-700'"
-                >{{ professorEmail }}</a>
+                >{{ professorEmail }}</p>
               </div>
             </div>
 
@@ -125,13 +124,13 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
             class="mb-5 text-sm leading-relaxed"
             :class="isDark ? 'text-white/55' : 'text-gray-500'"
           >{{ t('lab.contact.admissionsDesc') }}</p>
-          <a
-            :href="`mailto:${professorEmail}`"
-            class="inline-flex items-center gap-2 rounded-xl bg-[#D97720] px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-80"
+          <div
+            class="inline-flex items-center gap-2 rounded-xl border px-4 py-2.5 text-sm font-semibold"
+            :class="isDark ? 'border-white/10 bg-white/[0.04] text-white/75' : 'border-gray-200 bg-gray-50 text-gray-700'"
           >
             <span class="material-icons text-[16px]">mail</span>
-            {{ t('lab.contact.email') }}로 문의
-          </a>
+            {{ professorEmail }}
+          </div>
         </div>
 
         <!-- ── SNS 링크 ─────────────────────────── -->

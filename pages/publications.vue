@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { PublicationType } from '~/types/lab'
 import { useIntersectionObserver } from '@vueuse/core'
 
 const { t } = useI18n()
@@ -11,36 +10,12 @@ usePageSeo('publications')
 const { data: pubsRaw, pending } = useLabPublications()
 const publications = computed<any[]>(() => (pubsRaw.value as any[]) ?? [])
 
-// ── 필터 상태 ──────────────────────────────────
-type TypeFilter = PublicationType | 'all'
-
-const typeFilter = ref<TypeFilter>('all')
-const yearFilter = ref<number | 'all'>('all')
 const tagFilter  = ref<string>('all')
 
-const hasActiveFilter = computed(() =>
-  typeFilter.value !== 'all' || yearFilter.value !== 'all' || tagFilter.value !== 'all'
-)
+const hasActiveFilter = computed(() => tagFilter.value !== 'all')
 function resetFilters() {
-  typeFilter.value = 'all'
-  yearFilter.value = 'all'
   tagFilter.value  = 'all'
 }
-
-// ── 필터 옵션 ──────────────────────────────────
-const typeOptions: { key: TypeFilter; label: string }[] = [
-  { key: 'all',        label: t('lab.publication.all') },
-  { key: 'conference', label: t('lab.publication.conference') },
-  { key: 'journal',    label: t('lab.publication.journal') },
-  { key: 'patent',     label: t('lab.publication.patent') },
-  { key: 'preprint',   label: t('lab.publication.preprint') },
-  { key: 'book',       label: t('lab.publication.book') },
-]
-
-const availableYears = computed(() => {
-  const years = [...new Set(publications.value.map((p: any) => p.year))].sort((a: number, b: number) => b - a)
-  return years
-})
 
 const allTags = computed(() => {
   const tags = new Set<string>()
@@ -51,8 +26,6 @@ const allTags = computed(() => {
 // ── 필터 적용 ──────────────────────────────────
 const filtered = computed(() => {
   let list: any[] = [...publications.value]
-  if (typeFilter.value !== 'all') list = list.filter(p => p.type === typeFilter.value)
-  if (yearFilter.value !== 'all') list = list.filter(p => p.year === yearFilter.value)
   if (tagFilter.value  !== 'all') list = list.filter(p => p.tags?.includes(tagFilter.value))
   return list.sort((a, b) => b.year - a.year || (b.month ?? 0) - (a.month ?? 0))
 })
@@ -95,31 +68,7 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
       </div>
 
       <!-- ── 필터 ──────────────────────────────── -->
-      <div class="mb-10 flex flex-wrap items-center gap-4">
-
-        <!-- 종류 탭 -->
-        <div class="flex flex-wrap gap-2">
-          <button
-            v-for="opt in typeOptions.filter(o => o.key === 'all' || publications.some(p => p.type === o.key))"
-            :key="opt.key"
-            @click="typeFilter = opt.key"
-            class="rounded-full px-4 py-1.5 text-[13px] font-semibold transition-all"
-            :class="typeFilter === opt.key
-              ? 'bg-[#D97720] text-white shadow-md shadow-[#D97720]/20'
-              : isDark ? 'bg-white/[0.06] text-white/55 hover:bg-white/[0.10]' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'"
-          >{{ opt.label }}</button>
-        </div>
-
-        <!-- 연도 선택 -->
-        <select
-          v-model="yearFilter"
-          class="ml-auto rounded-xl border px-3 py-1.5 text-[13px] font-semibold outline-none transition-colors"
-          :class="[isDark ? 'bg-white/[0.06] border-white/10 text-white/70' : 'bg-white border-gray-200 text-gray-600', yearFilter !== 'all' ? 'ring-2 ring-[#D97720]/40' : '']"
-        >
-          <option value="all">{{ t('lab.publication.filterByYear') }}: 전체</option>
-          <option v-for="y in availableYears" :key="y" :value="y">{{ y }}</option>
-        </select>
-
+      <div v-if="allTags.length > 0" class="mb-10 flex flex-wrap items-center gap-4">
         <!-- 태그 선택 -->
         <select
           v-if="allTags.length > 0"
@@ -145,24 +94,6 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
       <!-- 활성 필터 요약 -->
       <div v-if="hasActiveFilter" class="mb-6 flex flex-wrap items-center gap-2 text-[13px]">
         <span :class="isDark ? 'text-white/40' : 'text-gray-400'">필터:</span>
-        <span
-          v-if="typeFilter !== 'all'"
-          class="flex items-center gap-1 rounded-full bg-[#D97720]/10 px-3 py-0.5 font-semibold text-[#D97720]"
-        >
-          {{ typeOptions.find(o => o.key === typeFilter)?.label }}
-          <button @click="typeFilter = 'all'" class="ml-0.5 hover:opacity-70">
-            <span class="material-icons text-[12px]">close</span>
-          </button>
-        </span>
-        <span
-          v-if="yearFilter !== 'all'"
-          class="flex items-center gap-1 rounded-full bg-[#D97720]/10 px-3 py-0.5 font-semibold text-[#D97720]"
-        >
-          {{ yearFilter }}년
-          <button @click="yearFilter = 'all'" class="ml-0.5 hover:opacity-70">
-            <span class="material-icons text-[12px]">close</span>
-          </button>
-        </span>
         <span
           v-if="tagFilter !== 'all'"
           class="flex items-center gap-1 rounded-full bg-[#D97720]/10 px-3 py-0.5 font-semibold text-[#D97720]"

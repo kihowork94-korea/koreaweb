@@ -216,15 +216,13 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
                       :class="isDark ? 'bg-white/8 text-white/55' : 'bg-gray-100 text-gray-500'"
                     >{{ loc(ri) }}</span>
                   </div>
-                  <a
+                  <div
                     v-if="member.email"
-                    :href="`mailto:${member.email}`"
                     class="mt-4 flex items-center gap-1 truncate text-xs text-[#d97720]"
-                    @click.stop
                   >
                     <span class="material-icons text-[14px]">mail</span>
                     <span class="truncate">{{ member.email }}</span>
-                  </a>
+                  </div>
                 </div>
               </div>
             </article>
@@ -306,10 +304,10 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
 
                 <!-- 링크 -->
                 <div class="mt-3 flex flex-wrap gap-3">
-                  <a v-if="selectedMember.email" :href="`mailto:${selectedMember.email}`"
-                    class="flex items-center gap-1 text-sm text-[#D97720] hover:opacity-70">
+                  <span v-if="selectedMember.email"
+                    class="flex items-center gap-1 text-sm text-[#D97720]">
                     <span class="material-icons text-[15px]">mail</span>{{ selectedMember.email }}
-                  </a>
+                  </span>
                   <a v-if="selectedMember.homepage" :href="selectedMember.homepage" target="_blank"
                     :class="['flex items-center gap-1 text-sm hover:opacity-70', isDark ? 'text-white/60' : 'text-gray-500']">
                     <span class="material-icons text-[15px]">language</span>{{ t('lab.member.homepage') }}

@@ -93,7 +93,7 @@ export default {
       phone: '전화',
       directions: '오시는 길',
       admissions: '연구원 지원 안내',
-      admissionsDesc: '포스트닥 및 대학원 지원에 관심 있는 분은 CV를 제출해 주세요.',
+      admissionsDesc: 'Postdoc 및 대학원 지원에 관심 있는 분은 CV를 제출해 주세요.',
     },
   },
 };

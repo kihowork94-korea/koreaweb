@@ -73,7 +73,7 @@ const name = (item: { ko: string; en: string }) => locale.value === 'ko' ? item.
 
       <section class="core-zone">
         <div class="orbit orbit-a"><i/></div><div class="orbit orbit-b"><i/></div><div class="orbit orbit-c"/>
-        <div class="vision-core"><strong>ARISE</strong><span>LAB</span></div>
+        <div class="vision-core"><AriseLogo style="height: 78px" /></div>
       </section>
 
       <section class="application-zone" aria-label="Clinical applications">
@@ -85,7 +85,7 @@ const name = (item: { ko: string; en: string }) => locale.value === 'ko' ? item.
 
       <section class="network-zone" aria-label="Collaboration network">
         <p class="zone-title"><span>03</span> GLOBAL NETWORK</p>
-        <div class="network-center"><span class="material-icons">hub</span><strong>ARISE LAB</strong></div>
+        <div class="network-center"><AriseLogo style="height: 54px" /></div>
         <svg class="network-lines" viewBox="0 0 1000 330" preserveAspectRatio="none" aria-hidden="true"><g><path d="M500 20 C500 100 90 80 90 250"/><path d="M500 20 C500 100 220 80 220 300"/><path d="M500 20 C500 130 365 100 365 250"/><path d="M500 20 L500 310"/><path d="M500 20 C500 130 635 100 635 250"/><path d="M500 20 C500 100 780 80 780 300"/><path d="M500 20 C500 100 910 80 910 250"/></g></svg>
         <div class="partner-field"><span v-for="(partner, i) in partners" :key="partner.en" class="partner" :class="`partner-${i + 1}`"><i/>{{ name(partner) }}</span></div>
       </section>

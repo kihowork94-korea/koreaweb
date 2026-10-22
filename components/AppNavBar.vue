@@ -97,7 +97,7 @@ const isActive = (url: string) => {
             :class="textClass"
             aria-label="ARISE Lab 메인으로 이동"
           >
-            <span class="whitespace-nowrap text-[13px] font-bold tracking-[-0.01em]">ARISE Lab</span>
+            <AriseLogo style="height: 40px" />
             <span class="whitespace-nowrap text-[11px] font-medium" :style="isDark ? { color: 'rgba(255,255,255,0.5)' } : { color: '#9ca3af' }">생체분자인식연구센터</span>
           </NuxtLink>
         </div>
@@ -107,7 +107,7 @@ const isActive = (url: string) => {
           :to="localePath('/')"
           :class="['mr-auto hidden text-[15px] font-bold leading-tight mobile:block', textClass]"
         >
-          ARISE Lab
+          <AriseLogo style="height: 48px" />
         </NuxtLink>
 
         <!-- 모바일 메뉴 버튼 -->
@@ -170,7 +170,7 @@ const isActive = (url: string) => {
 
         <!-- 모바일 로고 -->
         <div :class="['mb-8 text-center', textClass]">
-          <p class="text-xl font-bold">ARISE Lab</p>
+          <AriseLogo style="height: 76px; margin: auto" />
           <p :class="['text-sm', isDark ? 'text-white/50' : 'text-gray-400']">생체분자인식연구센터</p>
         </div>
 

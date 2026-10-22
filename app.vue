@@ -37,7 +37,7 @@ useHead(() => ({
           name: 'ARISE Lab',
           alternateName: ['ARISE 연구실', 'KU-KIST ARISE Lab'],
           url: siteUrl,
-          logo: `${siteUrl}/favicon.svg`,
+          logo: `${siteUrl}/images/arise-logo.png`,
           description: 'KIST 이관희 교수가 이끄는 고려대학교 KU-KIST 융합대학원 연구실로, AI와 나노바이오센서 기반 암·감염병 조기진단을 연구합니다.',
           email: 'kwanhyi@korea.ac.kr',
           telephone: '+82-2-958-6804',

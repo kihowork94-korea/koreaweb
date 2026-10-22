@@ -129,14 +129,7 @@ export default defineNuxtConfig({
     lazy: true,
     langDir: '../locales',
     strategy: 'prefix_except_default',
-    detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: 'i18n_locale',
-      cookieSecure: true,
-      redirectOn: 'root',
-      alwaysRedirect: false,
-      fallbackLocale: 'ko',
-    },
+    detectBrowserLanguage: false,
     compilation: {
       strictMessage: false,
       escapeHtml: false,
@@ -202,9 +195,8 @@ export default defineNuxtConfig({
         { name: 'msapplication-TileColor', content: '#3F3F46' },
       ],
       link: [
-        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        { rel: 'apple-touch-icon', sizes: '180x180', href: '/favicon.svg' },
+        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/arise-favicon.png' },
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/arise-apple-touch.png' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         { rel: 'preload', as: 'style', href: '/fonts/fonts.css' },

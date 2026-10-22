@@ -18,6 +18,8 @@ const currentLocale = computed(
 )
 
 const selectLocale = async (code: string) => {
+  const preference = useCookie('i18n_locale', { maxAge: 60 * 60 * 24 * 365, sameSite: 'lax', path: '/' })
+  preference.value = code
   showDropdown.value = false
   await setLocale(code as Parameters<typeof setLocale>[0])
 }

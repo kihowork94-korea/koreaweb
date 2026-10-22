@@ -51,7 +51,7 @@ useIntersectionObserver(sectionRef, ([entry]) => { if (entry.isIntersecting) isV
             </div>
           </div>
         </section>
-        <div class="arise-core" aria-label="ARISE Lab"><strong>ARISE</strong><span>LAB</span></div>
+        <div class="arise-core" aria-label="ARISE Lab"><AriseLogo style="height: 78px" /></div>
         <section class="tree-zone application-zone" aria-label="Clinical vision">
           <p class="zone-label"><span>02</span> CLINICAL VISION</p>
           <div class="application-grid">
@@ -60,7 +60,7 @@ useIntersectionObserver(sectionRef, ([entry]) => { if (entry.isIntersecting) isV
         </section>
         <section class="tree-zone network-zone" aria-label="Global network">
           <p class="zone-label"><span>03</span> GLOBAL NETWORK</p>
-          <div class="network-hub"><span class="material-icons">hub</span> ARISE LAB</div>
+          <div class="network-hub"><AriseLogo style="height: 60px" /></div>
           <div class="partner-list"><span v-for="partner in partners" :key="partner.en"><i />{{ name(partner) }}</span></div>
         </section>
       </div>

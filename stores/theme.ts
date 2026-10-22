@@ -3,8 +3,8 @@ import { defineStore } from 'pinia'
 export type ThemeMode = 'dark' | 'light' | 'system'
 
 export const useThemeStore = defineStore('theme', () => {
-  const themeMode = ref<ThemeMode>('system')
-  const resolvedTheme = ref<'dark' | 'light'>('dark')
+  const themeMode = ref<ThemeMode>('light')
+  const resolvedTheme = ref<'dark' | 'light'>('light')
 
   // 시스템 테마 감지
   function getSystemTheme(): 'dark' | 'light' {
@@ -13,16 +13,14 @@ export const useThemeStore = defineStore('theme', () => {
         ? 'dark'
         : 'light'
     }
-    return 'dark'
+    return 'light'
   }
 
   // 초기화
   function init() {
     if (import.meta.client) {
-      const savedTheme = localStorage.getItem('theme') as ThemeMode | null
-      if (savedTheme) {
-        themeMode.value = savedTheme
-      }
+      // Every new visit starts in light mode; visitors can still toggle manually.
+      themeMode.value = 'light'
       updateResolvedTheme()
 
       // 시스템 테마 변경 감지

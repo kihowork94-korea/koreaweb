@@ -45,16 +45,6 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 
     <!-- 콘텐츠 -->
     <div class="relative z-10 flex flex-col items-center gap-5">
-      <!-- 소속 배지 -->
-      <div
-        class="animate-fade-in-up inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold uppercase tracking-widest"
-        :class="isDark ? 'border-[#D97720]/40 text-[#D97720]/80 bg-[#D97720]/5' : 'border-[#D97720]/30 text-[#D97720] bg-[#D97720]/5'"
-        style="animation-delay: 0ms"
-      >
-        <span class="h-1.5 w-1.5 rounded-full bg-[#D97720] animate-pulse" />
-        {{ univ }}
-      </div>
-
       <!-- 연구실 이름 -->
       <h1
         class="animate-fade-in-up text-6xl font-extrabold leading-[1.1] tracking-tight mobile:text-4xl"

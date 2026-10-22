@@ -26,8 +26,8 @@ const partners = [
   { ko: '인천대학교', en: 'Incheon National University' },
   { ko: '고려대 안암병원', en: 'KU Anam Hospital' },
   { ko: '서울아산병원', en: 'Asan Medical Center' },
-  { ko: '서울대병원', en: 'SNU Hospital' },
   { ko: '전북대병원', en: 'JBNU Hospital' },
+  { ko: '서울대병원', en: 'SNU Hospital' },
 ]
 const name = (item: { ko: string; en: string }) => locale.value === 'ko' ? item.ko : item.en
 </script>
@@ -90,7 +90,6 @@ const name = (item: { ko: string; en: string }) => locale.value === 'ko' ? item.
         <div class="partner-field"><span v-for="(partner, i) in partners" :key="partner.en" class="partner" :class="`partner-${i + 1}`"><i/>{{ name(partner) }}</span></div>
       </section>
 
-      <p class="confirm-note">※ {{ locale === 'ko' ? '최종 공개 전 협업 범위와 기관 명칭을 확인합니다.' : 'Institution names and scope will be confirmed before publication.' }}</p>
     </div>
   </div>
 </template>

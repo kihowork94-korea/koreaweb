@@ -195,8 +195,8 @@ export default defineNuxtConfig({
         { name: 'msapplication-TileColor', content: '#3F3F46' },
       ],
       link: [
-        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/arise-favicon.png' },
-        { rel: 'apple-touch-icon', sizes: '180x180', href: '/arise-apple-touch.png' },
+        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/arise-symbol-32.png' },
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/arise-symbol-180.png' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         { rel: 'preload', as: 'style', href: '/fonts/fonts.css' },

@@ -61,7 +61,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
         :class="isDark ? 'text-white' : 'text-gray-900'"
         style="animation-delay: 100ms"
       >
-        <AriseLogo style="height: clamp(150px, 24vw, 230px)" />
+        ARISE Lab
       </h1>
 
       <!-- ARISE 약어 풀이 -->

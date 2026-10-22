@@ -98,7 +98,6 @@ const isActive = (url: string) => {
             aria-label="ARISE Lab 메인으로 이동"
           >
             <AriseLogo style="height: 40px" />
-            <span class="whitespace-nowrap text-[11px] font-medium" :style="isDark ? { color: 'rgba(255,255,255,0.5)' } : { color: '#9ca3af' }">생체분자인식연구센터</span>
           </NuxtLink>
         </div>
 
@@ -171,7 +170,6 @@ const isActive = (url: string) => {
         <!-- 모바일 로고 -->
         <div :class="['mb-8 text-center', textClass]">
           <AriseLogo style="height: 76px; margin: auto" />
-          <p :class="['text-sm', isDark ? 'text-white/50' : 'text-gray-400']">생체분자인식연구센터</p>
         </div>
 
         <nav class="flex flex-col items-center gap-5">

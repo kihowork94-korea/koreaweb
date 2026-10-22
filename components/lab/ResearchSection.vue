@@ -16,7 +16,10 @@ const applications = [
 ]
 const partners = [
   { ko: '존스홉킨스대학교', en: 'Johns Hopkins' }, { ko: '하버드 의과대학', en: 'Harvard Medical' },
+  { ko: 'UIUC', en: 'UIUC' }, { ko: '프랑스 IBENS', en: 'IBENS, France' },
   { ko: 'Horizon Europe', en: 'Horizon Europe' }, { ko: 'KIST 유럽연구소', en: 'KIST Europe' },
+  { ko: '나노종합기술원', en: 'National NanoFab Center' }, { ko: '이화여자대학교', en: 'Ewha Womans University' },
+  { ko: '인천대학교', en: 'Incheon National University' },
   { ko: '전북대학교병원', en: 'JBNU Hospital' }, { ko: '고려대 안암병원', en: 'KU Anam Hospital' },
   { ko: '서울아산병원', en: 'Asan Medical Center' }, { ko: '삼성서울병원', en: 'Samsung Medical Center' },
   { ko: '서울대병원', en: 'SNU Hospital' },
@@ -94,5 +97,19 @@ useIntersectionObserver(sectionRef, ([entry]) => { if (entry.isIntersecting) isV
   .keyword-list span{padding:.3rem .45rem;font-size:.58rem}
   .application-node{width:108px;height:108px}
   .network-zone{top:665px}
+}
+
+/* Keep the expanded collaboration list readable at every width. */
+.research-tree { min-height: 920px; }
+.partner-list { max-width: 960px; gap: .8rem 1.25rem; }
+.partner-list span {
+  min-width: 0;
+  line-height: 1.35;
+  white-space: normal;
+}
+.partner-list i { flex: none; }
+@media(max-width:800px){
+  .research-tree { min-height: 0; }
+  .partner-list { gap: .7rem 1rem; }
 }
 </style>

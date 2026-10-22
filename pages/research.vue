@@ -17,8 +17,13 @@ const applications = [
 const partners = [
   { ko: '존스홉킨스대학교', en: 'Johns Hopkins' },
   { ko: '하버드 의과대학', en: 'Harvard Medical' },
+  { ko: 'UIUC', en: 'UIUC' },
+  { ko: '프랑스 IBENS', en: 'IBENS, France' },
   { ko: 'Horizon Europe', en: 'Horizon Europe' },
   { ko: 'KIST 유럽연구소', en: 'KIST Europe' },
+  { ko: '나노종합기술원', en: 'National NanoFab Center' },
+  { ko: '이화여자대학교', en: 'Ewha Womans University' },
+  { ko: '인천대학교', en: 'Incheon National University' },
   { ko: '고려대 안암병원', en: 'KU Anam Hospital' },
   { ko: '서울아산병원', en: 'Asan Medical Center' },
   { ko: '서울대병원', en: 'SNU Hospital' },
@@ -366,5 +371,44 @@ const name = (item: { ko: string; en: string }) => locale.value === 'ko' ? item.
   .satellite { padding: .34rem .48rem; font-size: .62rem; }
   .app-bubble { width: 125px; height: 125px; }
   .partner { font-size: .62rem; }
+}
+
+/* Partner names use natural flow so additional institutions never overlap. */
+.network-lines { display: none; }
+.partner-field {
+  position: absolute;
+  top: 100px;
+  left: 3%;
+  right: 3%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: center;
+  gap: 1rem 1.7rem;
+}
+.partner {
+  position: static !important;
+  display: flex;
+  min-width: 0;
+  transform: none !important;
+  align-items: center;
+  gap: .45rem;
+  line-height: 1.35;
+  text-align: left;
+  white-space: normal;
+}
+.partner i { flex: none; }
+@media (max-width: 800px) {
+  .partner-field {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    margin-top: 20px;
+    gap: .8rem 1rem;
+  }
+}
+@media (min-width: 801px) and (max-width: 1050px) {
+  .partner-field { left: 5%; right: 5%; gap: .8rem 1.1rem; }
 }
 </style>

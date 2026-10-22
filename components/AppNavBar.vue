@@ -88,7 +88,6 @@ const isActive = (url: string) => {
               src="/images/ku-logo.png"
               alt="고려대학교"
               class="h-6 w-[88px] shrink-0 object-contain"
-              :style="isDark ? { filter: 'brightness(0) invert(1)' } : {}"
             />
           </a>
           <div class="h-8 w-px shrink-0" :style="isDark ? { background: 'rgba(255,255,255,0.2)' } : { background: 'rgba(0,0,0,0.15)' }" />

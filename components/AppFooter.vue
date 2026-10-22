@@ -15,8 +15,6 @@ const navLinks = computed(() => [
   { key: 'lab.nav.members',      url: '/members' },
   { key: 'lab.nav.research',     url: '/research' },
   { key: 'lab.nav.publications', url: '/publications' },
-  { key: 'lab.nav.projects',     url: '/projects' },
-  { key: 'lab.nav.news',         url: '/news' },
   { key: 'lab.nav.contact',      url: '/contact' },
 ])
 
@@ -50,7 +48,7 @@ const linkClass = computed(() => isDark.value ? 'text-white/60 hover:text-white'
           </div>
 
           <!-- 네비게이션 -->
-          <nav class="flex flex-wrap gap-x-6 gap-y-2 mobile:gap-x-5">
+          <nav class="flex flex-wrap justify-end gap-x-6 gap-y-2 mobile:w-full mobile:justify-start mobile:gap-x-5">
             <NuxtLink
               v-for="link in navLinks"
               :key="link.key"

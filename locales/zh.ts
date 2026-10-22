@@ -66,6 +66,7 @@ export default {
       filterByYear: '年份',
       filterByType: '类型',
       filterByTag: '标签',
+      correspondingAuthor: '* 通讯作者',
       noResults: '未找到相关论文。',
     },
     project: {

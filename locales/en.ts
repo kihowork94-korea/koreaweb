@@ -66,6 +66,7 @@ export default {
       filterByYear: 'Year',
       filterByType: 'Type',
       filterByTag: 'Tag',
+      correspondingAuthor: '* Corresponding author',
       noResults: 'No publications found.',
     },
     project: {

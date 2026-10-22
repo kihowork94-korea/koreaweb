@@ -65,6 +65,9 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
         <p class="mt-2 text-sm" :class="isDark ? 'text-white/40' : 'text-gray-400'">
           {{ publications.length }} publications
         </p>
+        <p class="mt-1 text-xs" :class="isDark ? 'text-white/45' : 'text-gray-500'">
+          {{ t('lab.publication.correspondingAuthor') }}
+        </p>
       </div>
 
       <!-- ── 필터 ──────────────────────────────── -->

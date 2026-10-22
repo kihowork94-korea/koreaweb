@@ -66,6 +66,7 @@ export default {
       filterByYear: '연도',
       filterByType: '종류',
       filterByTag: '태그',
+      correspondingAuthor: '* 교신저자',
       noResults: '해당하는 논문이 없습니다.',
     },
     project: {

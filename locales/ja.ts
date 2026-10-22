@@ -66,6 +66,7 @@ export default {
       filterByYear: '年度',
       filterByType: '種類',
       filterByTag: 'タグ',
+      correspondingAuthor: '* 責任著者',
       noResults: '該当する論文がありません。',
     },
     project: {

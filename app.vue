@@ -5,9 +5,14 @@ const siteUrl = 'https://www.ariselab.kr'
 const canonicalUrl = computed(() => `${siteUrl}${route.path === '/' ? '' : route.path}`)
 
 useSeoMeta({
-  ogImage: `${siteUrl}/images/members/workshop-2024.webp`,
-  ogImageAlt: 'ARISE Lab research team',
-  twitterImage: `${siteUrl}/images/members/workshop-2024.webp`,
+  ogImage: `${siteUrl}/images/arise-share-20261023.png`,
+  ogImageSecureUrl: `${siteUrl}/images/arise-share-20261023.png`,
+  ogImageType: 'image/png',
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  ogImageAlt: 'ARISELAB — KIST & Korea University',
+  twitterImage: `${siteUrl}/images/arise-share-20261023.png`,
+  twitterImageAlt: 'ARISELAB — KIST & Korea University',
 })
 
 useHead(() => ({

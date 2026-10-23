@@ -97,7 +97,7 @@ const isActive = (url: string) => {
             :class="textClass"
             aria-label="ARISE Lab 메인으로 이동"
           >
-            <AriseLogo style="height: 40px" />
+            <AriseWordmark style="width: 112px" />
           </NuxtLink>
         </div>
 
@@ -106,7 +106,7 @@ const isActive = (url: string) => {
           :to="localePath('/')"
           :class="['mr-auto hidden text-[15px] font-bold leading-tight mobile:block', textClass]"
         >
-          <AriseLogo style="height: 48px" />
+          <AriseWordmark style="width: 130px" />
         </NuxtLink>
 
         <!-- 모바일 메뉴 버튼 -->
@@ -169,7 +169,7 @@ const isActive = (url: string) => {
 
         <!-- 모바일 로고 -->
         <div :class="['mb-8 text-center', textClass]">
-          <AriseLogo style="height: 76px; margin: auto" />
+          <AriseWordmark style="width: 180px; margin: auto" />
         </div>
 
         <nav class="flex flex-col items-center gap-5">

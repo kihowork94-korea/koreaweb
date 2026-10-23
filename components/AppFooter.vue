@@ -41,7 +41,7 @@ const linkClass = computed(() => isDark.value ? 'text-white/60 hover:text-white'
               :to="localePath('/')"
               :class="['text-[17px] font-bold transition-opacity hover:opacity-70', isDark ? 'text-white' : 'text-gray-900']"
             >
-              <AriseLogo style="height: 84px" />
+              <AriseWordmark style="width: 175px" />
             </NuxtLink>
             <p :class="['text-[13px]', subTextClass]">{{ labInfo ? loc(labInfo.university) : t('lab.footer.university') }}</p>
             <p :class="['text-[13px]', subTextClass]">{{ labInfo ? loc(labInfo.location?.address) : t('lab.footer.address') }}</p>

@@ -19,7 +19,11 @@ export function transformRows(table: string, rows: any[]): any[] {
 
 function transformMember(row: any) {
   const cleanText = (value: any): any => {
-    if (typeof value === 'string') return value.replace(/임시/g, '').replace(/융합/g, '融合').trim()
+    if (typeof value === 'string') {
+      if (/실제|입력|入력/.test(value)) return ''
+      return value.replace(/임시/g, '').replace(/융합/g, '融合')
+        .replace(/화학/g, '化学').replace(/학교수/g, '学教授').replace(/학/g, '学').trim()
+    }
     if (Array.isArray(value)) return value.map(cleanText)
     if (value && typeof value === 'object') return Object.fromEntries(Object.entries(value).map(([key, text]) => [key, key === 'ko' ? text : cleanText(text)]))
     return value

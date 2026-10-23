@@ -210,7 +210,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
                   <p class="mb-4 text-sm leading-relaxed line-clamp-3" :class="isDark ? 'text-white/50' : 'text-gray-500'">{{ loc(member.bio) || '—' }}</p>
                   <div class="flex flex-wrap gap-1.5">
                     <span
-                      v-for="ri in member.researchInterests.slice(0, 2)"
+                      v-for="ri in (member.role === 'professor' ? member.researchInterests : member.researchInterests.slice(0, 2))"
                       :key="loc(ri)"
                       class="rounded-full px-2.5 py-0.5 text-[11px] font-medium"
                       :class="isDark ? 'bg-white/8 text-white/55' : 'bg-gray-100 text-gray-500'"

@@ -2,6 +2,8 @@
  * DB에서 반환되는 snake_case 컬럼명을 페이지/컴포넌트가 기대하는 camelCase로 변환
  */
 
+import { professorProfile } from '~/data/professor-profile'
+
 export function transformRows(table: string, rows: any[]): any[] {
   switch (table) {
     case 'members':       return rows.map(transformMember)
@@ -15,6 +17,14 @@ export function transformRows(table: string, rows: any[]): any[] {
 }
 
 function transformMember(row: any) {
+  if (row.role === 'professor' && (row.name?.ko === '이관희' || row.name?.en === 'Kwan Hyi Lee')) {
+    row = {
+      ...row,
+      bio: { ...row.bio, ko: professorProfile.affiliation },
+      description: { ...row.description, ko: professorProfile.description },
+      research_interests: professorProfile.keywords,
+    }
+  }
   const {
     image_url, research_interests, research_description, google_scholar, cv_url,
     publication_ids, graduated_year, graduated_degree, current_position,

@@ -139,7 +139,7 @@ useIntersectionObserver(profileRef, ([e]) => { if (e.isIntersecting) profileVis.
                 :class="isDark ? 'text-white' : 'text-gray-900'"
               >{{ professor ? loc(professor.name) : '' }}</h2>
               <p class="mt-1 text-base font-medium text-[#D97720]">
-                {{ labInfo ? loc(labInfo.university) : '' }}
+                {{ professor ? loc(professor.bio) : '' }}
               </p>
             </div>
 

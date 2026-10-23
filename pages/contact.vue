@@ -2,6 +2,7 @@
 import { useIntersectionObserver } from '@vueuse/core'
 
 const { locale, t } = useI18n()
+const labels = useLocalizedLabels()
 const themeStore = useThemeStore()
 const isDark = computed(() => themeStore.isDark)
 
@@ -149,7 +150,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
           <h2
             class="mb-5 text-lg font-bold"
             :class="isDark ? 'text-white' : 'text-gray-900'"
-          >온라인 채널</h2>
+          >{{ labels.channels }}</h2>
           <div class="flex flex-col gap-3">
             <a
               v-if="labInfo?.sns?.github"

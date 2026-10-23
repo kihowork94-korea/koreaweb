@@ -2,6 +2,7 @@
 import { useIntersectionObserver } from '@vueuse/core'
 
 const { locale, t } = useI18n()
+const labels = useLocalizedLabels()
 const themeStore = useThemeStore()
 const isDark = computed(() => themeStore.isDark)
 
@@ -98,7 +99,7 @@ useIntersectionObserver(profileRef, ([e]) => { if (e.isIntersecting) profileVis.
           <h2
             class="text-3xl font-bold"
             :class="isDark ? 'text-white' : 'text-gray-900'"
-          >지도교수</h2>
+          >{{ labels.principal }}</h2>
         </div>
 
         <!-- 교수 데이터 없을 때 빈 상태 -->

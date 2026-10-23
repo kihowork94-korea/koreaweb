@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { introductionTranslations } from '~/data/introduction-translations'
 defineProps<{ fallback?: string }>()
 const { locale } = useI18n()
+const translated = computed(() => introductionTranslations[locale.value as keyof typeof introductionTranslations] || introductionTranslations.en)
 const fields = [
   { title: '지능형 바이오센싱 플랫폼', text: '반도체 기반, 전기화학 기반, 나노입자 기반 센싱 플랫폼을 개발합니다. 분자인식 소재와 신호변환 계면을 설계해 다양한 생체 표적을 고감도·고선택적으로 검출합니다.' },
   { title: '멀티오믹스 기반 바이오마커 발굴', text: '노화, 암 진단, 바이러스 검출 분야를 다룹니다. 멀티오믹스 데이터에서 진단 바이오마커를 찾고, 이를 센서 기반 진단 기술로 구현합니다.' },
@@ -33,7 +35,19 @@ const systems = [
     <p>Johns Hopkins University, Harvard Medical School, 고려대학교 안암병원, 전북대병원, 서울아산병원, 삼성서울병원 등과 공동연구를 수행하며, 실험실 성과가 실제 환자 진료로 이어지도록 검증하고 있습니다. 연구 성과의 사업화를 위해 바이오 진단기업 nMD-Bio를 창업했습니다.</p>
     <p class="mt-6">ARISE Lab은 공학, 의학, 데이터과학의 경계를 넘나들며 대한민국의 삶의 질을 한차원 높일 수 있는 미래의학을 만들어 갑니다.</p>
   </div>
-  <p v-else class="text-base leading-[1.9]">{{ fallback }}</p>
+  <div v-else class="lab-introduction text-base leading-[1.9]">
+    <p>{{ translated.intro }}</p>
+    <h3>{{ translated.research }}</h3>
+    <ul>
+      <li v-for="field in translated.fields" :key="field[0]"><strong>{{ field[0] }}:</strong> {{ field[1] }}</li>
+      <li><strong>{{ translated.systemTitle }}:</strong> {{ translated.systemText }}
+        <ul><li v-for="system in translated.systems" :key="system[0]"><strong>{{ system[0] }}:</strong> {{ system[1] }}</li></ul>
+      </li>
+    </ul>
+    <h3>{{ translated.clinical }}</h3>
+    <p>{{ translated.collaboration }}</p>
+    <p class="mt-6">{{ translated.closing }}</p>
+  </div>
 </template>
 
 <style scoped>

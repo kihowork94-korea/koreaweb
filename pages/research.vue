@@ -29,7 +29,7 @@ const partners = [
   { ko: '전북대병원', en: 'JBNU Hospital' },
   { ko: '서울대병원', en: 'SNU Hospital' },
 ]
-const name = (item: { ko: string; en: string }) => locale.value === 'ko' ? item.ko : item.en
+const name = useResearchName()
 </script>
 
 <template>

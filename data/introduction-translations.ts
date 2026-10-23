@@ -1,0 +1,62 @@
+export const introductionTranslations = {
+  en: {
+    intro: 'Based at the KIST Center for Advanced Biomolecular Recognition and the KU-KIST Graduate School of Converging Science and Technology at Korea University, ARISE Lab integrates biosensors and artificial intelligence into a unified diagnostic system. Our research goes beyond detecting biomolecules: we interpret their interconnected signals, explain the evidence behind the results, and translate these insights into clinical decisions.',
+    research: 'Core Research Areas',
+    fields: [
+      ['Intelligent Biosensing Platforms', 'We develop semiconductor, electrochemical, and nanoparticle-based sensing platforms. By designing molecular recognition materials and signal transduction interfaces, we detect diverse biological targets with high sensitivity and selectivity.'],
+      ['Multi-omics Biomarker Discovery', 'Our work addresses aging, cancer diagnosis, and virus detection. We identify diagnostic biomarkers in multi-omics data and translate them into sensor-based diagnostic technologies.'],
+      ['Trustworthy Medical AI', 'Explainable AI (XAI) presents the evidence behind diagnostic results in a way clinicians can understand. Federated learning enables institutions to train models collaboratively without transferring patient data outside their hospitals.'],
+    ],
+    systemTitle: 'Addressing National Healthcare Needs',
+    systemText: 'We develop intelligent diagnostic and monitoring technologies to address structural challenges in healthcare.',
+    systems: [
+      ['Emergency Department Technologies', 'Rapid point-of-care diagnostics and AI-based risk prediction support patient triage and initial assessment in emergency departments.'],
+      ['AI-Enabled Wards', 'Real-time analysis of inpatient biosignals and biomarkers enables intelligent wards that detect deterioration early.'],
+      ['HOME Wards', 'Home diagnostic devices and remote monitoring enable continuous, ward-level patient care outside the hospital.'],
+      ['Disaster Medicine Technologies', 'We develop portable diagnostics for immediate use in resource-limited settings, including infectious disease outbreaks and major disasters.'],
+    ],
+    clinical: 'Clinical and Industry Collaboration',
+    collaboration: 'We collaborate with Johns Hopkins University, Harvard Medical School, Korea University Anam Hospital, Jeonbuk National University Hospital, Asan Medical Center, and Samsung Medical Center, among others, validating laboratory advances for use in patient care. To commercialize our research, we founded the biodiagnostics company nMD-Bio.',
+    closing: 'Bridging engineering, medicine, and data science, ARISE Lab is shaping the future of medicine to improve quality of life in Korea.',
+  },
+  zh: {
+    intro: 'ARISE Lab依托KIST先进生物分子识别研究中心和高丽大学KU-KIST融合研究生院，致力于将生物传感器与人工智能整合为统一的诊断系统。我们的研究不仅限于检测生物分子，还涵盖解读生物分子之间相互关联的信号、解释诊断依据，并将研究结果转化为实际临床决策的全过程。',
+    research: '核心研究领域',
+    fields: [
+      ['智能生物传感平台', '我们开发基于半导体、电化学和纳米颗粒的传感平台，通过设计分子识别材料和信号转换界面，实现对多种生物靶标的高灵敏度、高选择性检测。'],
+      ['基于多组学的生物标志物发现', '研究涵盖衰老、癌症诊断和病毒检测。我们从多组学数据中发现诊断生物标志物，并将其转化为基于传感器的诊断技术。'],
+      ['可信赖的医疗人工智能', '通过可解释人工智能（XAI），以临床医师能够理解的方式呈现诊断结果的依据。通过联邦学习，多家机构无需将患者数据传出医院即可协同训练模型。'],
+    ],
+    systemTitle: '应对国家医疗体系需求',
+    systemText: '我们开发智能诊断与监测技术，应对医疗现场的结构性挑战。',
+    systems: [
+      ['急诊智能技术', '利用快速现场诊断和基于人工智能的风险预测，支持急诊患者分诊与初步判断。'],
+      ['人工智能病房', '实时分析住院患者的生理信号与生物标志物，构建能够及早发现病情恶化的智能病房。'],
+      ['HOME居家病房', '连接家用诊断设备与远程监测，使患者在院外也能获得病房级的持续照护。'],
+      ['灾难医学现场技术', '开发适用于传染病流行、大型灾难等医疗资源有限场景的便携式现场诊断技术。'],
+    ],
+    clinical: '临床与产业合作',
+    collaboration: '我们与约翰斯·霍普金斯大学、哈佛医学院、高丽大学安岩医院、全北大学医院、首尔峨山医院、三星首尔医院等开展合作研究，验证实验室成果在实际患者诊疗中的应用。为推动研究成果商业化，我们创立了生物诊断企业nMD-Bio。',
+    closing: 'ARISE Lab跨越工程学、医学与数据科学的边界，致力于创造能够进一步提高韩国民众生活质量的未来医学。',
+  },
+  ja: {
+    intro: 'ARISE Labは、KIST先端生体分子認識研究センターと高麗大学KU-KIST融合大学院を拠点に、バイオセンサーと人工知能を一つの診断システムへ統合する研究室です。生体分子の検出にとどまらず、相互に関連する信号を解釈し、その根拠を説明して実際の臨床判断につなげるまでの過程全体を研究しています。',
+    research: '主な研究分野',
+    fields: [
+      ['インテリジェント・バイオセンシング基盤', '半導体、電気化学、ナノ粒子を用いたセンシング基盤を開発します。分子認識材料と信号変換界面を設計し、多様な生体標的を高感度・高選択的に検出します。'],
+      ['マルチオミクスによるバイオマーカー探索', '老化、がん診断、ウイルス検出を対象に、マルチオミクスデータから診断バイオマーカーを見いだし、センサーによる診断技術として実装します。'],
+      ['信頼できる医療AI', '説明可能AI（XAI）により、診断結果の根拠を医療従事者が理解できる形で提示します。連合学習では、患者データを病院外へ持ち出さずに複数の機関が共同でモデルを学習できるようにします。'],
+    ],
+    systemTitle: '国家医療システムの課題への対応',
+    systemText: '医療現場の構造的な課題に対応する知能型診断・モニタリング技術を開発します。',
+    systems: [
+      ['救急医療向け知能型技術', '迅速な現場診断とAIによるリスク予測を通じ、救急部門のトリアージと初期判断を支援します。'],
+      ['AI特化病棟', '入院患者の生体信号とバイオマーカーをリアルタイムに分析し、状態悪化を早期に検知する知能型病棟を実現します。'],
+      ['HOME病棟', '家庭用診断機器と遠隔モニタリングを連携し、病院外でも病棟水準の継続的な患者ケアを可能にします。'],
+      ['災害医療の現場技術', '感染症の流行や大規模災害など、医療資源が限られた状況で直ちに使える携帯型診断技術を開発します。'],
+    ],
+    clinical: '臨床・産業との連携',
+    collaboration: 'ジョンズ・ホプキンス大学、ハーバード大学医学部、高麗大学安岩病院、全北大学病院、ソウル峨山病院、サムスンソウル病院などと共同研究を行い、研究成果が実際の患者診療につながるよう検証しています。成果の事業化に向け、バイオ診断企業nMD-Bioを設立しました。',
+    closing: 'ARISE Labは工学、医学、データ科学の境界を越え、韓国の人々の生活の質をさらに高める未来医療を創り出します。',
+  },
+}

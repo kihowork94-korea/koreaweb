@@ -3,6 +3,7 @@
  */
 
 import { professorProfile } from '~/data/professor-profile'
+import { profileTranslations } from '~/data/profile-translations'
 
 export function transformRows(table: string, rows: any[]): any[] {
   switch (table) {
@@ -17,11 +18,18 @@ export function transformRows(table: string, rows: any[]): any[] {
 }
 
 function transformMember(row: any) {
+  const cleanText = (value: any): any => {
+    if (typeof value === 'string') return value.replace(/임시/g, '').replace(/융합/g, '融合').trim()
+    if (Array.isArray(value)) return value.map(cleanText)
+    if (value && typeof value === 'object') return Object.fromEntries(Object.entries(value).map(([key, text]) => [key, key === 'ko' ? text : cleanText(text)]))
+    return value
+  }
+  row = cleanText(row)
   if (row.role === 'professor' && (row.name?.ko === '이관희' || row.name?.en === 'Kwan Hyi Lee')) {
     row = {
       ...row,
-      bio: { ...row.bio, ko: professorProfile.affiliation },
-      description: { ...row.description, ko: professorProfile.description },
+      bio: { ...row.bio, ...profileTranslations.affiliation, ko: professorProfile.affiliation },
+      description: { ...row.description, ...profileTranslations.description, ko: professorProfile.description },
       research_interests: professorProfile.keywords,
     }
   }

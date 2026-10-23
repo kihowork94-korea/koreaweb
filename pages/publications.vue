@@ -2,6 +2,7 @@
 import { useIntersectionObserver } from '@vueuse/core'
 
 const { t } = useI18n()
+const labels = useLocalizedLabels()
 const themeStore = useThemeStore()
 const isDark = computed(() => themeStore.isDark)
 
@@ -79,7 +80,7 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
           class="rounded-xl border px-3 py-1.5 text-[13px] font-semibold outline-none transition-colors"
           :class="[isDark ? 'bg-white/[0.06] border-white/10 text-white/70' : 'bg-white border-gray-200 text-gray-600', tagFilter !== 'all' ? 'ring-2 ring-[#D97720]/40' : '']"
         >
-          <option value="all">{{ t('lab.publication.filterByTag') }}: 전체</option>
+          <option value="all">{{ t('lab.publication.filterByTag') }}: {{ t('lab.common.all') }}</option>
           <option v-for="tag in allTags" :key="tag" :value="tag">{{ tag }}</option>
         </select>
 
@@ -90,13 +91,13 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
           class="flex items-center gap-1 rounded-full px-3 py-1.5 text-[12px] font-semibold text-[#D97720] transition-colors hover:bg-[#D97720]/10"
         >
           <span class="material-icons text-[14px]">close</span>
-          필터 초기화
+          {{ labels.reset }}
         </button>
       </div>
 
       <!-- 활성 필터 요약 -->
       <div v-if="hasActiveFilter" class="mb-6 flex flex-wrap items-center gap-2 text-[13px]">
-        <span :class="isDark ? 'text-white/40' : 'text-gray-400'">필터:</span>
+        <span :class="isDark ? 'text-white/40' : 'text-gray-400'">{{ labels.filter }}:</span>
         <span
           v-if="tagFilter !== 'all'"
           class="flex items-center gap-1 rounded-full bg-[#D97720]/10 px-3 py-0.5 font-semibold text-[#D97720]"
@@ -106,7 +107,7 @@ useIntersectionObserver(listRef, ([e]) => { if (e.isIntersecting) isVisible.valu
             <span class="material-icons text-[12px]">close</span>
           </button>
         </span>
-        <span :class="isDark ? 'text-white/30' : 'text-gray-400'">· {{ filtered.length }}건</span>
+        <span :class="isDark ? 'text-white/30' : 'text-gray-400'">· {{ filtered.length }} {{ labels.count }}</span>
       </div>
 
       <!-- 스켈레톤 로딩 -->

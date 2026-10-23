@@ -46,9 +46,9 @@ const seoContent: Record<SeoPage, Record<SeoLocale, { title: string; description
   },
   contact: {
     ko: { title: '연락처·연구원 지원 | KIST 이관희 교수 ARISE Lab', description: 'ARISE Lab 연구실 위치, 이관희 교수 이메일과 Postdoc·대학원 연구원 지원 방법을 안내합니다. KIST L3연구동 3551호에 위치합니다.' },
-    en: { title: 'Contact & Graduate Admission | ARISE Lab', description: 'Find ARISE Lab contact details, location at KIST L3 Building Room 3551, and graduate admission inquiry information.' },
-    zh: { title: '联系方式与研究生申请 | ARISE Lab', description: '查看ARISE Lab联系方式、KIST L3研究楼3551室位置及研究生申请咨询信息。' },
-    ja: { title: 'お問い合わせ・大学院進学 | ARISE Lab', description: 'ARISE Labの連絡先、KIST L3研究棟3551号室へのアクセス、大学院進学のお問い合わせ情報をご案内します。' },
+    en: { title: 'Contact & Researcher Recruitment | ARISE Lab', description: 'Contact ARISE Lab at KIST L3 Building, Room 3551. Prospective postdoctoral researchers and graduate students are invited to submit their CV.' },
+    zh: { title: '联系方式与研究人员招聘 | ARISE Lab', description: '查看ARISE Lab联系方式及KIST L3研究楼3551室位置。有意申请博士后或研究生项目者，请提交个人简历。' },
+    ja: { title: 'お問い合わせ・研究員募集 | ARISE Lab', description: 'ARISE Labの連絡先とKIST L3研究棟3551号室をご案内します。ポスドク・大学院への応募に関心のある方はCVをご提出ください。' },
   },
 }
 

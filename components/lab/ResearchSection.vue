@@ -25,7 +25,7 @@ const partners = [
   { ko: '서울아산병원', en: 'Asan Medical Center' }, { ko: '삼성서울병원', en: 'Samsung Medical Center' },
   { ko: '서울대병원', en: 'SNU Hospital' },
 ]
-const name = (item: { ko: string; en: string }) => locale.value === 'ko' ? item.ko : item.en
+const name = useResearchName()
 const sectionRef = ref<HTMLElement | null>(null)
 const isVisible = ref(false)
 useIntersectionObserver(sectionRef, ([entry]) => { if (entry.isIntersecting) isVisible.value = true }, { threshold: 0.08 })

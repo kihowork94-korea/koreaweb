@@ -79,12 +79,10 @@ useIntersectionObserver(profileRef, ([e]) => { if (e.isIntersecting) profileVis.
           </div>
 
           <!-- 소개 텍스트 -->
-          <p
-            class="text-base leading-[1.9]"
+          <LabIntroduction
+            :fallback="labInfo ? loc(labInfo.description) : ''"
             :class="isDark ? 'text-white/65' : 'text-gray-600'"
-          >
-            {{ labInfo ? loc(labInfo.description) : '' }}
-          </p>
+          />
 
           <!-- 소속 -->
           <div class="mt-8 flex flex-wrap gap-2">

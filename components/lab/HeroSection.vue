@@ -51,7 +51,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
         :class="isDark ? 'text-white' : 'text-gray-900'"
         style="animation-delay: 100ms"
       >
-        <span v-if="isDark" class="text-white">ARISE LAB</span>
+        <span v-if="isDark" class="text-white">ARISELAB</span>
         <AriseWordmark v-else style="width: clamp(220px, 48vw, 430px)" />
       </h1>
 

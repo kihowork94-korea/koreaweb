@@ -1,5 +1,10 @@
+<script setup lang="ts">
+const themeStore = useThemeStore()
+</script>
+
 <template>
-  <img src="/images/arise-wordmark.png" alt="ARISE Lab" class="arise-wordmark" />
+  <span v-if="themeStore.isDark" class="arise-wordmark arise-wordmark-text">ARISELAB</span>
+  <img v-else src="/images/arise-horizontal-transparent.png" alt="ARISELAB" class="arise-wordmark" />
 </template>
 
 <style scoped>
@@ -9,7 +14,12 @@
   max-width: 100%;
   height: auto;
   object-fit: contain;
-  background: white;
-  border-radius: 5px;
+}
+.arise-wordmark-text {
+  color: #fff;
+  font-size: clamp(17px, 2vw, 24px);
+  font-weight: 800;
+  line-height: 1.2;
+  white-space: nowrap;
 }
 </style>

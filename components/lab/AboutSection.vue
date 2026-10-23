@@ -71,26 +71,6 @@ useIntersectionObserver(sectionRef, ([entry]) => {
           :class="isDark ? 'text-white/65' : 'text-gray-600'"
         />
 
-        <!-- 소속 태그 -->
-        <div class="mt-8 flex flex-wrap gap-2">
-          <span
-            v-if="labInfo?.university"
-            class="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold"
-            :class="isDark ? 'bg-white/[0.07] text-white/60' : 'bg-gray-100 text-gray-500'"
-          >
-            <span class="material-icons text-[13px]">account_balance</span>
-            {{ loc(labInfo.university) }}
-          </span>
-          <span
-            v-if="labInfo?.department"
-            class="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold"
-            :class="isDark ? 'bg-white/[0.07] text-white/60' : 'bg-gray-100 text-gray-500'"
-          >
-            <span class="material-icons text-[13px]">school</span>
-            {{ loc(labInfo.department) }}
-          </span>
-        </div>
-
         <!-- 더보기 -->
         <div class="mt-8">
           <NuxtLink

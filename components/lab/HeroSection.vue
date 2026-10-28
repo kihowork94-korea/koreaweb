@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { researchSlogan } from '~/data/research-flow'
 const { locale } = useI18n()
 const localePath = useLocalePath()
 const themeStore = useThemeStore()
@@ -11,7 +12,7 @@ const { data: labInfoArr } = useLabInfo()
 const labInfo = computed(() => (labInfoArr.value as any[])?.[0])
 
 const name   = computed(() => loc(labInfo.value?.name))
-const slogan = computed(() => loc(labInfo.value?.slogan))
+const slogan = computed(() => loc(researchSlogan))
 const univ   = computed(() => loc(labInfo.value?.university))
 
 // CTA 클릭 강조

@@ -1,20 +1,16 @@
 <script setup lang="ts">
+import { researchFlow, clinicalApplications } from '~/data/research-flow'
 const { locale, t } = useI18n()
 const themeStore = useThemeStore()
 const isDark = computed(() => themeStore.isDark)
 usePageSeo('research')
 
 const loc = (f: Record<string, string> | null | undefined) => f ? (f[locale.value as keyof typeof f] || f.en || '') : ''
-const { data: areasRaw } = useLabResearch()
-const researchAreas = computed<any[]>(() => (areasRaw.value as any[]) ?? [])
+const researchAreas = researchFlow.slice(0, 3)
 
-const applications = [
-  { icon: 'local_hospital', ko: 'AI 특화병동', en: 'AI-Enabled Ward' },
-  { icon: 'monitor_heart', ko: '스마트병동', en: 'Smart Ward' },
-  { icon: 'fitness_center', ko: '마이오카인', en: 'Myokine' },
-  { icon: 'biotech', ko: 'Secretome', en: 'Secretome' },
-]
+const applications = clinicalApplications
 const partners = [
+  { ko: '고려대 안암병원', en: 'KU Anam Hospital' },
   { ko: '존스홉킨스대학교', en: 'Johns Hopkins' },
   { ko: '하버드 의과대학', en: 'Harvard Medical' },
   { ko: 'UIUC', en: 'UIUC' },
@@ -24,7 +20,6 @@ const partners = [
   { ko: '나노종합기술원', en: 'National NanoFab Center' },
   { ko: '이화여자대학교', en: 'Ewha Womans University' },
   { ko: '인천대학교', en: 'Incheon National University' },
-  { ko: '고려대 안암병원', en: 'KU Anam Hospital' },
   { ko: '서울아산병원', en: 'Asan Medical Center' },
   { ko: '전북대병원', en: 'JBNU Hospital' },
   { ko: '서울대병원', en: 'SNU Hospital' },
@@ -37,7 +32,7 @@ const name = useResearchName()
     <header class="mx-auto mb-6 max-w-[760px] text-center">
       <p class="mb-3 text-xs font-extrabold uppercase tracking-[0.28em]" :class="isDark ? 'text-[#a5b4fc]' : 'text-[#4f46e5]'">ARISE Research Vision</p>
       <h1 class="text-5xl font-extrabold mobile:text-3xl" :class="isDark ? 'text-white' : 'text-gray-900'">{{ t('lab.nav.research') }}</h1>
-      <p class="mt-4 text-sm" :class="isDark ? 'text-white/40' : 'text-gray-400'">TECHNOLOGY → TRANSLATION → IMPACT</p>
+      <p class="mt-4 text-xs leading-relaxed tracking-[0.08em]" :class="isDark ? 'text-white/55' : 'text-gray-500'">DISCOVER → SENSE → EXPLAIN → TRANSLATE</p>
     </header>
 
     <div class="vision-map" :class="isDark ? 'map-dark' : 'map-light'">
@@ -62,8 +57,8 @@ const name = useResearchName()
         <div v-for="(area, i) in researchAreas.slice(0, 3)" :key="area.id" class="tech-cluster" :class="`tech-${i + 1}`">
           <div class="tech-main">
             <UIcon :name="area.iconName" class="tech-icon"/>
-            <strong v-if="loc(area.title) === '지능형 바이오 모니터링'">지능형 바이오<br>모니터링</strong>
-            <strong v-else>{{ loc(area.title) }}</strong>
+            <small class="axis-label">{{ area.label }}</small>
+            <strong><template v-for="(line, index) in loc(area.lines!).split('|')" :key="line"><br v-if="index" />{{ line }}</template></strong>
           </div>
           <div class="keyword-row">
             <span v-for="kw in area.keywords.slice(0, 3)" :key="loc(kw)" class="satellite">{{ loc(kw) }}</span>
@@ -79,7 +74,7 @@ const name = useResearchName()
       <section class="application-zone" aria-label="Clinical applications">
         <p class="zone-title"><span>02</span> CLINICAL VISION</p>
         <div v-for="(app, i) in applications" :key="app.en" class="app-bubble" :class="`app-${i + 1}`">
-          <span class="material-icons">{{ app.icon }}</span><strong>{{ name(app) }}</strong>
+          <span class="material-icons">{{ app.icon }}</span><strong>{{ loc(app) }}</strong>
         </div>
       </section>
 
@@ -95,6 +90,11 @@ const name = useResearchName()
 </template>
 
 <style scoped>
+.axis-label { color: #2563eb; font-size: .6rem; font-weight: 800; letter-spacing: .04em; white-space: nowrap; }
+.tech-main { gap: .35rem !important; }
+.tech-main strong { max-width: 95% !important; word-break: keep-all; overflow-wrap: normal; font-size: .76rem !important; }
+.map-dark .axis-label { color: #93c5fd; }
+@media(max-width:800px) { .tech-main { width: 122px !important; height: 122px !important; } .tech-cluster { grid-template-columns: 122px minmax(0,1fr) !important; } .tech-main strong { font-size: .66rem !important; } }
 .vision-map{position:relative;width:min(1240px,100%);height:1120px;margin:0 auto;overflow:hidden;border-radius:3rem;isolation:isolate}.map-light{background:radial-gradient(circle at 50% 31%,#fafafa 0,#ffffff 34%,#f8fafc 76%)}.map-dark{background:radial-gradient(circle at 50% 31%,#18181b 0,#111113 38%,#090a0d 78%)}.mesh{position:absolute;inset:0;z-index:-3;opacity:.38;background-image:radial-gradient(rgba(39,39,42,.25) 1px,transparent 1px);background-size:24px 24px;mask-image:radial-gradient(ellipse at center,black,transparent 75%)}.glow{position:absolute;z-index:-2;border-radius:50%;filter:blur(80px);animation:breathe 6s ease-in-out infinite alternate}.glow-a{top:20%;left:36%;width:340px;height:340px;background:rgba(113,113,122,.13)}.glow-b{top:58%;left:5%;width:260px;height:260px;background:rgba(161,161,170,.1);animation-delay:-2s}.glow-c{right:5%;bottom:8%;width:320px;height:320px;background:rgba(39,39,42,.09);animation-delay:-4s}.map-lines{position:absolute;inset:0;z-index:-1;width:100%;height:100%}.branches path,.network-lines path{fill:none;stroke:url(#visionLine);stroke-width:2;stroke-dasharray:6 8;animation:dash 16s linear infinite}.moving-dots circle{fill:#71717a;filter:url(#lineGlow)}.zone-title{position:absolute;left:4%;top:0;display:flex;align-items:center;gap:.6rem;color:#3f3f46;font-size:.68rem;font-weight:900;letter-spacing:.17em}.zone-title span{display:grid;width:30px;height:30px;place-items:center;border-radius:50%;background:rgba(82,82,91,.12);letter-spacing:0}.tech-zone{position:absolute;inset:50px 0 auto;height:310px}.tech-cluster{position:absolute;width:29%;height:230px}.tech-1{left:3%}.tech-2{left:35.5%}.tech-3{right:3%}.tech-main{position:absolute;left:50%;top:47%;display:flex;width:145px;height:145px;transform:translate(-50%,-50%);flex-direction:column;align-items:center;justify-content:center;gap:.65rem;border:1px solid rgba(39,39,42,.27);border-radius:50%;background:rgba(255,255,255,.68);text-align:center;box-shadow:0 18px 55px rgba(63,63,70,.08),inset 0 0 25px rgba(82,82,91,.06);backdrop-filter:blur(12px);transition:.35s}.map-dark .tech-main{background:rgba(255,255,255,.045)}.tech-main:hover{transform:translate(-50%,-50%) scale(1.08);box-shadow:0 0 0 12px rgba(82,82,91,.06),0 22px 60px rgba(63,63,70,.15)}.tech-main strong{max-width:110px;font-size:.9rem;line-height:1.3}.tech-icon{width:28px;height:28px;color:#27272a}.keyword-row{position:absolute;left:0;right:0;bottom:0;display:flex;min-height:48px;align-items:flex-start;justify-content:center;gap:.4rem;flex-wrap:wrap;padding:0 .35rem}.satellite{display:inline-flex;max-width:100%;align-items:center;justify-content:center;padding:.42rem .68rem;border-radius:999px;background:rgba(82,82,91,.09);color:#3f3f46;font-size:.7rem;font-weight:800;line-height:1.25;text-align:center;white-space:normal;overflow-wrap:anywhere}.core-zone{position:absolute;top:270px;left:50%;width:280px;height:280px;transform:translateX(-50%)}.vision-core{position:absolute;inset:70px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:50%;background:radial-gradient(circle at 35% 28%,#d4d4d8,#3f3f46 72%);color:white;box-shadow:0 0 0 15px rgba(82,82,91,.055),0 24px 70px rgba(39,39,42,.26)}.vision-core small{display:none}.vision-core strong{font-size:1.35rem;font-weight:950;letter-spacing:.04em}.vision-core span{margin-top:.15rem;font-size:.72rem;font-weight:800;letter-spacing:.22em}.orbit{position:absolute;border:1px solid rgba(39,39,42,.23);border-radius:50%;animation:spin 15s linear infinite}.orbit i{position:absolute;top:-4px;left:50%;width:8px;height:8px;border-radius:50%;background:#52525b;box-shadow:0 0 12px #52525b}.orbit-a{inset:42px}.orbit-b{inset:20px;animation-duration:22s;animation-direction:reverse}.orbit-c{inset:0;border-style:dashed;animation-duration:30s}.application-zone{position:absolute;top:535px;left:0;width:100%;height:230px}.application-zone .zone-title{top:-20px}.app-bubble{position:absolute;top:58px;display:flex;width:145px;height:145px;flex-direction:column;align-items:center;justify-content:center;gap:.55rem;border:1px solid rgba(39,39,42,.22);border-radius:50%;background:rgba(255,255,255,.65);text-align:center;box-shadow:0 18px 45px rgba(68,46,28,.06);backdrop-filter:blur(10px);transition:.3s}.map-dark .app-bubble{background:rgba(255,255,255,.04)}.app-bubble:hover{transform:scale(1.1);border-color:#52525b}.app-bubble .material-icons{color:#27272a;font-size:1.65rem}.app-bubble strong{max-width:105px;font-size:.8rem}.app-1{left:6%}.app-2{left:31%;top:76px}.app-3{right:31%;top:76px}.app-4{right:6%}.network-zone{position:absolute;left:4%;right:4%;top:770px;height:300px}.network-center{position:absolute;z-index:2;top:42px;left:50%;display:flex;transform:translateX(-50%);align-items:center;gap:.55rem;color:#3f3f46;font-size:.66rem;letter-spacing:.12em}.network-center .material-icons{font-size:1.4rem}.network-lines{position:absolute;left:5%;top:58px;width:90%;height:210px}.partner-field{position:absolute;inset:88px 0 0}.partner{position:absolute;display:flex;align-items:center;gap:.45rem;color:#52525b;font-size:.7rem;font-weight:850;white-space:nowrap}.map-dark .partner{color:rgba(255,255,255,.64)}.partner i{width:7px;height:7px;border-radius:50%;background:#52525b;box-shadow:0 0 9px #52525b}.partner-1{left:1%;top:82px}.partner-2{left:13%;top:145px}.partner-3{left:30%;top:72px}.partner-4{left:41%;top:160px}.partner-5{right:34%;top:78px}.partner-6{right:17%;top:145px}.partner-7{right:1%;top:82px}.partner-8{left:50%;top:112px;transform:translateX(-50%)}.confirm-note{position:absolute;bottom:26px;width:100%;text-align:center;color:#a1a1aa;font-size:.62rem}@keyframes dash{to{stroke-dashoffset:-140}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes breathe{to{transform:scale(1.25);opacity:.65}}
 @media(max-width:800px){.vision-map{height:1320px;border-radius:2rem}.map-lines{display:none}.tech-zone{height:520px}.tech-cluster{left:50%!important;right:auto!important;width:88%;height:155px;transform:translateX(-50%)}.tech-1{top:10px}.tech-2{top:150px}.tech-3{top:290px}.tech-main{top:35%;width:100px;height:100px}.keyword-row{bottom:0;gap:.3rem;padding:0}.satellite{font-size:.66rem;padding:.34rem .5rem}.core-zone{top:470px;transform:translateX(-50%) scale(.82)}.application-zone{top:730px;height:360px}.app-bubble{width:118px;height:118px}.app-1{left:8%;top:50px}.app-2{left:auto;right:8%;top:50px}.app-3{left:8%;right:auto;top:200px}.app-4{right:8%;top:200px}.network-zone{top:1020px}.network-lines{display:none}.network-center{top:45px}.partner-field{display:flex;inset:105px 0 auto;flex-wrap:wrap;justify-content:center;gap:1rem 1.3rem}.partner{position:static!important;transform:none!important}.confirm-note{padding:0 1rem}.zone-title{left:5%}}
 /* Readability and responsive world-network layer */

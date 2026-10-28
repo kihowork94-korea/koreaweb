@@ -4,6 +4,7 @@
 
 import { professorProfile } from '~/data/professor-profile'
 import { profileTranslations } from '~/data/profile-translations'
+import { memberResearch } from '~/data/member-research'
 
 export function transformRows(table: string, rows: any[]): any[] {
   switch (table) {
@@ -29,6 +30,9 @@ function transformMember(row: any) {
     return value
   }
   row = cleanText(row)
+  if (memberResearch[row.name?.ko]) {
+    row = { ...row, research_interests: memberResearch[row.name.ko] }
+  }
   if (row.role === 'professor' && (row.name?.ko === '이관희' || row.name?.en === 'Kwan Hyi Lee')) {
     row = {
       ...row,

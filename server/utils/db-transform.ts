@@ -30,6 +30,18 @@ function transformMember(row: any) {
     return value
   }
   row = cleanText(row)
+  if (row.name?.ko === '최기호') {
+    row = {
+      ...row,
+      role: 'combined',
+      bio: {
+        ko: '석박통합과정 (KU-KIST 융합대학원, 고려대학교)',
+        en: 'Integrated M.S./Ph.D. Student, KU-KIST Graduate School, Korea University',
+        zh: '硕博连读（KU-KIST融合研究生院，高丽大学）',
+        ja: '修士・博士統合課程（KU-KIST融合大学院、高麗大学）',
+      },
+    }
+  }
   if (memberResearch[row.name?.ko]) {
     row = { ...row, research_interests: memberResearch[row.name.ko] }
   }

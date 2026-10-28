@@ -36,9 +36,30 @@ export default defineNuxtConfig({
 
   // 보안 헤더
   routeRules: {
-    '/admin/**': { robots: false },
-    '/admin-login': { robots: false },
-    '/login': { robots: false },
+    // Public pages are cached at Vercel's edge. The Korean root remains dynamic
+    // because server/middleware/locale.ts chooses a locale from the request.
+    '/about': { swr: 300 },
+    '/members': { swr: 300 },
+    '/research': { swr: 300 },
+    '/publications': { swr: 300 },
+    '/projects': { swr: 300 },
+    '/news': { swr: 300 },
+    '/news/**': { swr: 300 },
+    '/contact': { swr: 300 },
+    '/en': { swr: 300 },
+    '/en/**': { swr: 300 },
+    '/zh': { swr: 300 },
+    '/zh/**': { swr: 300 },
+    '/ja': { swr: 300 },
+    '/ja/**': { swr: 300 },
+    // Public Supabase reads can briefly reuse the same response. Admin writes,
+    // authentication, and uploads always bypass cache.
+    '/api/lab/**': { swr: 60, robots: false },
+    '/api/__sitemap__/**': { swr: 3600 },
+    '/api/admin/**': { cache: false, robots: false },
+    '/admin/**': { cache: false, robots: false },
+    '/admin-login': { cache: false, robots: false },
+    '/login': { cache: false, robots: false },
     '/api/**': { robots: false },
     '/**': {
       headers: {

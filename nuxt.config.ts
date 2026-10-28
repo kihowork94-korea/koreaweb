@@ -32,6 +32,9 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'vercel',
     compressPublicAssets: true,
+    future: {
+      nativeSWR: true,
+    },
   },
 
   // 보안 헤더

@@ -7,3 +7,6 @@ coverage
 .DS_Store
 supabase/.branches
 supabase/.temp
+# Unreferenced source images; optimized WebP versions remain deployed.
+public/images/introduction/*.png
+public/images/introduction/*.jpeg

@@ -4,7 +4,7 @@ const themeStore = useThemeStore()
 
 <template>
   <span v-if="themeStore.isDark" class="arise-wordmark arise-wordmark-text">ARISELAB</span>
-  <img v-else src="/images/arise-horizontal-transparent.png" alt="ARISELAB" class="arise-wordmark" />
+  <img v-else src="/images/arise-horizontal-transparent.webp" alt="ARISELAB" class="arise-wordmark" />
 </template>
 
 <style scoped>

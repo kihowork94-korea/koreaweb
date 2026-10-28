@@ -10,10 +10,10 @@ const loc = (field: Record<string, string> | null | undefined) => field ? (field
 const researchAreas = researchFlow.slice(0, 3)
 const applications = clinicalApplications
 const partners = [
-  { ko: '고려대 안암병원', en: 'KU Anam Hospital' },
   { ko: '존스홉킨스대학교', en: 'Johns Hopkins' }, { ko: '하버드 의과대학', en: 'Harvard Medical' },
   { ko: 'UIUC', en: 'UIUC' }, { ko: '프랑스 IBENS', en: 'IBENS, France' },
   { ko: 'Horizon Europe', en: 'Horizon Europe' }, { ko: 'KIST 유럽연구소', en: 'KIST Europe' },
+  { ko: '고려대 안암병원', en: 'KU Anam Hospital' },
   { ko: '전북대학교병원', en: 'JBNU Hospital' },
   { ko: '나노종합기술원', en: 'National NanoFab Center' }, { ko: '이화여자대학교', en: 'Ewha Womans University' },
   { ko: '인천대학교', en: 'Incheon National University' },
@@ -56,7 +56,7 @@ useIntersectionObserver(sectionRef, ([entry]) => { if (entry.isIntersecting) isV
         </section>
         <section class="tree-zone network-zone" aria-label="Global network">
           <p class="zone-label"><span>03</span> GLOBAL NETWORK</p>
-          <div class="network-hub"><AriseLogo style="height: 60px" /></div>
+          <div class="network-hub"><AriseWordmark style="width: 190px; max-width: 100%" /></div>
           <div class="partner-list"><span v-for="partner in partners" :key="partner.en"><i />{{ name(partner) }}</span></div>
         </section>
       </div>

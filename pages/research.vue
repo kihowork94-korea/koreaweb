@@ -10,18 +10,19 @@ const researchAreas = researchFlow.slice(0, 3)
 
 const applications = clinicalApplications
 const partners = [
-  { ko: '고려대 안암병원', en: 'KU Anam Hospital' },
   { ko: '존스홉킨스대학교', en: 'Johns Hopkins' },
   { ko: '하버드 의과대학', en: 'Harvard Medical' },
   { ko: 'UIUC', en: 'UIUC' },
   { ko: '프랑스 IBENS', en: 'IBENS, France' },
   { ko: 'Horizon Europe', en: 'Horizon Europe' },
   { ko: 'KIST 유럽연구소', en: 'KIST Europe' },
+  { ko: '고려대 안암병원', en: 'KU Anam Hospital' },
+  { ko: '전북대학교병원', en: 'JBNU Hospital' },
   { ko: '나노종합기술원', en: 'National NanoFab Center' },
   { ko: '이화여자대학교', en: 'Ewha Womans University' },
   { ko: '인천대학교', en: 'Incheon National University' },
   { ko: '서울아산병원', en: 'Asan Medical Center' },
-  { ko: '전북대병원', en: 'JBNU Hospital' },
+  { ko: '삼성서울병원', en: 'Samsung Medical Center' },
   { ko: '서울대병원', en: 'SNU Hospital' },
 ]
 const name = useResearchName()
@@ -80,7 +81,7 @@ const name = useResearchName()
 
       <section class="network-zone" aria-label="Collaboration network">
         <p class="zone-title"><span>03</span> GLOBAL NETWORK</p>
-        <div class="network-center"><AriseLogo style="height: 54px" /></div>
+        <div class="network-center"><AriseWordmark style="width: 190px; max-width: 100%" /></div>
         <svg class="network-lines" viewBox="0 0 1000 330" preserveAspectRatio="none" aria-hidden="true"><g><path d="M500 20 C500 100 90 80 90 250"/><path d="M500 20 C500 100 220 80 220 300"/><path d="M500 20 C500 130 365 100 365 250"/><path d="M500 20 L500 310"/><path d="M500 20 C500 130 635 100 635 250"/><path d="M500 20 C500 100 780 80 780 300"/><path d="M500 20 C500 100 910 80 910 250"/></g></svg>
         <div class="partner-field"><span v-for="(partner, i) in partners" :key="partner.en" class="partner" :class="`partner-${i + 1}`"><i/>{{ name(partner) }}</span></div>
       </section>

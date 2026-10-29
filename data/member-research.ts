@@ -8,4 +8,5 @@ export const memberResearch: Record<string, ReturnType<typeof localized>[]> = {
   '하현우': [localized('바이오센서 데이터 기반 생체분자 분석 기술', 'Biosensor Data-driven Biomolecular Analysis', '基于生物传感器数据的生物分子分析技术', 'バイオセンサーデータに基づく生体分子分析技術')],
   '국다경': [localized('바이오센서 기반 생체분자 분석', 'Biosensor-based Biomolecular Analysis', '基于生物传感器的生物分子分析', 'バイオセンサーによる生体分子分析')],
   '박지수': [localized('바이오마커 기반 진단 기술', 'Biomarker-based Diagnostic Technologies', '基于生物标志物的诊断技术', 'バイオマーカーに基づく診断技術')],
+  '박형준': [localized('바이오센서 · CRISPR · 머신러닝', 'Biosensors · CRISPR · Machine Learning', '生物传感器 · CRISPR · 机器学习', 'バイオセンサー · CRISPR · 機械学習')],
 }

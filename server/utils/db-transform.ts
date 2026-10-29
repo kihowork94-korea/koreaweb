@@ -46,8 +46,10 @@ function transformMember(row: any) {
     row = { ...row, research_interests: memberResearch[row.name.ko] }
   }
   if (row.role === 'professor' && (row.name?.ko === '이관희' || row.name?.en === 'Kwan Hyi Lee')) {
+    const hasLegacyProfessorImage = !row.image_url || row.image_url.includes('kukistschool.korea.ac.kr')
     row = {
       ...row,
+      image_url: hasLegacyProfessorImage ? '/images/members/kwan-hyi-lee.webp' : row.image_url,
       bio: { ...row.bio, ...profileTranslations.affiliation, ko: professorProfile.affiliation },
       description: { ...row.description, ...profileTranslations.description, ko: professorProfile.description },
       research_interests: professorProfile.keywords,

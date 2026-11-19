@@ -47,7 +47,13 @@ const achievements = computed(() => {
           @error="($event.target as HTMLImageElement).src='/images/ku-logo.png'"
         />
       </div>
-      <div>
+      <div
+        class="min-w-0 flex-1 [overflow-wrap:anywhere]"
+        :class="member.role === 'professor' && [
+          'border-l pl-6 mobile:border-l-0 mobile:border-t mobile:pl-0 mobile:pt-5',
+          isDark ? 'border-white/15' : 'border-gray-200',
+        ]"
+      >
         <p class="mb-1 text-xs font-semibold uppercase tracking-wider text-[#D97720]">
           {{ t(`lab.member.${member.role}`) }}
         </p>

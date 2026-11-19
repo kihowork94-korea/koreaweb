@@ -1,8 +1,8 @@
 <script setup lang="ts">
-const { member, titleId } = defineProps<{ member: any; titleId: string }>()
+const { member, titleId, lightSurface } = defineProps<{ member: any; titleId: string; lightSurface?: boolean }>()
 const { locale, t } = useI18n()
 const themeStore = useThemeStore()
-const isDark = computed(() => themeStore.isDark)
+const isDark = computed(() => themeStore.isDark && !lightSurface)
 const loc = (value: Record<string, string> | null | undefined) =>
   value?.[locale.value] || value?.en || value?.ko || ''
 

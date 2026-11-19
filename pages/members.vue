@@ -179,13 +179,14 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
             <span class="rounded-full bg-[#f28c28]/10 px-2.5 py-1 text-xs font-bold text-[#d97720]">{{ group.members.length }}</span>
           </div>
 
-          <MemberProfileDetail
+          <div
             v-if="activeTab === 'professor'"
             v-for="member in group.members"
             :key="member.id"
-            :member="member"
-            :title-id="`professor-profile-${member.id}`"
-          />
+            class="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm mobile:p-5"
+          >
+            <MemberProfileDetail :member="member" :title-id="`professor-profile-${member.id}`" light-surface />
+          </div>
           <div v-else class="grid grid-cols-2 gap-6 mobile:grid-cols-1">
             <article
               v-for="(member, i) in group.members"
@@ -233,7 +234,7 @@ useIntersectionObserver(sectionRef, ([e]) => { if (e.isIntersecting) isVisible.v
                   <button
                     v-if="member.role === 'professor'"
                     type="button"
-                    class="mt-4 self-start rounded-full border border-[#D97720]/50 px-4 py-1.5 text-sm font-semibold text-[#D97720] hover:bg-[#D97720]/10"
+                    class="mt-4 self-end rounded-full border border-[#D97720]/50 px-4 py-1.5 text-sm font-semibold text-[#D97720] hover:bg-[#D97720]/10"
                     @click.stop="selectedMember = member"
                   >View <span aria-hidden="true">→</span></button>
                 </div>

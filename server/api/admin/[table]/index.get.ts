@@ -10,8 +10,10 @@ export default defineEventHandler(async (event) => {
   const baseUrl = getSupabaseRestUrl()
   const headers = getAdminHeaders()
 
-  const data = await $fetch<any[]>(`${baseUrl}/${table}?order=id`, {
+  const order = table === 'publications' ? 'year.desc.nullslast,month.desc.nullslast,id.desc' : 'id'
+  const data = await $fetch<any[]>(`${baseUrl}/${table}`, {
     headers,
+    query: { order },
   })
 
   return data
